@@ -1,13 +1,39 @@
 // =============================================================================
-// NAV — Hamburger + Dropdowns (mobile click, desktop hover/keyboard)
+// NAV — Hamburger + Dropdowns (mobile click, desktop hover/keyboard) + scroll
 // =============================================================================
 
 document.addEventListener('DOMContentLoaded', initNav);
 
 function initNav() {
+  const header    = document.querySelector('.site-header');
   const hamburger = document.querySelector('[data-nav-hamburger]');
   const nav       = document.querySelector('[data-nav]');
   const triggers  = Array.from(document.querySelectorAll('[data-nav-trigger]'));
+
+  // ---------------------------------------------------------------------------
+  // Scroll — slide-in/out com base na direção
+  // ---------------------------------------------------------------------------
+  if (header) {
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const current = window.scrollY;
+        if (current <= 10) {
+          header.classList.remove('is-hidden');
+        } else if (current > lastScrollY + 4) {
+          header.classList.add('is-hidden');
+        } else if (current < lastScrollY - 4) {
+          header.classList.remove('is-hidden');
+        }
+        lastScrollY = current;
+        ticking = false;
+      });
+    }, { passive: true });
+  }
 
   // ---------------------------------------------------------------------------
   // Hamburger (mobile)
@@ -21,23 +47,45 @@ function initNav() {
   }
 
   // ---------------------------------------------------------------------------
-  // Triggers de dropdown — click abre/fecha no mobile E no teclado (desktop)
+  // Hover no desktop — sincroniza aria-expanded (chevron + acessibilidade)
   // ---------------------------------------------------------------------------
   triggers.forEach((trigger) => {
-    const item     = trigger.closest('.nav-list__item');
+    const item = trigger.closest('.nav-list__item');
+    if (!item) return;
+
+    item.addEventListener('mouseenter', () => {
+      if (window.matchMedia('(min-width: 992px)').matches) {
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    item.addEventListener('mouseleave', () => {
+      if (window.matchMedia('(min-width: 992px)').matches) {
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
+  // ---------------------------------------------------------------------------
+  // Click — mobile: abre/fecha via .is-open | desktop: apenas teclado/aria
+  // ---------------------------------------------------------------------------
+  triggers.forEach((trigger) => {
+    const item = trigger.closest('.nav-list__item');
     if (!item) return;
 
     trigger.addEventListener('click', (e) => {
-      // No desktop, clicks nos triggers são para teclado/acessibilidade.
-      // O CSS já cuida do hover, então sincronizamos apenas o aria-expanded.
+      if (window.matchMedia('(min-width: 992px)').matches) {
+        const expanded = trigger.getAttribute('aria-expanded') === 'true';
+        trigger.setAttribute('aria-expanded', String(!expanded));
+        return;
+      }
+
       const willOpen = item.classList.toggle('is-open');
       trigger.setAttribute('aria-expanded', String(willOpen));
 
-      // Fecha os outros itens abertos
       triggers.forEach((other) => {
         if (other === trigger) return;
-        const otherItem = other.closest('.nav-list__item');
-        otherItem?.classList.remove('is-open');
+        other.closest('.nav-list__item')?.classList.remove('is-open');
         other.setAttribute('aria-expanded', 'false');
       });
 

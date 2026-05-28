@@ -1,0 +1,160 @@
+@use '../abstracts' as *;
+
+// =============================================================================
+// HOME ATALHOS — Hero simples + atalhos para principais páginas
+// =============================================================================
+
+.hero-atalhos {
+  position: relative;
+  min-height: calc(100svh - var(--topbar-h, 2rem) - 72px);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-secondary-700);
+  color: #fff;
+  overflow: hidden;
+
+  // ── Background image
+  &__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center right;
+    }
+  }
+
+  // ── Dark teal overlay (diagonal cut — covers left side)
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      105deg,
+      rgba(11, 91, 104, 0.96) 0%,
+      rgba(11, 91, 104, 0.96) 52%,
+      rgba(11, 91, 104, 0.4)  68%,
+      rgba(11, 91, 104, 0)    80%
+    );
+
+    @include respond-down(md) {
+      background: rgba(11, 91, 104, 0.82);
+    }
+  }
+
+  // ── Green accent triangle — top-right corner
+  &__accent {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    width: clamp(120px, 18vw, 220px);
+    height: clamp(120px, 18vw, 220px);
+    background-color: var(--color-primary-500);
+    clip-path: polygon(100% 0, 0 0, 100% 100%);
+    pointer-events: none;
+  }
+
+  // ── Main content area
+  &__content {
+    @include container;
+    position: relative;
+    z-index: 3;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-block: $spacing-20;
+  }
+
+  &__inner {
+    max-width: 560px;
+  }
+
+  &__eyebrow {
+    display: inline-block;
+    padding: $spacing-1 $spacing-3;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: $radius-full;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    letter-spacing: $letter-spacing-widest;
+    text-transform: uppercase;
+    color: var(--color-primary-300);
+    margin-bottom: $spacing-5;
+    backdrop-filter: blur(8px);
+  }
+
+  &__title {
+    font-family: var(--font-family-display);
+    font-size: clamp(2rem, 4.5vw, $font-size-5xl);
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+    letter-spacing: $letter-spacing-tight;
+    color: #fff;
+    margin-bottom: $spacing-4;
+  }
+
+  &__desc {
+    font-size: clamp($font-size-md, 1.5vw, $font-size-lg);
+    color: rgba(255, 255, 255, 0.82);
+    line-height: $line-height-relaxed;
+    max-width: 52ch;
+    margin-bottom: $spacing-8;
+  }
+
+  // ── Shortcuts row — fundo escuro, largura total
+  &__shortcuts {
+    position: relative;
+    z-index: 3;
+    flex-shrink: 0;
+  }
+}
+
+// =============================================================================
+// SHORTCUTS GRID
+// =============================================================================
+
+.shortcuts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  @include respond-up(md) { grid-template-columns: repeat(4, 1fr); }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-1;
+    padding: $spacing-5 $spacing-6;
+    background-color: rgba(7, 63, 73, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    color: #fff;
+    text-decoration: none;
+    transition: background-color $transition-fast;
+
+    @include respond-up(md) {
+      padding: $spacing-5 $spacing-8;
+    }
+
+    &:hover {
+      background-color: var(--color-primary-600);
+    }
+  }
+
+  &__title {
+    font-size: $font-size-md;
+    font-weight: $font-weight-bold;
+    color: #fff;
+    line-height: $line-height-snug;
+  }
+
+  &__desc {
+    font-size: $font-size-sm;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: $line-height-snug;
+  }
+}

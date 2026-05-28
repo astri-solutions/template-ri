@@ -555,6 +555,7 @@
 // =============================================================================
 
 .contact-section {
+  display: none;
   padding-block: $spacing-16;
   @include respond-up(desktop) { padding-block: $spacing-28; }
   background-color: var(--color-tertiary-200);

@@ -1,0 +1,224 @@
+// =============================================================================
+// PÁGINA: Central de Resultados (Versão 1)
+//
+// Conforme briefing:
+//   - Header Interno com título, breadcrumb e bg-image.
+//   - Section com margin-top/bottom de 112px e gap interno de 72px.
+//   - Container 80% (entre 992–1540px) — vem do mixin @container.
+//   - Filtro de ano.
+//   - Tabela com 5 colunas; cabeçalho com 4T(ano) → 1T(ano) (ordem decrescente).
+//   - Linhas: Teleconferência, Apresentação, ITR, DFP, Vídeo, Transcrição.
+// =============================================================================
+
+@use '../abstracts' as *;
+
+// -----------------------------------------------------------------------------
+// HEADER INTERNO — barra topo da página com imagem de fundo
+// -----------------------------------------------------------------------------
+
+.page-header {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-secondary-700);
+  color: #fff;
+  padding-block: $spacing-16 $spacing-12;
+  isolation: isolate;
+
+  @include respond-up(desktop) { padding-block: $spacing-20 $spacing-16; }
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(110deg, rgba(11, 91, 104, 0.92) 0%, rgba(11, 91, 104, 0.7) 50%, rgba(11, 91, 104, 0.45) 100%),
+      linear-gradient(0deg, rgba(20, 20, 20, 0.25), transparent 70%);
+  }
+
+  &__inner { @include container; }
+
+  // Breadcrumb
+  &__breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: $spacing-2;
+    font-size: $font-size-xs;
+    letter-spacing: $letter-spacing-wider;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: $spacing-6;
+
+    a {
+      color: inherit;
+      transition: color $transition-fast;
+      &:hover { color: var(--color-primary-300); }
+    }
+
+    li {
+      display: inline-flex;
+      align-items: center;
+      gap: $spacing-2;
+
+      &:not(:last-child)::after {
+        content: '/';
+        opacity: 0.5;
+        margin-left: $spacing-2;
+      }
+
+      &[aria-current='page'] {
+        color: var(--color-primary-300);
+        font-weight: $font-weight-semibold;
+      }
+    }
+  }
+
+  &__title {
+    font-family: var(--font-family-display);
+    font-size: clamp(2rem, 4vw, $font-size-5xl);
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-tight;
+    letter-spacing: $letter-spacing-tighter;
+    color: #fff;
+    margin-bottom: $spacing-3;
+    max-width: 24ch;
+  }
+
+  &__lede {
+    font-size: $font-size-md;
+    color: rgba(255, 255, 255, 0.82);
+    max-width: 60ch;
+    line-height: $line-height-relaxed;
+
+    @include respond-up(desktop) { font-size: $font-size-lg; }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// SECTION — margin-top/bottom 112px e gap 72px (em desktop+)
+// -----------------------------------------------------------------------------
+
+.results-section {
+  @include section;          // 112px top/bottom em desktop+
+  @include section-stack;    // gap 72px entre filhos
+}
+
+.results-container {
+  @include container;        // 90% / 80% / 80% / 70% por breakpoint
+}
+
+// -----------------------------------------------------------------------------
+// FILTRO DE ANO
+// -----------------------------------------------------------------------------
+
+.results-filter {
+  display: flex;
+  align-items: center;
+  gap: $spacing-3;
+  flex-wrap: wrap;
+
+  &__label {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    letter-spacing: $letter-spacing-wide;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+}
+
+// -----------------------------------------------------------------------------
+// TABELA
+// -----------------------------------------------------------------------------
+
+.results-table {
+  width: 100%;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: $radius-xl;
+  overflow: hidden;
+  box-shadow: $shadow-sm;
+
+  &-scroller {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table {
+    width: 100%;
+    min-width: 720px;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  thead {
+    background-color: var(--color-secondary-500);
+    color: #fff;
+
+    th {
+      padding: $spacing-4 $spacing-5;
+      font-family: var(--font-family-base);
+      font-size: $font-size-sm;
+      font-weight: $font-weight-semibold;
+      letter-spacing: $letter-spacing-wide;
+      text-align: center;
+      white-space: nowrap;
+
+      // Primeira célula da primeira coluna fica em branco
+      &:first-child {
+        text-align: left;
+        width: 32%;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      transition: background-color $transition-fast;
+      &:nth-child(even) { background-color: var(--color-tertiary-200); }
+      &:hover           { background-color: var(--color-tertiary-300); }
+    }
+
+    td {
+      padding: $spacing-4 $spacing-5;
+      font-size: $font-size-sm;
+      color: var(--color-text);
+      border-top: 1px solid var(--color-divider);
+      text-align: center;
+      vertical-align: middle;
+
+      &:first-child {
+        text-align: left;
+        font-weight: $font-weight-medium;
+        color: var(--color-secondary-600);
+        font-size: $font-size-md;
+      }
+    }
+  }
+
+  // Acento à esquerda da primeira coluna no hover
+  tbody tr td:first-child {
+    position: relative;
+    padding-left: $spacing-6;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 25%; bottom: 25%;
+      width: 3px;
+      background-color: transparent;
+      border-radius: 0 $radius-sm $radius-sm 0;
+      transition: background-color $transition-fast;
+    }
+  }
+
+  tbody tr:hover td:first-child::before { background-color: var(--color-primary-500); }
+}

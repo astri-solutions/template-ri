@@ -1,0 +1,47 @@
+@use '../abstracts' as *;
+
+.file-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: $radius-md;
+  background-color: var(--color-tertiary-300);
+  color: var(--color-secondary-500);
+  transition: background-color $transition-fast, color $transition-fast,
+              transform $transition-fast;
+
+  svg { width: 20px; height: 20px; }
+
+  &:hover {
+    background-color: var(--color-secondary-500);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+
+  &:focus-visible { @include focus-ring(var(--color-secondary-500)); }
+
+  &--pdf   { color: #C8332B; }
+  &--xls   { color: #1F7244; }
+  &--doc   { color: #2A5599; }
+  &--ppt   { color: #C04E2A; }
+  &--audio { color: #6B4FBB; }
+  &--video { color: #B6357B; }
+
+  &--pdf:hover, &--xls:hover, &--doc:hover,
+  &--ppt:hover, &--audio:hover, &--video:hover { color: #fff; }
+
+  &--empty {
+    background-color: transparent;
+    color: var(--color-gray-300);
+    cursor: default;
+    &:hover { background-color: transparent; transform: none; }
+  }
+
+  // Variante menor para listas (Central de Resultados na Home)
+  &--inline {
+    width: 32px; height: 32px;
+    svg { width: 16px; height: 16px; }
+  }
+}

@@ -1,0 +1,240 @@
+@use '../abstracts' as *;
+
+// ============================================================
+// SITE HEADER
+// ============================================================
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: $z-sticky;
+  background-color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--color-divider);
+
+  &__inner {
+    @include container;
+    @include flex-between;
+    height: 72px;
+  }
+
+  &__brand {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__logo {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+
+  // Hamburger — visível apenas no mobile
+  &__hamburger {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    padding: 9px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text);
+    border-radius: $radius-sm;
+    transition: background-color $transition-fast;
+
+    &:hover { background-color: var(--color-tertiary-200); }
+
+    @include respond-up(desktop) { display: none; }
+
+    span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: currentColor;
+      border-radius: $radius-full;
+      transform-origin: center;
+      transition: transform $transition-base, opacity $transition-base;
+    }
+
+    &[aria-expanded='true'] {
+      span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    }
+  }
+
+  // Nav — mobile: oculto por padrão, aberto com .is-open
+  &__nav {
+    display: none;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    border-bottom: 1px solid var(--color-divider);
+    box-shadow: $shadow-md;
+    padding-bottom: $spacing-3;
+
+    &.is-open { display: block; }
+
+    // Desktop: incorporado à barra
+    @include respond-up(desktop) {
+      display: flex;
+      position: static;
+      background: none;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+
+      &.is-open { display: flex; }
+    }
+  }
+}
+
+// ============================================================
+// NAV LIST
+// ============================================================
+
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  @include respond-up(desktop) {
+    display: flex;
+    align-items: center;
+    gap: $spacing-1;
+  }
+
+  // Item
+  &__item {
+    position: relative;
+
+    // Desktop: hover / focus-within abre via CSS
+    @include respond-up(desktop) {
+      &--has-sub:hover > .nav-dropdown,
+      &--has-sub:focus-within > .nav-dropdown {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      // Último item alinha o dropdown à direita para não sair da tela
+      &:last-child .nav-dropdown {
+        left: auto;
+        right: 0;
+      }
+    }
+  }
+
+  // Link simples e botão de trigger compartilham o mesmo visual
+  &__link,
+  &__trigger {
+    display: flex;
+    align-items: center;
+    gap: $spacing-1;
+    padding: $spacing-3 $spacing-4;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: var(--color-text-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    text-decoration: none;
+    white-space: nowrap;
+    line-height: 1;
+    transition: color $transition-fast;
+
+    @include respond-up(desktop) {
+      width: auto;
+      padding: $spacing-2 $spacing-3;
+      border-radius: $radius-sm;
+    }
+
+    &:hover,
+    &[aria-current='page'],
+    &[aria-expanded='true'] {
+      color: var(--color-secondary-500);
+    }
+  }
+
+  // Chevron do trigger
+  &__chevron {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    margin-left: auto;
+    transition: transform $transition-fast;
+
+    @include respond-up(desktop) { margin-left: 2px; }
+  }
+
+  &__trigger[aria-expanded='true'] .nav-list__chevron {
+    transform: rotate(180deg);
+  }
+}
+
+// ============================================================
+// DROPDOWN PANEL
+// ============================================================
+
+.nav-dropdown {
+  list-style: none;
+  margin: 0;
+
+  // Mobile: inline, com indent e borda lateral
+  display: none;
+  padding: $spacing-1 0 $spacing-2 $spacing-6;
+  border-left: 2px solid var(--color-primary-500);
+  margin-left: $spacing-4;
+
+  .nav-list__item.is-open > & { display: block; }
+
+  // Desktop: painel flutuante
+  @include respond-up(desktop) {
+    display: block;
+    position: absolute;
+    top: calc(100% + $spacing-2);
+    left: 0;
+    min-width: 210px;
+    padding: $spacing-2;
+    margin: 0;
+    border-left: none;
+    background: #fff;
+    border-radius: $radius-md;
+    box-shadow: $shadow-lg;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-6px);
+    transition:
+      opacity $transition-base,
+      transform $transition-base,
+      visibility $transition-base;
+  }
+
+  &__link {
+    display: block;
+    padding: $spacing-2 $spacing-3;
+    font-size: $font-size-sm;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color $transition-fast, background-color $transition-fast;
+
+    @include respond-up(desktop) { border-radius: $radius-sm; }
+
+    &:hover,
+    &[aria-current='page'] {
+      color: var(--color-secondary-500);
+      background-color: var(--color-tertiary-100);
+    }
+  }
+}

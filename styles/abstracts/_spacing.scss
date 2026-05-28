@@ -1,0 +1,40 @@
+// =============================================================================
+// SPACING (4px scale)
+// =============================================================================
+
+$spacing-0:  0;
+$spacing-1:  0.25rem;   // 4px
+$spacing-2:  0.5rem;    // 8px
+$spacing-3:  0.75rem;   // 12px
+$spacing-4:  1rem;      // 16px
+$spacing-5:  1.25rem;   // 20px
+$spacing-6:  1.5rem;    // 24px
+$spacing-8:  2rem;      // 32px
+$spacing-10: 2.5rem;    // 40px
+$spacing-12: 3rem;      // 48px
+$spacing-14: 3.5rem;    // 56px
+$spacing-16: 4rem;      // 64px
+$spacing-18: 4.5rem;    // 72px  — gap padrão de seções da Central de Resultados
+$spacing-20: 5rem;      // 80px
+$spacing-24: 6rem;      // 96px
+$spacing-28: 7rem;      // 112px — margin-top/bottom de seções da Central de Resultados
+$spacing-32: 8rem;      // 128px
+
+// -----------------------------------------------------------------------------
+// CONTAINER — larguras percentuais por breakpoint.
+// Conforme especificação:
+//   - Mobile (<580):           90%
+//   - Tablet (580–991):        80%
+//   - Desktop (992–1540):      80%
+//   - Desktop Large (>1540):   70%
+//
+// Aplicado por @mixin container em _mixins.scss.
+// -----------------------------------------------------------------------------
+
+$container-width-mobile:  90%;
+$container-width-tablet:  80%;
+$container-width-desktop: 80%;
+$container-width-large:   70%;
+
+// Limite absoluto para evitar containers gigantes em telas muito largas
+$container-max-width: 1680px;

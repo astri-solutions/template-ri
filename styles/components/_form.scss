@@ -1,0 +1,57 @@
+// =============================================================================
+// FORM — input, textarea, label, fieldset
+// =============================================================================
+
+@use '../abstracts' as *;
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2;
+
+  &__label {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: var(--color-text);
+  }
+
+  &__hint {
+    font-size: $font-size-xs;
+    color: var(--color-text-muted);
+  }
+
+  &__input,
+  &__textarea {
+    width: 100%;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    border: 1.5px solid var(--color-border);
+    border-radius: $radius-md;
+    padding: $spacing-3 $spacing-4;
+    font-family: var(--font-family-base);
+    font-size: $font-size-md;
+    line-height: 1.4;
+    transition: border-color $transition-fast, box-shadow $transition-fast;
+
+    &::placeholder { color: var(--color-gray-500); }
+
+    &:hover { border-color: var(--color-secondary-400); }
+
+    &:focus-visible {
+      outline: none;
+      border-color: var(--color-secondary-500);
+      box-shadow: 0 0 0 3px rgba(11, 91, 104, 0.15);
+    }
+  }
+
+  &__textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  // Variantes de skin sobre fundos contrastados
+  &--on-light &__input,
+  &--on-light &__textarea {
+    background-color: #fff;
+  }
+}

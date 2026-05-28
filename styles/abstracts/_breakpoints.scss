@@ -1,0 +1,25 @@
+// =============================================================================
+// BREAKPOINTS
+// Conforme especificação do projeto:
+//   - Mobile:        abaixo de 580px        → container 90%
+//   - Tablet:        580px até 991px        → container 80%
+//   - Desktop:       992px até 1540px       → container 80%
+//   - Desktop Large: acima de 1540px        → container 70%
+// =============================================================================
+
+// Pontos de quebra (em min-width — abordagem mobile-first)
+$breakpoint-tablet:  580px;   // a partir daqui, layout "Tablet"
+$breakpoint-desktop: 992px;   // a partir daqui, layout "Desktop"
+$breakpoint-large:   1541px;  // a partir daqui, "Desktop Large"
+
+// Mapa para iteração
+$breakpoints: (
+  tablet:  $breakpoint-tablet,
+  desktop: $breakpoint-desktop,
+  large:   $breakpoint-large,
+);
+
+// Aliases compactos (úteis para utilitários e mantêm o snake-case curto)
+$breakpoint-sm: $breakpoint-tablet;
+$breakpoint-md: $breakpoint-desktop;
+$breakpoint-lg: $breakpoint-large;

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Central de Resultados — Astri RI</title>
+    <meta name="description" content="Central de Resultados em formato de tabela trimestral." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles/main.scss" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a href="/" class="site-header__brand" aria-label="Astri Solutions">
+          <img src="/assets/logotipo.svg" alt="Astri Solutions" class="site-header__logo" />
+        </a>
+        <nav class="site-header__nav" aria-label="Principal">
+          <a href="/">Home</a>
+          <a href="/#sobre">A Companhia</a>
+          <a href="/pages/central-resultados-v1.html" aria-current="page">Central de Resultados</a>
+          <a href="/#contato">Contato</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- =======================================================
+           HEADER INTERNO — título, breadcrumb, bg-image
+           ======================================================= -->
+      <section class="page-header" aria-labelledby="page-title">
+        <img
+          class="page-header__bg"
+          src="https://images.unsplash.com/photo-1554260570-e9689a3418b8?auto=format&fit=crop&w=1920&q=80"
+          alt=""
+          aria-hidden="true"
+        />
+        <div class="page-header__overlay" aria-hidden="true"></div>
+
+        <div class="page-header__inner">
+          <ol class="page-header__breadcrumb" aria-label="Você está em">
+            <li><a href="/">Home</a></li>
+            <li><a href="/#ri">Relações com Investidores</a></li>
+            <li aria-current="page">Central de Resultados</li>
+          </ol>
+
+          <h1 id="page-title" class="page-header__title">Central de Resultados</h1>
+          <p class="page-header__lede">
+            Releases, demonstrações financeiras, apresentações e materiais de teleconferência
+            organizados por trimestre. Selecione o ano para visualizar os arquivos.
+          </p>
+        </div>
+      </section>
+
+      <!-- =======================================================
+           SECTION — 112px top/bottom · gap 72px
+           ======================================================= -->
+      <section class="results-section">
+        <div class="results-container">
+          <div class="results-filter">
+            <label class="results-filter__label" for="year-filter">Ano</label>
+            <span class="select">
+              <select id="year-filter" class="select__field" data-results-filter>
+                <option value="2025" selected>2025</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+              </select>
+            </span>
+          </div>
+        </div>
+
+        <div class="results-container">
+          <div class="results-table">
+            <div class="results-table-scroller">
+              <table aria-label="Arquivos de resultados por trimestre">
+                <thead>
+                  <tr data-results-head>
+                    <!-- Cabeçalho gerado via JS: primeira célula em branco, depois 4T(ano)...1T(ano) -->
+                  </tr>
+                </thead>
+                <tbody data-results-body></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <div class="site-footer__grid">
+          <div class="site-footer__brand">
+            <span class="site-footer__brand-title">
+              <span class="site-header__brand-mark">A</span>
+              astri.solutions
+            </span>
+            <p>Coleção de páginas modulares para Relações com Investidores, construídas sobre um sistema de design único.</p>
+          </div>
+
+          <div class="site-footer__block">
+            <h4>RI</h4>
+            <ul>
+              <li><a href="/#sobre">A Companhia</a></li>
+              <li><a href="/pages/central-resultados-v1.html">Central de Resultados</a></li>
+              <li><a href="#">Governança</a></li>
+              <li><a href="#">Sustentabilidade</a></li>
+            </ul>
+          </div>
+
+          <div class="site-footer__block">
+            <h4>Investidores</h4>
+            <ul>
+              <li><a href="#">Calendário de Eventos</a></li>
+              <li><a href="#">Cotações</a></li>
+              <li><a href="#">Comunicados</a></li>
+              <li><a href="/#mailing">Cadastro Mailing</a></li>
+            </ul>
+          </div>
+
+          <div class="site-footer__block">
+            <h4>Contato</h4>
+            <ul>
+              <li><a href="mailto:ri@astri.solutions">ri@astri.solutions</a></li>
+              <li><a href="tel:+551130000000">+55 (11) 3000-0000</a></li>
+              <li><a href="/#contato">Fale conosco</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="site-footer__bottom">
+          <span>© 2025 Astri Solutions. Todos os direitos reservados.</span>
+          <span>Av. Brigadeiro Faria Lima, 2.277 · São Paulo, SP</span>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="/scripts/central-resultados-v1.js"></script>
+  </body>
+</html>

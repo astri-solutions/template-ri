@@ -1,0 +1,638 @@
+// =============================================================================
+// PÁGINA: HOME
+// Estrutura (conforme briefing):
+//  1. Banner (slider com troca automática a cada 4s, animação slide-left)
+//  2. Seção RI com 3 colunas (Atualizações, Central de Resultados, Eventos)
+//  3. Sobre (texto + big numbers)
+//  4. Cadastro no mailing
+//  5. Entre em contato
+//  6. Footer (no _footer.scss)
+// =============================================================================
+
+@use '../abstracts' as *;
+
+// =============================================================================
+// 1. BANNER / SLIDER
+// =============================================================================
+
+.hero {
+  position: relative;
+  height: 80vh;
+  min-height: 520px;
+  max-height: 820px;
+  overflow: hidden;
+  background-color: var(--color-secondary-700);
+  color: #fff;
+
+  &__track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: transform 800ms cubic-bezier(0.65, 0, 0.35, 1),
+                opacity 800ms cubic-bezier(0.65, 0, 0.35, 1);
+    pointer-events: none;
+
+    // Slide ativo: visível, no centro
+    &.is-active {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+      z-index: 2;
+    }
+
+    // Slide que está saindo (animação slide-left)
+    &.is-leaving {
+      opacity: 1;
+      transform: translateX(-100%);
+      z-index: 1;
+    }
+  }
+
+  &__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  // Overlay para garantir contraste do texto
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      linear-gradient(110deg, rgba(11, 91, 104, 0.85) 0%, rgba(11, 91, 104, 0.55) 45%, rgba(11, 91, 104, 0.2) 100%),
+      linear-gradient(0deg, rgba(20, 20, 20, 0.35), transparent 60%);
+  }
+
+  &__content {
+    @include container;
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1200px;
+    padding-block: $spacing-16;
+  }
+
+  &__inner {
+    max-width: 640px;
+  }
+
+  &__eyebrow {
+    display: inline-block;
+    padding: $spacing-2 $spacing-3;
+    background-color: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: $radius-full;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    letter-spacing: $letter-spacing-widest;
+    text-transform: uppercase;
+    color: var(--color-primary-300);
+    margin-bottom: $spacing-5;
+    backdrop-filter: blur(8px);
+  }
+
+  &__title {
+    font-family: var(--font-family-display);
+    font-size: clamp(2.25rem, 5vw, $font-size-6xl);
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-tight;
+    letter-spacing: $letter-spacing-tighter;
+    color: #fff;
+    margin-bottom: $spacing-5;
+
+    em {
+      font-style: italic;
+      color: var(--color-primary-300);
+      font-weight: $font-weight-medium;
+    }
+  }
+
+  &__text {
+    font-size: clamp($font-size-md, 1.5vw, $font-size-lg);
+    line-height: $line-height-relaxed;
+    color: rgba(255, 255, 255, 0.88);
+    margin-bottom: $spacing-8;
+    max-width: 56ch;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-3;
+  }
+
+  // ---- Controles inferiores (bullets + setas)
+  &__controls {
+    position: absolute;
+    left: 0; right: 0; bottom: $spacing-8;
+    z-index: 3;
+    @include container;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacing-4;
+    pointer-events: none;
+
+    > * { pointer-events: auto; }
+  }
+
+  &__bullets {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3;
+  }
+
+  &__bullet {
+    width: 32px;
+    height: 4px;
+    border-radius: $radius-full;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background-color $transition-fast;
+
+    &:hover { background-color: rgba(255, 255, 255, 0.5); }
+
+    // Barra de progresso interna que preenche durante 4s no slide ativo
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      width: 0%;
+      background-color: var(--color-primary-400);
+      transition: none;
+    }
+
+    &.is-active::after {
+      width: 100%;
+      transition: width 4000ms linear;
+    }
+
+    // Pausa de animação quando o slider está pausado (hover)
+    &.is-paused::after {
+      transition: none;
+    }
+  }
+
+  &__arrows {
+    display: none;
+    gap: $spacing-2;
+
+    @include respond-up(md) { display: flex; }
+  }
+
+  &__arrow {
+    width: 44px; height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $radius-full;
+    background-color: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+    backdrop-filter: blur(8px);
+    transition: background-color $transition-fast, transform $transition-fast;
+
+    &:hover { background-color: rgba(255, 255, 255, 0.25); }
+    &:active { transform: scale(0.94); }
+
+    svg { width: 18px; height: 18px; }
+  }
+
+  @include respond-down(md) {
+    height: 75vh;
+    min-height: 480px;
+    &__overlay { background:
+      linear-gradient(180deg, rgba(11, 91, 104, 0.75) 0%, rgba(11, 91, 104, 0.5) 50%, rgba(11, 91, 104, 0.85) 100%); }
+  }
+}
+
+// =============================================================================
+// 2. SEÇÃO RI — 3 colunas
+// =============================================================================
+
+.ri-section {
+  @include section;
+  background-color: var(--color-tertiary-200);
+
+  &__inner { @include container; }
+
+  &__head {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-3;
+    margin-bottom: $spacing-12;
+    text-align: center;
+
+    h2 {
+      font-size: clamp(2rem, 3.5vw, $font-size-4xl);
+      color: var(--color-secondary-500);
+    }
+
+    p {
+      max-width: 60ch;
+      margin-inline: auto;
+      color: var(--color-text-muted);
+    }
+  }
+
+  &__grid {
+    display: grid;
+    gap: $spacing-6;
+    grid-template-columns: 1fr;
+
+    @include respond-up(md) { grid-template-columns: repeat(3, 1fr); }
+  }
+}
+
+// ----- Lista comum às 3 colunas
+.ri-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-3;
+    padding-block: $spacing-3;
+    border-bottom: 1px solid var(--color-divider);
+    transition: background-color $transition-fast;
+
+    &:last-child { border-bottom: none; }
+    &:hover { background-color: var(--color-tertiary-200); }
+  }
+
+  &__link {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-3;
+    width: 100%;
+    color: inherit;
+
+    &:hover { color: var(--color-secondary-500); }
+  }
+
+  &__date {
+    flex-shrink: 0;
+    width: 76px;
+    font-family: var(--font-family-mono);
+    font-size: $font-size-xs;
+    color: var(--color-text-muted);
+    padding-top: 2px;
+    letter-spacing: $letter-spacing-wide;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    flex: 1;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    line-height: $line-height-snug;
+    color: var(--color-text);
+  }
+
+  // Event item — tem 3 linhas (data destacada, nome, horário)
+  &__event {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: $spacing-4;
+    width: 100%;
+    align-items: center;
+  }
+
+  &__event-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-2;
+    border-radius: $radius-md;
+    background-color: var(--color-primary-200);
+    color: var(--color-secondary-700);
+    line-height: 1;
+
+    .day {
+      font-family: var(--font-family-display);
+      font-size: $font-size-2xl;
+      font-weight: $font-weight-bold;
+    }
+
+    .month {
+      font-size: $font-size-2xs;
+      font-weight: $font-weight-bold;
+      letter-spacing: $letter-spacing-wider;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+  }
+
+  &__event-body {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-1;
+  }
+
+  &__event-title {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-snug;
+    color: var(--color-text);
+  }
+
+  &__event-time {
+    font-size: $font-size-xs;
+    color: var(--color-text-muted);
+  }
+
+  // File item — para Central de Resultados
+  &__file {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3;
+    width: 100%;
+  }
+
+  &__file-name {
+    flex: 1;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: var(--color-text);
+  }
+}
+
+// =============================================================================
+// 3. SOBRE — texto + big numbers
+// =============================================================================
+
+.about-section {
+  @include section;
+  background-color: var(--color-bg);
+
+  &__inner { @include container; }
+
+  &__intro {
+    display: grid;
+    gap: $spacing-10;
+    align-items: start;
+    margin-bottom: $spacing-16;
+
+    @include respond-up(lg) { grid-template-columns: 1fr 1.5fr; gap: $spacing-16; }
+  }
+
+  &__heading {
+    h2 {
+      font-size: clamp(2rem, 3.5vw, $font-size-4xl);
+      color: var(--color-secondary-500);
+      margin-bottom: $spacing-4;
+    }
+
+    .eyebrow { margin-bottom: $spacing-3; }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-4;
+    color: var(--color-text);
+    font-size: $font-size-lg;
+    line-height: $line-height-relaxed;
+  }
+
+  &__numbers {
+    display: grid;
+    gap: $spacing-6;
+    grid-template-columns: repeat(2, 1fr);
+
+    @include respond-up(md) { grid-template-columns: repeat(4, 1fr); gap: $spacing-8; }
+  }
+}
+
+.big-number {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2;
+  padding: $spacing-5 0;
+  border-top: 2px solid var(--color-primary-500);
+
+  &__value {
+    font-family: var(--font-family-display);
+    font-size: clamp(2.25rem, 5vw, $font-size-6xl);
+    font-weight: $font-weight-bold;
+    line-height: 1;
+    letter-spacing: $letter-spacing-tighter;
+    color: var(--color-secondary-500);
+
+    .unit {
+      font-size: 0.5em;
+      vertical-align: super;
+      color: var(--color-primary-700);
+      margin-left: 4px;
+    }
+
+    .plus {
+      color: var(--color-primary-500);
+      margin-left: -2px;
+    }
+  }
+
+  &__label {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: var(--color-text-muted);
+    line-height: $line-height-snug;
+  }
+}
+
+// =============================================================================
+// 4. MAILING — cadastro
+// =============================================================================
+
+.mailing-section {
+  padding-block: $spacing-16;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(0, 216, 101, 0.15), transparent 50%),
+    var(--color-secondary-500);
+  color: #fff;
+
+  &__inner {
+    @include container;
+    display: grid;
+    gap: $spacing-8;
+    align-items: center;
+
+    @include respond-up(md) { grid-template-columns: 1fr 1fr; gap: $spacing-12; }
+  }
+
+  &__copy {
+    .eyebrow { color: var(--color-primary-300); margin-bottom: $spacing-3; }
+
+    h2 {
+      font-size: clamp(1.75rem, 3vw, $font-size-3xl);
+      color: #fff;
+      margin-bottom: $spacing-3;
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 50ch;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-3;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: $radius-xl;
+    padding: $spacing-6;
+    backdrop-filter: blur(8px);
+
+    .field__label { color: rgba(255, 255, 255, 0.9); }
+    .field__input {
+      background-color: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.2);
+
+      &::placeholder { color: rgba(255, 255, 255, 0.5); }
+      &:hover { border-color: rgba(255, 255, 255, 0.4); }
+      &:focus-visible {
+        border-color: var(--color-primary-400);
+        box-shadow: 0 0 0 3px rgba(0, 216, 101, 0.25);
+      }
+    }
+
+    &-row {
+      display: grid;
+      gap: $spacing-3;
+      grid-template-columns: 1fr;
+
+      @include respond-up(sm) { grid-template-columns: 1fr 1fr; }
+    }
+
+    &-actions { margin-top: $spacing-2; }
+
+    &-disclaimer {
+      font-size: $font-size-xs;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: $line-height-relaxed;
+    }
+  }
+}
+
+// =============================================================================
+// 5. CONTATO
+// =============================================================================
+
+.contact-section {
+  @include section;
+  background-color: var(--color-tertiary-200);
+
+  &__inner {
+    @include container;
+    display: grid;
+    gap: $spacing-12;
+    align-items: start;
+
+    @include respond-up(lg) { grid-template-columns: 1fr 1fr; gap: $spacing-16; }
+  }
+
+  &__intro {
+    h2 {
+      font-size: clamp(2rem, 3.5vw, $font-size-4xl);
+      color: var(--color-secondary-500);
+      margin-bottom: $spacing-4;
+    }
+
+    p {
+      color: var(--color-text-muted);
+      max-width: 50ch;
+      margin-bottom: $spacing-8;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-6;
+  }
+
+  &__info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-4;
+
+    &-icon {
+      flex-shrink: 0;
+      width: 44px; height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: $radius-md;
+      background-color: var(--color-primary-200);
+      color: var(--color-secondary-700);
+
+      svg { width: 20px; height: 20px; }
+    }
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-1;
+
+      strong {
+        font-size: $font-size-sm;
+        font-weight: $font-weight-semibold;
+        color: var(--color-secondary-500);
+        text-transform: uppercase;
+        letter-spacing: $letter-spacing-wide;
+      }
+
+      span, a {
+        font-size: $font-size-md;
+        color: var(--color-text);
+      }
+
+      a:hover { color: var(--color-secondary-500); }
+    }
+  }
+
+  &__form {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: $radius-xl;
+    padding: $spacing-8;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-4;
+    box-shadow: $shadow-sm;
+
+    &-row {
+      display: grid;
+      gap: $spacing-4;
+      grid-template-columns: 1fr;
+
+      @include respond-up(sm) { grid-template-columns: 1fr 1fr; }
+    }
+
+    &-actions { margin-top: $spacing-2; }
+  }
+}

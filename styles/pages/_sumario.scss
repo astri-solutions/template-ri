@@ -1,0 +1,89 @@
+// =============================================================================
+// SUMÁRIO — índice das páginas (antiga home, agora apenas catálogo dev)
+// =============================================================================
+
+@use '../abstracts' as *;
+
+.summary {
+  padding-block: $spacing-16 $spacing-20;
+
+  &__hero {
+    @include container;
+    text-align: center;
+    margin-bottom: $spacing-12;
+
+    .eyebrow { margin-bottom: $spacing-3; }
+
+    h1 {
+      font-size: clamp(2.25rem, 5vw, $font-size-6xl);
+      color: var(--color-secondary-500);
+      max-width: 18ch;
+      margin-inline: auto;
+      margin-bottom: $spacing-4;
+    }
+
+    p { max-width: 60ch; margin-inline: auto; color: var(--color-text-muted); font-size: $font-size-lg; }
+  }
+
+  &__grid {
+    @include container;
+    display: grid;
+    gap: $spacing-6;
+    grid-template-columns: 1fr;
+
+    @include respond-up(sm) { grid-template-columns: repeat(2, 1fr); }
+    @include respond-up(lg) { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-3;
+    padding: $spacing-6;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: $radius-lg;
+    transition: border-color $transition-fast, transform $transition-fast,
+                box-shadow $transition-fast;
+
+    &:hover {
+      border-color: var(--color-primary-500);
+      transform: translateY(-2px);
+      box-shadow: $shadow-md;
+    }
+
+    &-tag {
+      align-self: flex-start;
+      padding: $spacing-1 $spacing-2;
+      border-radius: $radius-sm;
+      background-color: var(--color-primary-200);
+      color: var(--color-primary-900);
+      font-size: $font-size-2xs;
+      font-weight: $font-weight-bold;
+      letter-spacing: $letter-spacing-wider;
+      text-transform: uppercase;
+    }
+
+    h3 { font-size: $font-size-xl; color: var(--color-secondary-500); }
+    p { color: var(--color-text-muted); font-size: $font-size-sm; }
+
+    &-link {
+      margin-top: auto;
+      font-weight: $font-weight-semibold;
+      color: var(--color-secondary-600);
+      display: inline-flex;
+      align-items: center;
+      gap: $spacing-2;
+
+      &::after { content: '→'; transition: transform $transition-fast; }
+    }
+
+    &:hover &-link::after { transform: translateX(4px); }
+
+    &--soon {
+      opacity: 0.55;
+      pointer-events: none;
+      .summary__card-tag { background-color: var(--color-gray-200); color: var(--color-gray-700); }
+    }
+  }
+}

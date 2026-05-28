@@ -1,0 +1,119 @@
+// =============================================================================
+// MIXINS
+// =============================================================================
+
+@use 'sass:map';
+@use 'breakpoints' as *;
+@use 'spacing' as *;
+@use 'colors' as *;
+
+// -----------------------------------------------------------------------------
+// MEDIA QUERIES — mobile-first.
+// Chaves aceitas: tablet, desktop, large (e os aliases sm, md, lg).
+// Uso: @include respond-up(desktop) { ... }
+// -----------------------------------------------------------------------------
+
+@mixin respond-up($key) {
+  $value: map.get($breakpoints, $key);
+
+  // Suporte a aliases curtos: sm = tablet, md = desktop, lg = large
+  @if not $value {
+    @if      $key == sm { $value: $breakpoint-tablet;  }
+    @else if $key == md { $value: $breakpoint-desktop; }
+    @else if $key == lg { $value: $breakpoint-large;   }
+  }
+
+  @if $value {
+    @media (min-width: $value) { @content; }
+  } @else {
+    @error "Breakpoint #{$key} não existe. Use: tablet, desktop, large (ou sm/md/lg).";
+  }
+}
+
+@mixin respond-down($key) {
+  $value: map.get($breakpoints, $key);
+  @if not $value {
+    @if      $key == sm { $value: $breakpoint-tablet;  }
+    @else if $key == md { $value: $breakpoint-desktop; }
+    @else if $key == lg { $value: $breakpoint-large;   }
+  }
+  @if $value {
+    @media (max-width: ($value - 0.02px)) { @content; }
+  } @else {
+    @error "Breakpoint #{$key} não existe. Use: tablet, desktop, large (ou sm/md/lg).";
+  }
+}
+
+// -----------------------------------------------------------------------------
+// CONTAINER — largura percentual por breakpoint.
+//   < 580px  →  90%
+//   580px+   →  80%
+//   992px+   →  80%
+//   1541px+  →  70%
+// Sempre centralizado e limitado a $container-max-width.
+// -----------------------------------------------------------------------------
+
+@mixin container {
+  width: $container-width-mobile;
+  max-width: $container-max-width;
+  margin-inline: auto;
+
+  @include respond-up(tablet)  { width: $container-width-tablet;  }
+  @include respond-up(desktop) { width: $container-width-desktop; }
+  @include respond-up(large)   { width: $container-width-large;   }
+}
+
+// -----------------------------------------------------------------------------
+// SEÇÃO — espaçamento vertical padrão.
+// Margem de 112px (top/bottom) na versão completa, com gap interno de 72px
+// quando os filhos diretos estiverem em flex/grid column.
+// -----------------------------------------------------------------------------
+
+@mixin section {
+  margin-top: $spacing-16;
+  margin-bottom: $spacing-16;
+
+  @include respond-up(desktop) {
+    margin-top: $spacing-28;     // 112px
+    margin-bottom: $spacing-28;  // 112px
+  }
+}
+
+@mixin section-stack {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-10;
+
+  @include respond-up(desktop) {
+    gap: $spacing-18; // 72px
+  }
+}
+
+// -----------------------------------------------------------------------------
+// FOCO ACESSÍVEL
+// -----------------------------------------------------------------------------
+
+@mixin focus-ring($color: $color-secondary) {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px $color;
+}
+
+@mixin sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@mixin truncate {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin flex-center  { display: flex; align-items: center; justify-content: center; }
+@mixin flex-between { display: flex; align-items: center; justify-content: space-between; }

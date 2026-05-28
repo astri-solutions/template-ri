@@ -21,28 +21,11 @@
     <div class="topbar" role="navigation" aria-label="Barra de utilitários">
       <div class="topbar__inner">
 
-        <!-- Left: Acessibilidade + Idioma -->
+        <!-- Left: Links -->
         <div class="topbar__left">
-          <div class="topbar__a11y" role="group" aria-label="Acessibilidade">
-            <span class="topbar__a11y-label">Acessibilidade</span>
-            <button class="topbar__a11y-btn" type="button" data-a11y="contrast" aria-label="Alternar alto contraste" title="Alto contraste">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>
-            </button>
-            <button class="topbar__a11y-btn topbar__a11y-btn--font-up" type="button" data-a11y="font-up" aria-label="Aumentar fonte" title="Aumentar fonte">A<sup>+</sup></button>
-            <button class="topbar__a11y-btn topbar__a11y-btn--font-down" type="button" data-a11y="font-down" aria-label="Reduzir fonte" title="Reduzir fonte">A<sup>-</sup></button>
-          </div>
-          <div class="topbar__sep" aria-hidden="true"></div>
-          <div class="topbar__lang" role="group" aria-label="Idioma">
-            <button class="topbar__lang-btn is-active" type="button" data-lang="pt" aria-pressed="true" aria-label="Português">
-              <span class="topbar__flag" aria-hidden="true">🇧🇷</span>
-              <span>PT</span>
-            </button>
-            <span class="topbar__lang-sep" aria-hidden="true">|</span>
-            <button class="topbar__lang-btn" type="button" data-lang="en" aria-pressed="false" aria-label="English">
-              <span class="topbar__flag" aria-hidden="true">🇺🇸</span>
-              <span>EN</span>
-            </button>
-          </div>
+          <a href="/" class="topbar__link topbar__link--active">Relações com Investidores</a>
+          <span class="topbar__sep" aria-hidden="true"></span>
+          <a href="#" class="topbar__link">Institucional</a>
         </div>
 
         <!-- Center: Tickers -->
@@ -67,10 +50,28 @@
           </div>
         </div>
 
-        <!-- Right: Links -->
+        <!-- Right: Acessibilidade + Idioma -->
         <div class="topbar__right">
-          <a href="/" class="topbar__link topbar__link--active">Relações com Investidores</a>
-          <a href="#" class="topbar__link">Institucional</a>
+          <div class="topbar__a11y" role="group" aria-label="Acessibilidade">
+            <span class="topbar__a11y-label">Acessibilidade</span>
+            <button class="topbar__a11y-btn" type="button" data-a11y="contrast" aria-label="Alternar alto contraste" title="Alto contraste">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>
+            </button>
+            <button class="topbar__a11y-btn topbar__a11y-btn--font-up" type="button" data-a11y="font-up" aria-label="Aumentar fonte" title="Aumentar fonte">A<sup>+</sup></button>
+            <button class="topbar__a11y-btn topbar__a11y-btn--font-down" type="button" data-a11y="font-down" aria-label="Reduzir fonte" title="Reduzir fonte">A<sup>-</sup></button>
+          </div>
+          <div class="topbar__sep" aria-hidden="true"></div>
+          <div class="topbar__lang" role="group" aria-label="Idioma">
+            <button class="topbar__lang-btn is-active" type="button" data-lang="pt" aria-pressed="true" aria-label="Português">
+              <span class="topbar__flag" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"> <g clip-path="url(#clip-flag-pt)"> <path d="M15.375 6.7C14.775 3.175 11.7 0.5 8 0.5C4.3 0.5 1.225 3.175 0.625 6.7L8 3L15.375 6.7ZM0.625 9.3C1.225 12.825 4.3 15.5 8 15.5C11.7 15.5 14.775 12.825 15.375 9.3L8 13L0.625 9.3Z" fill="#699635"/> <path d="M8 3L0.625 6.7C0.55 7.125 0.5 7.55 0.5 8C0.5 8.45 0.55 8.875 0.625 9.3L8 13L15.375 9.3C15.45 8.875 15.5 8.45 15.5 8C15.5 7.55 15.45 7.125 15.375 6.7L8 3Z" fill="#FFE62E"/> <path d="M6.5 7.10001C5.7 7.10001 4.95 7.27501 4.275 7.57501C4.25 7.72501 4.25 7.85001 4.25 8.00001C4.25 10.075 5.925 11.75 8 11.75C9.4 11.75 10.625 10.975 11.275 9.85001C10.35 8.22501 8.55 7.10001 6.5 7.10001Z" fill="#428BC1"/> <path d="M11.7 8.6C11.725 8.4 11.75 8.2 11.75 8C11.75 5.925 10.075 4.25 8 4.25C6.525 4.25 5.25 5.1 4.625 6.35C5.225 6.175 5.85 6.075 6.5 6.075C8.625 6.075 10.5 7.075 11.7 8.6Z" fill="#428BC1"/> <path d="M6.49999 6.075C5.84999 6.075 5.22499 6.175 4.62499 6.35C4.44999 6.725 4.32499 7.125 4.27499 7.575C4.94999 7.275 5.69999 7.1 6.49999 7.1C8.54999 7.1 10.35 8.2 11.275 9.825C11.5 9.45 11.625 9.025 11.7 8.6C10.5 7.075 8.62499 6.075 6.49999 6.075Z" fill="white"/> <path d="M5.5 8.25C5.63807 8.25 5.75 8.13807 5.75 8C5.75 7.86193 5.63807 7.75 5.5 7.75C5.36193 7.75 5.25 7.86193 5.25 8C5.25 8.13807 5.36193 8.25 5.5 8.25Z" fill="white"/> <path d="M6.5 9.75C6.63807 9.75 6.75 9.63807 6.75 9.5C6.75 9.36193 6.63807 9.25 6.5 9.25C6.36193 9.25 6.25 9.36193 6.25 9.5C6.25 9.63807 6.36193 9.75 6.5 9.75Z" fill="white"/> <path d="M8 9.75C8.13807 9.75 8.25 9.63807 8.25 9.5C8.25 9.36193 8.13807 9.25 8 9.25C7.86193 9.25 7.75 9.36193 7.75 9.5C7.75 9.63807 7.86193 9.75 8 9.75Z" fill="white"/> <path d="M8 10.75C8.13807 10.75 8.25 10.6381 8.25 10.5C8.25 10.3619 8.13807 10.25 8 10.25C7.86193 10.25 7.75 10.3619 7.75 10.5C7.75 10.6381 7.86193 10.75 8 10.75Z" fill="white"/> <path d="M10 9.75C10.1381 9.75 10.25 9.63807 10.25 9.5C10.25 9.36193 10.1381 9.25 10 9.25C9.86193 9.25 9.75 9.36193 9.75 9.5C9.75 9.63807 9.86193 9.75 10 9.75Z" fill="white"/> <path d="M10 10.75C10.1381 10.75 10.25 10.6381 10.25 10.5C10.25 10.3619 10.1381 10.25 10 10.25C9.86193 10.25 9.75 10.3619 9.75 10.5C9.75 10.6381 9.86193 10.75 10 10.75Z" fill="white"/> <path d="M9 10.25C9.13807 10.25 9.25 10.1381 9.25 10C9.25 9.86193 9.13807 9.75 9 9.75C8.86193 9.75 8.75 9.86193 8.75 10C8.75 10.1381 8.86193 10.25 9 10.25Z" fill="white"/> <path d="M5.5 9.25C5.63807 9.25 5.75 9.13807 5.75 9C5.75 8.86193 5.63807 8.75 5.5 8.75C5.36193 8.75 5.25 8.86193 5.25 9C5.25 9.13807 5.36193 9.25 5.5 9.25Z" fill="white"/> </g> <defs> <clipPath id="clip-flag-pt"> <rect width="16" height="16" fill="white"/> </clipPath> </defs> </svg></span>
+              <span>PT</span>
+            </button>
+            <span class="topbar__lang-sep" aria-hidden="true">|</span>
+            <button class="topbar__lang-btn" type="button" data-lang="en" aria-pressed="false" aria-label="English">
+              <span class="topbar__flag" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"> <g clip-path="url(#clip-flag-en)"> <path d="M12 1.65C10.825 0.925 9.475 0.5 8 0.5V1.65H12Z" fill="#ED4C5C"/> <path d="M8 2.79999H13.4C12.975 2.37499 12.5 1.97499 12 1.64999H8V2.79999Z" fill="white"/> <path d="M8 3.95H14.325C14.05 3.525 13.75 3.15 13.425 2.8H8V3.95Z" fill="#ED4C5C"/> <path d="M8 5.1H14.925C14.75 4.7 14.55 4.3 14.325 3.95H8V5.1Z" fill="white"/> <path d="M8 6.25001H15.3C15.2 5.85001 15.075 5.47501 14.925 5.10001H8V6.25001Z" fill="#ED4C5C"/> <path d="M8 7.42499H15.475C15.45 7.02499 15.375 6.64999 15.3 6.27499H8V7.42499Z" fill="white"/> <path d="M15.475 7.425H8V8H0.5C0.5 8.2 0.5 8.375 0.525 8.575H15.475C15.5 8.375 15.5 8.2 15.5 8C15.5 7.8 15.5 7.6 15.475 7.425Z" fill="#ED4C5C"/> <path d="M0.699994 9.725H15.3C15.4 9.35 15.45 8.975 15.475 8.575H0.524994C0.549994 8.95 0.599994 9.35 0.699994 9.725Z" fill="white"/> <path d="M1.07501 10.875H14.925C15.075 10.5 15.2 10.125 15.3 9.72501H0.700012C0.800012 10.125 0.925012 10.5 1.07501 10.875Z" fill="#ED4C5C"/> <path d="M1.67501 12.025H14.325C14.55 11.65 14.75 11.275 14.925 10.875H1.07501C1.25001 11.275 1.45001 11.65 1.67501 12.025Z" fill="white"/> <path d="M2.57499 13.175H13.425C13.75 12.825 14.075 12.425 14.325 12.025H1.67499C1.92499 12.45 2.24999 12.825 2.57499 13.175Z" fill="#ED4C5C"/> <path d="M3.97501 14.325H12.025C12.55 14 13 13.6 13.425 13.175H2.57501C3.00001 13.625 3.47501 14 3.97501 14.325Z" fill="white"/> <path d="M8.00001 15.5C9.47501 15.5 10.85 15.075 12.025 14.325H3.97501C5.15001 15.075 6.52501 15.5 8.00001 15.5Z" fill="#ED4C5C"/> <path d="M4 1.65C3.475 1.975 3 2.375 2.575 2.8C2.225 3.15 1.925 3.55 1.675 3.95C1.45 4.325 1.225 4.7 1.075 5.1C0.925 5.475 0.8 5.85 0.7 6.25C0.6 6.625 0.55 7 0.525 7.4C0.5 7.6 0.5 7.8 0.5 8H8V0.5C6.525 0.5 5.175 0.925 4 1.65Z" fill="#428BC1"/> <path d="M6.25001 0.75L6.37501 1.125H6.75001L6.45001 1.375L6.55001 1.75L6.25001 1.525L5.95001 1.75L6.05001 1.375L5.75001 1.125H6.12501L6.25001 0.75ZM7.25001 2.25L7.37501 2.625H7.75001L7.45001 2.875L7.55001 3.25L7.25001 3.025L6.95001 3.25L7.05001 2.875L6.75001 2.625H7.12501L7.25001 2.25ZM5.25001 2.25L5.37501 2.625H5.75001L5.45001 2.875L5.55001 3.25L5.25001 3.025L4.95001 3.25L5.05001 2.875L4.75001 2.625H5.12501L5.25001 2.25ZM6.25001 3.75L6.37501 4.125H6.75001L6.45001 4.375L6.55001 4.75L6.25001 4.525L5.95001 4.75L6.05001 4.375L5.75001 4.125H6.12501L6.25001 3.75ZM4.25001 3.75L4.37501 4.125H4.75001L4.45001 4.375L4.55001 4.75L4.25001 4.525L3.95001 4.75L4.05001 4.375L3.75001 4.125H4.12501L4.25001 3.75ZM2.25001 3.75L2.37501 4.125H2.75001L2.45001 4.375L2.55001 4.75L2.25001 4.525L1.95001 4.75L2.05001 4.375L1.75001 4.125H2.12501L2.25001 3.75ZM7.25001 5.25L7.37501 5.625H7.75001L7.45001 5.875L7.55001 6.25L7.25001 6.025L6.95001 6.25L7.05001 5.875L6.75001 5.625H7.12501L7.25001 5.25ZM5.25001 5.25L5.37501 5.625H5.75001L5.45001 5.875L5.55001 6.25L5.25001 6.025L4.95001 6.25L5.05001 5.875L4.75001 5.625H5.12501L5.25001 5.25ZM3.25001 5.25L3.37501 5.625H3.75001L3.45001 5.875L3.55001 6.25L3.25001 6.025L2.95001 6.25L3.05001 5.875L2.75001 5.625H3.12501L3.25001 5.25ZM6.25001 6.75L6.37501 7.125H6.75001L6.45001 7.375L6.55001 7.75L6.25001 7.525L5.95001 7.75L6.05001 7.375L5.75001 7.125H6.12501L6.25001 6.75ZM4.25001 6.75L4.37501 7.125H4.75001L4.45001 7.375L4.55001 7.75L4.25001 7.525L3.95001 7.75L4.05001 7.375L3.75001 7.125H4.12501L4.25001 6.75ZM2.25001 6.75L2.37501 7.125H2.75001L2.45001 7.375L2.55001 7.75L2.25001 7.525L1.95001 7.75L2.05001 7.375L1.75001 7.125H2.12501L2.25001 6.75ZM2.95001 3.25L3.25001 3.025L3.55001 3.25L3.42501 2.875L3.72501 2.625H3.35001L3.25001 2.25L3.12501 2.625H2.77501L3.07501 2.85L2.95001 3.25ZM0.950006 6.25L1.25001 6.025L1.55001 6.25L1.42501 5.875L1.72501 5.625H1.37501L1.25001 5.25L1.12501 5.625H0.875006C0.875006 5.65 0.850006 5.675 0.850006 5.7L1.05001 5.85L0.950006 6.25Z" fill="white"/> </g> <defs> <clipPath id="clip-flag-en"> <rect width="16" height="16" fill="white"/> </clipPath> </defs> </svg></span>
+              <span>EN</span>
+            </button>
+          </div>
         </div>
 
       </div>

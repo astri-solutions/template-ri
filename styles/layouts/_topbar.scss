@@ -32,14 +32,16 @@ $topbar-h: 2rem; // 32px
   }
 
   // ===========================================================================
-  // LEFT — Acessibilidade + Idioma
+  // LEFT — Links
   // ===========================================================================
   &__left {
-    display: flex;
+    display: none;
     align-items: center;
     gap: $spacing-2;
     justify-content: flex-start;
     overflow: hidden;
+
+    @include respond-up(md) { display: flex; }
   }
 
   // Separador vertical
@@ -147,10 +149,14 @@ $topbar-h: 2rem; // 32px
     height: 16px;
     border-radius: $radius-full;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    font-size: 13px;
-    line-height: 1;
     flex-shrink: 0;
+    line-height: 1;
+
+    svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
   }
 
   // ===========================================================================
@@ -216,15 +222,13 @@ $topbar-h: 2rem; // 32px
   }
 
   // ===========================================================================
-  // RIGHT — Nav links
+  // RIGHT — Acessibilidade + Idioma
   // ===========================================================================
   &__right {
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: $spacing-4;
-
-    @include respond-up(md) { display: flex; }
+    gap: $spacing-3;
   }
 
   &__link {

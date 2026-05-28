@@ -39,6 +39,35 @@
     &:hover { background-color: transparent; transform: none; }
   }
 
+  // Variante download — sem fundo, só o ícone de seta
+  &--download {
+    background: none;
+    border-radius: 0;
+    color: var(--color-primary-500);
+    width: 28px;
+    height: 28px;
+    svg { width: 18px; height: 18px; }
+
+    &:hover {
+      background: none;
+      color: var(--color-primary-700);
+      transform: translateY(-2px);
+    }
+  }
+
+  // Variante download indisponível — ícone acinzentado, não clicável
+  &--download-na {
+    background: none;
+    border-radius: 0;
+    color: var(--color-gray-300);
+    width: 28px;
+    height: 28px;
+    cursor: default;
+    svg { width: 18px; height: 18px; }
+
+    &:hover { background: none; transform: none; }
+  }
+
   // Variante menor para listas (Central de Resultados na Home)
   &--inline {
     width: 32px; height: 32px;

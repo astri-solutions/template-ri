@@ -7,9 +7,10 @@
 .data-table {
   width: 100%;
   background-color: var(--color-bg);
-  border: 1px dashed var(--color-primary-400);
+  border: 1px solid var(--color-divider);
   border-radius: $radius-xl;
   overflow: hidden;
+  box-shadow: $shadow-sm;
 
   &__scroller {
     overflow-x: auto;
@@ -18,13 +19,16 @@
 
   table {
     width: 100%;
-    min-width: 600px;
+    min-width: 580px;
     border-collapse: separate;
     border-spacing: 0;
   }
 
+  // ---------------------------------------------------------------------------
+  // Cabeçalho
+  // ---------------------------------------------------------------------------
   thead {
-    background-color: var(--color-secondary-500);
+    background-color: var(--color-secondary-600);
     color: #fff;
 
     th {
@@ -38,17 +42,21 @@
 
       &:first-child {
         text-align: left;
-        width: 36%;
+        width: 40%;
+        font-size: $font-size-md;
+        letter-spacing: 0;
       }
     }
   }
 
+  // ---------------------------------------------------------------------------
+  // Corpo
+  // ---------------------------------------------------------------------------
   tbody {
     tr {
       transition: background-color $transition-fast;
-      cursor: default;
 
-      &:hover { background-color: var(--color-tertiary-200); }
+      &:hover { background-color: var(--color-tertiary-100, rgba(0,0,0,0.03)); }
     }
 
     td {
@@ -59,11 +67,11 @@
       text-align: center;
       vertical-align: middle;
 
+      // Coluna do nome do documento
       &:first-child {
         text-align: left;
-        font-weight: $font-weight-medium;
-        color: var(--color-secondary-600);
-        font-size: $font-size-md;
+        font-weight: $font-weight-regular;
+        color: var(--color-text);
         position: relative;
         padding-left: $spacing-7;
 

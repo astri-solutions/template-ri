@@ -3,44 +3,32 @@
 // =============================================================================
 
 const ROW_DEFINITIONS = [
-  { name: 'Apresentação de Resultados',        type: 'pdf'   },
-  { name: 'Áudio Teleconferência',              type: 'audio' },
-  { name: 'ITR/DFP',                            type: 'pdf'   },
-  { name: 'Demonstrações Financeiras - BRGAAP', type: 'pdf'   },
-  { name: 'Demonstrações Financeiras - IFRS',   type: 'pdf'   },
-  { name: 'Release de Resultados',              type: 'pdf'   },
-  { name: 'Séries Históricas',                  type: 'pdf'   },
-  { name: 'Transcrição',                        type: 'pdf'   },
+  { name: 'Teleconferência de Resultados' },
+  { name: 'Áudio Teleconferência'         },
+  { name: 'Vídeo'                         },
+  { name: 'Apresentação'                  },
+  { name: 'ITR'                           },
+  { name: 'DFP'                           },
+  { name: 'Release de Resultados'         },
 ];
 
+// Trimestres em ordem crescente (1T → 4T), como na tabela de referência
+const QUARTER_ORDER = ['1T', '2T', '3T', '4T'];
+
 const AVAILABILITY = {
-  2026: { '1T': true,  '2T': true,  '3T': true,  '4T': true  },
-  2025: { '1T': true,  '2T': true,  '3T': false, '4T': false },
+  2026: { '1T': true,  '2T': false, '3T': false, '4T': false },
+  2025: { '1T': true,  '2T': true,  '3T': true,  '4T': true  },
   2024: { '1T': true,  '2T': true,  '3T': true,  '4T': true  },
   2023: { '1T': true,  '2T': true,  '3T': true,  '4T': true  },
   2022: { '1T': true,  '2T': true,  '3T': true,  '4T': true  },
 };
 
-const QUARTER_ORDER = ['4T', '3T', '2T', '1T'];
-
-// -----------------------------------------------------------------------------
-// Ícones SVG inline (monocromáticos, herdam currentColor)
-// -----------------------------------------------------------------------------
-
-const FILE_ICONS = {
-  pdf: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/>
-          <path d="M14 3v5h5"/>
-          <text x="12" y="17" text-anchor="middle" font-size="5" font-family="Inter, sans-serif" font-weight="700" fill="currentColor" stroke="none">PDF</text>
-        </svg>`,
-  audio: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M9 18V8l9-4v10"/>
-            <circle cx="6"  cy="18" r="3"/>
-            <circle cx="15" cy="14" r="3"/>
-          </svg>`,
-};
-
-const TYPE_LABEL = { pdf: 'PDF', audio: 'Áudio' };
+// Ícone de download — seta para baixo com linha de base
+const DOWNLOAD_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M12 3v13"/>
+  <path d="M7 11l5 5 5-5"/>
+  <line x1="5" y1="20" x2="19" y2="20"/>
+</svg>`;
 
 // -----------------------------------------------------------------------------
 // Render
@@ -50,9 +38,10 @@ function renderHead(year) {
   const headRow = document.querySelector('[data-results-head]');
   if (!headRow) return;
 
+  const shortYear = String(year).slice(-2);
   headRow.innerHTML =
-    '<th scope="col"><span class="sr-only">Documento</span></th>' +
-    QUARTER_ORDER.map((q) => `<th scope="col">${q}${String(year).slice(-2)}</th>`).join('');
+    `<th scope="col">${year}</th>` +
+    QUARTER_ORDER.map((q) => `<th scope="col">${q}${shortYear}</th>`).join('');
 }
 
 function renderBody(year) {
@@ -60,27 +49,26 @@ function renderBody(year) {
   if (!tbody) return;
 
   const availability = AVAILABILITY[year] || { '1T': false, '2T': false, '3T': false, '4T': false };
+  const shortYear = String(year).slice(-2);
 
   tbody.innerHTML = ROW_DEFINITIONS.map((row) => {
     const cells = QUARTER_ORDER.map((q) => {
       const available = availability[q];
+      const label = `${row.name} — ${q}${shortYear}`;
+      const filename = `${row.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${q.toLowerCase()}${shortYear}`;
 
-      if (!available) {
+      if (available) {
         return `<td>
-          <span class="file-icon file-icon--empty" aria-hidden="true">—</span>
-          <span class="sr-only">Não disponível</span>
+          <a class="file-icon file-icon--download" href="#${filename}" aria-label="${label}" title="${label}" download>
+            ${DOWNLOAD_ICON}
+          </a>
         </td>`;
       }
 
-      const icon = FILE_ICONS[row.type] || FILE_ICONS.pdf;
-      const shortYear = String(year).slice(-2);
-      const label = `${row.name} — ${q}${shortYear} · ${TYPE_LABEL[row.type] || row.type}`;
-      const filename = `${row.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${q.toLowerCase()}${shortYear}`;
-
       return `<td>
-        <a class="file-icon file-icon--${row.type}" href="#${filename}" aria-label="${label}" title="${label}" download>
-          ${icon}
-        </a>
+        <span class="file-icon file-icon--download-na" aria-label="Não disponível" title="Não disponível">
+          ${DOWNLOAD_ICON}
+        </span>
       </td>`;
     }).join('');
 

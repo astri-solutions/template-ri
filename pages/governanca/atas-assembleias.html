@@ -7,25 +7,167 @@
     <meta name="description" content="Atas de reuniões do Conselho de Administração e Assembleias Gerais da companhia." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+        <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/styles/main.scss" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   </head>
   <body>
+    <!-- ===================================================
+         TOPBAR — Ticker · Acessibilidade · Idioma · Links
+         =================================================== -->
+    <div class="topbar" role="navigation" aria-label="Barra de utilitários">
+      <div class="topbar__inner">
+
+        <!-- Left: Acessibilidade + Idioma -->
+        <div class="topbar__left">
+          <div class="topbar__a11y" role="group" aria-label="Acessibilidade">
+            <button class="topbar__a11y-btn" type="button" data-a11y="contrast" aria-label="Alternar alto contraste" title="Alto contraste">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>
+            </button>
+            <button class="topbar__a11y-btn" type="button" data-a11y="font-down" aria-label="Reduzir fonte" title="Reduzir fonte" style="font-size:0.6rem">A<sup>−</sup></button>
+            <button class="topbar__a11y-btn" type="button" data-a11y="font-up"   aria-label="Aumentar fonte" title="Aumentar fonte" style="font-size:0.75rem">A<sup>+</sup></button>
+          </div>
+          <div class="topbar__sep" aria-hidden="true"></div>
+          <div class="topbar__lang" role="group" aria-label="Idioma">
+            <button class="topbar__lang-btn is-active" type="button" data-lang="pt" aria-pressed="true"  aria-label="Português">
+              <span class="topbar__flag" aria-hidden="true">🇧🇷</span> PT
+            </button>
+            <button class="topbar__lang-btn" type="button" data-lang="en" aria-pressed="false" aria-label="English">
+              <span class="topbar__flag" aria-hidden="true">🇺🇸</span> EN
+            </button>
+          </div>
+        </div>
+
+        <!-- Center: Tickers -->
+        <div class="topbar__tickers" aria-label="Cotação" aria-live="polite">
+          <div class="topbar__ticker is-active" data-topbar-ticker>
+            <span class="topbar__ticker-symbol">ASTR4</span>
+            <span class="topbar__ticker-dot" aria-hidden="true">·</span>
+            <span class="topbar__ticker-price">R$ 26,27</span>
+            <span class="topbar__ticker-change topbar__ticker-change--up" aria-label="Alta de 0,50%">
+              <svg viewBox="0 0 10 10" width="8" height="8" fill="currentColor" aria-hidden="true"><path d="M5 2 9 8H1z"/></svg>
+              0,50%
+            </span>
+          </div>
+          <div class="topbar__ticker" data-topbar-ticker>
+            <span class="topbar__ticker-symbol">ASTR3</span>
+            <span class="topbar__ticker-dot" aria-hidden="true">·</span>
+            <span class="topbar__ticker-price">R$ 22,15</span>
+            <span class="topbar__ticker-change topbar__ticker-change--down" aria-label="Baixa de 0,32%">
+              <svg viewBox="0 0 10 10" width="8" height="8" fill="currentColor" aria-hidden="true"><path d="M5 8 9 2H1z"/></svg>
+              0,32%
+            </span>
+          </div>
+        </div>
+
+        <!-- Right: Links -->
+        <div class="topbar__right">
+          <a href="/" class="topbar__link topbar__link--active">Relações com Investidores</a>
+          <a href="#" class="topbar__link">Institucional</a>
+        </div>
+
+      </div>
+    </div>
+
     <header class="site-header">
       <div class="site-header__inner">
         <a href="/" class="site-header__brand" aria-label="Astri Solutions">
           <img src="/assets/logotipo.svg" alt="Astri Solutions" class="site-header__logo" />
         </a>
-        <nav class="site-header__nav" aria-label="Principal">
-          <a href="/">Home</a>
-          <a href="/pages/a-companhia/visao-geral.html">A Companhia</a>
-          <a href="/pages/governanca/composicao-acionaria.html" aria-current="page">Governança</a>
-          <a href="/pages/informacoes-financeiras/central-resultados.html">Inf. Financeiras</a>
-          <a href="/pages/investidores/documentos-cvm.html">Investidores</a>
-          <a href="/pages/contato/fale-com-ri.html">Contato</a>
+        <nav class="site-header__nav" id="site-nav" data-nav aria-label="Principal">
+          <div class="site-header__drawer-top">
+            <img src="/assets/logotipo.svg" alt="Astri Solutions" class="site-header__drawer-logo" />
+            <button class="site-header__drawer-close" type="button" aria-label="Fechar menu" data-nav-close>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+          <ul class="nav-list">
+
+            <li class="nav-list__item nav-list__item--has-sub">
+              <button class="nav-list__trigger" type="button" aria-haspopup="true" aria-expanded="false" data-nav-trigger>
+                A Companhia
+                <svg class="nav-list__chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 6 8 10 12 6"/></svg>
+              </button>
+              <ul class="nav-dropdown">
+                <li><a class="nav-dropdown__link" href="/pages/a-companhia/visao-geral.html">Visão Geral</a></li>
+                <li><a class="nav-dropdown__link" href="/pages/a-companhia/nossa-historia.html">Nossa História</a></li>
+                <li><a class="nav-dropdown__link" href="/pages/a-companhia/estrategias-vantagens.html">Estratégias</a></li>
+                <li><a class="nav-dropdown__link" href="/pages/a-companhia/portfolio.html">Portfólio</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-list__item nav-list__item--has-sub">
+              <button class="nav-list__trigger" type="button" aria-haspopup="true" aria-expanded="false" data-nav-trigger>
+                Governança
+                <svg class="nav-list__chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 6 8 10 12 6"/></svg>
+              </button>
+              <ul class="nav-dropdown">
+                <li><a class="nav-dropdown__link" href="/pages/governanca/composicao-acionaria.html">Composição Acionária</a></li>
+                <li><a class="nav-dropdown__link" href="/pages/governanca/diretoria-conselho.html">Diretoria e Conselho</a></li>
+                <li><a class="nav-dropdown__link" href="/pages/governanca/estatuto-politicas.html">Estatuto e Políticas</a></li>
+                <li><a class="nav-dropdown__link" href="/pages/governanca/atas-assembleias.html">Atas de Assembleias</a></li>
+                <li><a class="nav-dropdown__link" href="/pages/governanca/codigo-conduta.html">Código de Conduta</a></li>
+                <li><a class="nav-dropdown__link" href="/pages/governanca/sustentabilidade.html">Sustentabilidade</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-list__item nav-list__item--has-sub">
+              <button class="nav-list__trigger" type="button" aria-haspopup="true" aria-expanded="false" data-nav-trigger>
+                Inf. Financeiras
+                <svg class="nav-list__chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 6 8 10 12 6"/></svg>
+              </button>
+              <ul class="nav-dropdown">
+                <li><a class="nav-dropdown__link" href="/pages/informacoes-financeiras/central-resultados.html">Central de Resultados</a></li>
+                <li><a class="nav-dropdown__link" href="/pages/informacoes-financeiras/apresentacoes.html">Apresentações</a></li>
+                <li><a class="nav-dropdown__link" href="/pages/informacoes-financeiras/dividendos-recompra.html">Dividendos e Recompra</a></li>
+                <li><a class="nav-dropdown__link" href="/pages/informacoes-financeiras/endividamento.html">Endividamento</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-list__item nav-list__item--has-sub">
+              <button class="nav-list__trigger" type="button" aria-haspopup="true" aria-expanded="false" data-nav-trigger>
+                Investidores
+                <svg class="nav-list__chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 6 8 10 12 6"/></svg>
+              </button>
+              <ul class="nav-dropdown">
+                <li><a class="nav-dropdown__link" href="/pages/investidores/como-investir.html">Como Investir</a></li>
+                <li><a class="nav-dropdown__link" href="/pages/investidores/calendario-eventos.html">Calendário de Eventos</a></li>
+                <li><a class="nav-dropdown__link" href="/pages/investidores/documentos-cvm.html">Documentos CVM</a></li>
+                <li><a class="nav-dropdown__link" href="/pages/investidores/ratings-cobertura.html">Ratings e Cobertura</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-list__item nav-list__item--has-sub">
+              <button class="nav-list__trigger" type="button" aria-haspopup="true" aria-expanded="false" data-nav-trigger>
+                Contato
+                <svg class="nav-list__chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 6 8 10 12 6"/></svg>
+              </button>
+              <ul class="nav-dropdown">
+                <li><a class="nav-dropdown__link" href="/pages/contato/fale-com-ri.html">Fale com RI</a></li>
+                <li><a class="nav-dropdown__link" href="/pages/contato/fatores-risco.html">Fatores de Risco</a></li>
+                <li><a class="nav-dropdown__link" href="/pages/contato/glossario.html">Glossário</a></li>
+                <li><a class="nav-dropdown__link" href="/pages/contato/mailing.html">Mailing</a></li>
+                <li><a class="nav-dropdown__link" href="/pages/contato/trabalhe-conosco.html">Trabalhe Conosco</a></li>
+              </ul>
+            </li>
+
+          </ul>
         </nav>
+        <div class="site-header__actions">
+          <button class="site-header__search" type="button" aria-label="Buscar" data-search-toggle>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </button>
+          <button class="site-header__hamburger" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="site-nav" data-nav-hamburger>
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        </div>
       </div>
+      <div class="site-header__overlay" data-nav-overlay aria-hidden="true"></div>
     </header>
 
     <main>
@@ -52,45 +194,138 @@
 
     <footer class="site-footer">
       <div class="site-footer__inner">
+
+        <!-- Logo -->
+        <div class="site-footer__top">
+          <img src="/assets/logotipo.svg" alt="Astri Solutions" class="site-footer__logo" />
+        </div>
+
         <div class="site-footer__grid">
-          <div class="site-footer__brand">
-            <img src="/assets/logotipo.svg" alt="Astri Solutions" class="site-footer__logo" />
-            <p>Páginas modulares para Relações com Investidores, construídas sobre um sistema de design único.</p>
+
+          <!-- Colunas 1–2: Info (Endereço + Contato empilhados) -->
+          <div class="site-footer__info">
+            <div class="site-footer__block">
+              <h4>Endereço</h4>
+              <p class="site-footer__address-text">Avenida Brigadeiro Faria Lima, nº 2.277, 19º andar, cj.1702, Ed. Plaza Iguatemi, São Paulo – SP, CEP 01452-000</p>
+            </div>
+            <div class="site-footer__block">
+              <h4>Entre em Contato</h4>
+              <div class="site-footer__contact-details">
+                <a href="mailto:comercial@astri.solutions">comercial@astri.solutions</a>
+                <a href="tel:+5511984447855">+55 (11) 98444-7855</a>
+                <p>Nosso time de atendimento está disponível de segunda à sexta-feira, das 08h às 21h, exceto feriados.</p>
+              </div>
+            </div>
           </div>
+
+          <!-- Coluna 3: A Companhia -->
           <div class="site-footer__block">
             <h4>A Companhia</h4>
             <ul>
               <li><a href="/pages/a-companhia/visao-geral.html">Visão Geral</a></li>
-              <li><a href="/pages/a-companhia/nossa-historia.html">Nossa História</a></li>
-              <li><a href="/pages/a-companhia/estrategias-vantagens.html">Estratégias</a></li>
-              <li><a href="/pages/a-companhia/portfolio.html">Portfólio</a></li>
+              <li><a href="/pages/a-companhia/nossa-historia.html">Histórico e Perfil Corporativo</a></li>
+              <li><a href="/pages/a-companhia/estrategias-vantagens.html">Estratégias e Vantagens Competitivas</a></li>
+              <li><a href="/pages/a-companhia/investor-day.html">Investor Day</a></li>
             </ul>
           </div>
+
+          <!-- Coluna 3: Governança -->
           <div class="site-footer__block">
             <h4>Governança</h4>
             <ul>
               <li><a href="/pages/governanca/composicao-acionaria.html">Composição Acionária</a></li>
-              <li><a href="/pages/governanca/diretoria-conselho.html">Diretoria e Conselho</a></li>
-              <li><a href="/pages/governanca/estatuto-politicas.html">Estatuto e Políticas</a></li>
-              <li><a href="/pages/governanca/sustentabilidade.html">Sustentabilidade</a></li>
+              <li><a href="/pages/governanca/diretoria-conselho.html">Diretoria e Conselhos</a></li>
+              <li><a href="/pages/governanca/estatuto-politicas.html">Estatuto, Políticas e Regimentos</a></li>
+              <li><a href="/pages/governanca/codigo-conduta.html">Código de Conduta e Ética</a></li>
+              <li><a href="/pages/governanca/atas-assembleias.html">Atas e Assembleias</a></li>
+              <li><a href="/pages/governanca/sustentabilidade.html">Sustentabilidade Corporativa</a></li>
             </ul>
           </div>
+
+          <!-- Coluna 4: Financeiro -->
+          <div class="site-footer__block">
+            <h4>Financeiro</h4>
+            <ul>
+              <li><a href="/pages/informacoes-financeiras/central-resultados.html">Central de Resultados</a></li>
+              <li><a href="/pages/informacoes-financeiras/apresentacoes.html">Apresentações</a></li>
+              <li><a href="/pages/informacoes-financeiras/endividamento.html">Endividamento</a></li>
+              <li><a href="/pages/informacoes-financeiras/dividendos-recompra.html">Dividendos</a></li>
+            </ul>
+          </div>
+
+          <!-- Coluna 5: Investidores -->
+          <div class="site-footer__block">
+            <h4>Investidores</h4>
+            <ul>
+              <li><a href="/pages/investidores/documentos-cvm.html">Documentos CVM</a></li>
+              <li><a href="/pages/investidores/calendario-eventos.html">Calendário de Eventos</a></li>
+              <li><a href="/pages/investidores/ratings-cobertura.html">Ratings e Cobertura de Analistas</a></li>
+              <li><a href="/pages/investidores/como-investir.html">Como Investir</a></li>
+            </ul>
+          </div>
+
+          <!-- Coluna 6: Contato -->
           <div class="site-footer__block">
             <h4>Contato</h4>
             <ul>
+              <li><a href="/pages/contato/glossario.html">Glossário</a></li>
               <li><a href="/pages/contato/fale-com-ri.html">Fale com RI</a></li>
               <li><a href="/pages/contato/mailing.html">Mailing</a></li>
-              <li><a href="/pages/contato/glossario.html">Glossário</a></li>
-              <li><a href="/pages/contato/trabalhe-conosco.html">Trabalhe Conosco</a></li>
+              <li><a href="/pages/contato/fatores-risco.html">Fatores de Risco</a></li>
             </ul>
           </div>
+
         </div>
+
         <div class="site-footer__bottom">
-          <span>© 2025 Astri Solutions. Todos os direitos reservados.</span>
-          <span>Av. Brigadeiro Faria Lima, 2.277 · São Paulo, SP</span>
+          <div class="site-footer__bottom-row site-footer__bottom-row--spread">
+            <div class="site-footer__bottom-links">
+              <a href="#">Termos e Condições</a>
+              <a href="#">Política de Privacidade</a>
+              <a href="#">Definições de Cookies</a>
+              <a href="#">Sitemap</a>
+            </div>
+            <div class="site-footer__social">
+              <span>Siga a Astri:</span>
+              <a href="#" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              </a>
+              <a href="#" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              </a>
+              <a href="#" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="site-footer__bottom-row site-footer__bottom-row--spread">
+            <span>Contato: 0800 728 9000</span>
+            <span>©Copyright Astri 2026. Todos os direitos reservados.</span>
+            <a href="https://astri.solutions" class="site-footer__powered" target="_blank" rel="noopener" aria-label="Site desenvolvido por Astri Solutions">
+              <span>Powered by</span>
+              <img src="/assets/logotipo.svg" alt="Astri Solutions" />
+            </a>
+          </div>
+          <p class="site-footer__legal">Os Formulários disponibilizados no site da Companhia não se destinam aos fins de propaganda institucional, visto que são cópias dos documentos apresentados perante órgãos regulatórios do mercado de capitais do Brasil ou do exterior, em atendimento à legislação aplicável, incluindo a Resolução CVM nº 80/2022, a Lei nº 6.404/1976, a Lei nº 13.303/2016, a Securities Act of 1993 e a Securities Exchange Act de 1994.</p>
         </div>
       </div>
     </footer>
+
+    <!-- Search overlay -->
+    <div class="search-overlay" id="search-overlay" aria-hidden="true" aria-label="Busca" role="dialog">
+      <div class="search-overlay__inner">
+        <div class="search-overlay__box">
+          <svg class="search-overlay__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input class="search-overlay__input" type="search" placeholder="O que você está procurando?" aria-label="Campo de busca" data-search-input />
+          <button class="search-overlay__close" type="button" aria-label="Fechar busca" data-search-close>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <p class="search-overlay__hint">Pressione <kbd>ESC</kbd> para fechar</p>
+      </div>
+    </div>
+
+    <script type="module" src="/scripts/nav.js"></script>
     <script type="module" src="/scripts/topbar.js"></script>
     <script type="module" src="/scripts/reveal.js"></script>
   </body>

@@ -4,7 +4,6 @@
   background-color: var(--color-secondary-700);
   color: rgba(255, 255, 255, 0.75);
   padding-block: $spacing-16 $spacing-8;
-  margin-top: $spacing-16;
 
   &__inner { @include container; }
 

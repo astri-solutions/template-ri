@@ -229,7 +229,8 @@
 // =============================================================================
 
 .ri-section {
-  @include section;
+  padding-block: $spacing-16;
+  @include respond-up(desktop) { padding-block: $spacing-28; }
   background-color: var(--color-tertiary-200);
 
   &__inner { @include container; }
@@ -282,23 +283,33 @@
 
   &__link {
     display: flex;
-    align-items: flex-start;
-    gap: $spacing-3;
+    flex-direction: column;
+    gap: $spacing-1;
     width: 100%;
     color: inherit;
+
+    @include respond-up(sm) {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: $spacing-3;
+    }
 
     &:hover { color: var(--color-secondary-500); }
   }
 
   &__date {
     flex-shrink: 0;
-    width: 76px;
+    width: auto;
     font-family: var(--font-family-mono);
     font-size: $font-size-xs;
     color: var(--color-text-muted);
-    padding-top: 2px;
     letter-spacing: $letter-spacing-wide;
     text-transform: uppercase;
+
+    @include respond-up(sm) {
+      width: 76px;
+      padding-top: 2px;
+    }
   }
 
   &__title {
@@ -362,9 +373,10 @@
     color: var(--color-text-muted);
   }
 
-  // File item — para Central de Resultados
+  // File item — para Central de Resultados (sempre horizontal)
   &__file {
     display: flex;
+    flex-direction: row;
     align-items: center;
     gap: $spacing-3;
     width: 100%;
@@ -543,7 +555,8 @@
 // =============================================================================
 
 .contact-section {
-  @include section;
+  padding-block: $spacing-16;
+  @include respond-up(desktop) { padding-block: $spacing-28; }
   background-color: var(--color-tertiary-200);
 
   &__inner {

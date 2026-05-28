@@ -8,6 +8,23 @@
 
   &__inner { @include container; }
 
+  // ---- Logo row
+  &__top {
+    display: flex;
+    align-items: center;
+    padding-bottom: $spacing-8;
+    margin-bottom: $spacing-10;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  &__logo {
+    height: 24px;
+    width: auto;
+    display: block;
+    filter: brightness(0) invert(1);
+  }
+
+  // ---- Grid — 2 cols info + 5 cols nav
   &__grid {
     display: grid;
     gap: $spacing-8;
@@ -17,11 +34,12 @@
     @include respond-up(sm) { grid-template-columns: repeat(2, 1fr); }
 
     @include respond-up(md) {
-      grid-template-columns: 2fr repeat(5, 1fr);
-      gap: $spacing-6;
+      grid-template-columns: repeat(7, 1fr);
+      gap: $spacing-5;
     }
   }
 
+  // ---- Block genérico (todos os 7 blocos usam esta classe)
   &__block {
     h4 {
       font-family: var(--font-family-base);
@@ -41,34 +59,11 @@
     }
   }
 
-  &__brand {
-    display: flex;
-    flex-direction: column;
-    gap: $spacing-5;
-
-    @include respond-up(sm) { grid-column: span 2; }
-    @include respond-up(md) { grid-column: span 1; }
-  }
-
-  &__logo {
-    height: 44px;
-    width: auto;
-    display: block;
-    filter: brightness(0) invert(1);
-  }
-
-  &__section-label {
-    font-size: $font-size-xs;
-    font-weight: $font-weight-bold;
-    letter-spacing: $letter-spacing-widest;
-    text-transform: uppercase;
-    color: var(--color-primary-300);
-    margin-bottom: $spacing-2;
-  }
-
+  // ---- Info blocks (Endereço / Entre em Contato)
   &__address-text {
     font-size: $font-size-sm;
     line-height: $line-height-relaxed;
+    color: rgba(255, 255, 255, 0.75);
   }
 
   &__contact-details {
@@ -91,6 +86,7 @@
     }
   }
 
+  // ---- Bottom bar
   &__bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: $spacing-6;
@@ -160,7 +156,7 @@
     white-space: nowrap;
 
     img {
-      height: 18px;
+      height: 16px;
       width: auto;
       filter: brightness(0) invert(1);
       opacity: 0.55;

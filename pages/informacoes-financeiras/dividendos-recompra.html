@@ -24,19 +24,23 @@
         <!-- Left: Acessibilidade + Idioma -->
         <div class="topbar__left">
           <div class="topbar__a11y" role="group" aria-label="Acessibilidade">
+            <span class="topbar__a11y-label">Acessibilidade</span>
             <button class="topbar__a11y-btn" type="button" data-a11y="contrast" aria-label="Alternar alto contraste" title="Alto contraste">
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>
             </button>
-            <button class="topbar__a11y-btn" type="button" data-a11y="font-down" aria-label="Reduzir fonte" title="Reduzir fonte" style="font-size:0.6rem">A<sup>−</sup></button>
-            <button class="topbar__a11y-btn" type="button" data-a11y="font-up"   aria-label="Aumentar fonte" title="Aumentar fonte" style="font-size:0.75rem">A<sup>+</sup></button>
+            <button class="topbar__a11y-btn topbar__a11y-btn--font-up" type="button" data-a11y="font-up" aria-label="Aumentar fonte" title="Aumentar fonte">A<sup>+</sup></button>
+            <button class="topbar__a11y-btn topbar__a11y-btn--font-down" type="button" data-a11y="font-down" aria-label="Reduzir fonte" title="Reduzir fonte">A<sup>-</sup></button>
           </div>
           <div class="topbar__sep" aria-hidden="true"></div>
           <div class="topbar__lang" role="group" aria-label="Idioma">
-            <button class="topbar__lang-btn is-active" type="button" data-lang="pt" aria-pressed="true"  aria-label="Português">
-              <span class="topbar__flag" aria-hidden="true">🇧🇷</span> PT
+            <button class="topbar__lang-btn is-active" type="button" data-lang="pt" aria-pressed="true" aria-label="Português">
+              <span class="topbar__flag" aria-hidden="true">🇧🇷</span>
+              <span>PT</span>
             </button>
+            <span class="topbar__lang-sep" aria-hidden="true">|</span>
             <button class="topbar__lang-btn" type="button" data-lang="en" aria-pressed="false" aria-label="English">
-              <span class="topbar__flag" aria-hidden="true">🇺🇸</span> EN
+              <span class="topbar__flag" aria-hidden="true">🇺🇸</span>
+              <span>EN</span>
             </button>
           </div>
         </div>

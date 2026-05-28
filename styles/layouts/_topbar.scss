@@ -57,84 +57,100 @@ $topbar-h: 2rem; // 32px
     gap: 2px;
   }
 
+  // ---- Accessibility label
+  &__a11y-label {
+    font-size: $font-size-2xs;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: $letter-spacing-wide;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-color: rgba(255, 255, 255, 0.25);
+    white-space: nowrap;
+    cursor: default;
+    margin-right: $spacing-1;
+  }
+
   &__a11y-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 1px;
-    min-width: 24px;
+    min-width: 22px;
     height: 20px;
-    padding: 0 $spacing-2;
+    padding: 0 $spacing-1;
     background: none;
-    border: 1px solid rgba(255, 255, 255, 0.14);
+    border: none;
     border-radius: $radius-sm;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.55);
     cursor: pointer;
     font-family: var(--font-family-base);
-    font-size: $font-size-2xs;
-    font-weight: $font-weight-medium;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
     line-height: 1;
-    transition: color $transition-fast, border-color $transition-fast,
-                background-color $transition-fast;
+    transition: color $transition-fast, background-color $transition-fast;
     white-space: nowrap;
 
-    &:hover {
-      color: #fff;
-      border-color: rgba(255, 255, 255, 0.35);
-      background-color: rgba(255, 255, 255, 0.06);
-    }
+    sup { font-size: 0.65em; vertical-align: super; }
 
-    &.is-active {
-      color: var(--color-primary-300);
-      border-color: rgba(0, 216, 101, 0.5);
-      background-color: rgba(0, 216, 101, 0.08);
-    }
+    &:hover { color: #fff; }
 
-    svg { width: 11px; height: 11px; }
+    &.is-active { color: var(--color-primary-300); }
+
+    // Contrast icon button
+    svg { width: 14px; height: 14px; }
+
+    // Font size steps — A+ slightly bigger, A- slightly smaller
+    &--font-up   { font-size: $font-size-sm; }
+    &--font-down { font-size: $font-size-xs; }
   }
 
   // ---- Language group
   &__lang {
     display: flex;
     align-items: center;
-    gap: 2px;
+    gap: $spacing-2;
+  }
+
+  &__lang-sep {
+    color: rgba(255, 255, 255, 0.25);
+    font-size: $font-size-xs;
+    line-height: 1;
+    pointer-events: none;
   }
 
   &__lang-btn {
     display: inline-flex;
     align-items: center;
     gap: $spacing-1;
-    height: 20px;
-    padding: 0 $spacing-2;
     background: none;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: $radius-sm;
-    color: rgba(255, 255, 255, 0.45);
+    border: none;
+    padding: 0;
+    color: rgba(255, 255, 255, 0.4);
     cursor: pointer;
     font-family: var(--font-family-base);
     font-size: $font-size-2xs;
-    font-weight: $font-weight-semibold;
+    font-weight: $font-weight-bold;
     letter-spacing: $letter-spacing-widest;
     line-height: 1;
-    transition: color $transition-fast, border-color $transition-fast,
-                background-color $transition-fast;
+    transition: color $transition-fast;
     white-space: nowrap;
 
-    &:hover {
-      color: #fff;
-      border-color: rgba(255, 255, 255, 0.35);
-    }
+    &:hover { color: rgba(255, 255, 255, 0.85); }
 
-    &.is-active {
-      color: #fff;
-      border-color: rgba(255, 255, 255, 0.45);
-      background-color: rgba(255, 255, 255, 0.07);
-    }
+    &.is-active { color: #fff; }
   }
 
   &__flag {
-    font-size: 11px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: $radius-full;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 13px;
     line-height: 1;
+    flex-shrink: 0;
   }
 
   // ===========================================================================

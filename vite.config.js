@@ -45,8 +45,6 @@ export default defineConfig({
         fatoresRisco:     resolve(__dirname, 'pages/contato/fatores-risco.html'),
         trabalheConosco:  resolve(__dirname, 'pages/contato/trabalhe-conosco.html'),
 
-        // Legado
-        centralResultadosV1: resolve(__dirname, 'pages/central-resultados-v1.html'),
       },
     },
   },

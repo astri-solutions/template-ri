@@ -288,12 +288,6 @@
     width: 100%;
     color: inherit;
 
-    @include respond-up(sm) {
-      flex-direction: row;
-      align-items: flex-start;
-      gap: $spacing-3;
-    }
-
     &:hover { color: var(--color-secondary-500); }
   }
 
@@ -305,11 +299,6 @@
     color: var(--color-text-muted);
     letter-spacing: $letter-spacing-wide;
     text-transform: uppercase;
-
-    @include respond-up(sm) {
-      width: 76px;
-      padding-top: 2px;
-    }
   }
 
   &__title {

@@ -10,11 +10,16 @@
 
   &__grid {
     display: grid;
-    gap: $spacing-10;
+    gap: $spacing-8;
     grid-template-columns: 1fr;
     margin-bottom: $spacing-12;
 
-    @include respond-up(md) { grid-template-columns: 2fr 1fr 1fr 1fr; gap: $spacing-8; }
+    @include respond-up(sm) { grid-template-columns: repeat(2, 1fr); }
+
+    @include respond-up(md) {
+      grid-template-columns: 2fr repeat(5, 1fr);
+      gap: $spacing-6;
+    }
   }
 
   &__block {
@@ -37,15 +42,53 @@
   }
 
   &__brand {
-    p { font-size: $font-size-sm; line-height: $line-height-relaxed; max-width: 38ch; }
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-5;
+
+    @include respond-up(sm) { grid-column: span 2; }
+    @include respond-up(md) { grid-column: span 1; }
   }
 
   &__logo {
     height: 44px;
     width: auto;
     display: block;
-    margin-bottom: $spacing-4;
     filter: brightness(0) invert(1);
+  }
+
+  &__section-label {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    letter-spacing: $letter-spacing-widest;
+    text-transform: uppercase;
+    color: var(--color-primary-300);
+    margin-bottom: $spacing-2;
+  }
+
+  &__address-text {
+    font-size: $font-size-sm;
+    line-height: $line-height-relaxed;
+  }
+
+  &__contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-1;
+    font-size: $font-size-sm;
+
+    a {
+      color: rgba(255, 255, 255, 0.75);
+      transition: color $transition-fast;
+      &:hover { color: var(--color-primary-300); }
+    }
+
+    p {
+      font-size: $font-size-xs;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: $line-height-relaxed;
+      margin-top: $spacing-1;
+    }
   }
 
   &__bottom {
@@ -53,10 +96,82 @@
     padding-top: $spacing-6;
     display: flex;
     flex-direction: column;
-    gap: $spacing-3;
+    gap: $spacing-4;
     font-size: $font-size-xs;
     color: rgba(255, 255, 255, 0.55);
+  }
 
-    @include respond-up(md) { flex-direction: row; justify-content: space-between; align-items: center; }
+  &__bottom-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $spacing-3;
+
+    &--spread {
+      @include respond-up(md) { justify-content: space-between; }
+    }
+  }
+
+  &__bottom-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-1 $spacing-4;
+
+    a {
+      color: rgba(255, 255, 255, 0.55);
+      transition: color $transition-fast;
+      &:hover { color: var(--color-primary-300); }
+    }
+  }
+
+  &__social {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+
+    @include respond-up(md) { margin-left: auto; }
+
+    span { white-space: nowrap; }
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: $radius-full;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.55);
+      transition: border-color $transition-fast, color $transition-fast;
+
+      svg { width: 14px; height: 14px; }
+
+      &:hover {
+        border-color: var(--color-primary-300);
+        color: var(--color-primary-300);
+      }
+    }
+  }
+
+  &__powered {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+    white-space: nowrap;
+
+    img {
+      height: 18px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.55;
+    }
+  }
+
+  &__legal {
+    font-size: $font-size-2xs;
+    color: rgba(255, 255, 255, 0.35);
+    line-height: $line-height-relaxed;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    padding-top: $spacing-4;
   }
 }

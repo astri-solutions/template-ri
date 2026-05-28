@@ -6,7 +6,7 @@
 
 .site-header {
   position: fixed;
-  top: 0;
+  top: var(--topbar-h, 0);
   left: 0;
   right: 0;
   width: 100%;
@@ -168,10 +168,137 @@
       border-color: var(--color-primary-300);
     }
   }
+
+  // ---- Actions group (search + hamburger)
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $spacing-1;
+  }
+
+  // ---- Search button
+  &__search {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    border-radius: $radius-sm;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: color $transition-fast, background-color $transition-fast;
+
+    svg { width: 18px; height: 18px; }
+
+    &:hover {
+      color: var(--color-secondary-500);
+      background-color: var(--color-tertiary-200);
+    }
+  }
 }
 
-// Compensa o header fixo em todas as páginas
-main { padding-top: $spacing-18; }
+// ============================================================
+// SEARCH OVERLAY
+// ============================================================
+
+.search-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: $z-modal;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: calc(var(--topbar-h, 0px) + #{$spacing-18} + #{$spacing-8});
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity $transition-base, visibility $transition-base;
+
+  &.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  &__inner {
+    width: 100%;
+    max-width: 640px;
+    padding-inline: $spacing-4;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-3;
+  }
+
+  &__box {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: $radius-xl;
+    padding: $spacing-3 $spacing-4;
+    gap: $spacing-3;
+    box-shadow: $shadow-xl;
+  }
+
+  &__icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: var(--color-text-muted);
+  }
+
+  &__input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    font-family: var(--font-family-base);
+    font-size: $font-size-md;
+    color: var(--color-text);
+
+    &::placeholder { color: var(--color-text-muted); }
+    &::-webkit-search-cancel-button { display: none; }
+  }
+
+  &__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: $radius-sm;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: color $transition-fast, border-color $transition-fast;
+
+    svg { width: 14px; height: 14px; }
+
+    &:hover { color: var(--color-text); border-color: var(--color-text-muted); }
+  }
+
+  &__hint {
+    text-align: center;
+    font-size: $font-size-xs;
+    color: rgba(255, 255, 255, 0.5);
+
+    kbd {
+      background-color: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: $radius-xs;
+      padding: 0 $spacing-1;
+      font-family: var(--font-family-mono);
+      font-size: $font-size-2xs;
+    }
+  }
+}
 
 // ============================================================
 // NAV LIST

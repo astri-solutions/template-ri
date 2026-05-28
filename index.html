@@ -15,6 +15,63 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   </head>
   <body>
+    <!-- ===================================================
+         TOPBAR — Ticker · Acessibilidade · Idioma · Links
+         =================================================== -->
+    <div class="topbar" role="navigation" aria-label="Barra de utilitários">
+      <div class="topbar__inner">
+
+        <!-- Left: Acessibilidade + Idioma -->
+        <div class="topbar__left">
+          <div class="topbar__a11y" role="group" aria-label="Acessibilidade">
+            <button class="topbar__a11y-btn" type="button" data-a11y="contrast" aria-label="Alternar alto contraste" title="Alto contraste">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>
+            </button>
+            <button class="topbar__a11y-btn" type="button" data-a11y="font-down" aria-label="Reduzir fonte" title="Reduzir fonte" style="font-size:0.6rem">A<sup>−</sup></button>
+            <button class="topbar__a11y-btn" type="button" data-a11y="font-up"   aria-label="Aumentar fonte" title="Aumentar fonte" style="font-size:0.75rem">A<sup>+</sup></button>
+          </div>
+          <div class="topbar__sep" aria-hidden="true"></div>
+          <div class="topbar__lang" role="group" aria-label="Idioma">
+            <button class="topbar__lang-btn is-active" type="button" data-lang="pt" aria-pressed="true"  aria-label="Português">
+              <span class="topbar__flag" aria-hidden="true">🇧🇷</span> PT
+            </button>
+            <button class="topbar__lang-btn" type="button" data-lang="en" aria-pressed="false" aria-label="English">
+              <span class="topbar__flag" aria-hidden="true">🇺🇸</span> EN
+            </button>
+          </div>
+        </div>
+
+        <!-- Center: Tickers -->
+        <div class="topbar__tickers" aria-label="Cotação" aria-live="polite">
+          <div class="topbar__ticker is-active" data-topbar-ticker>
+            <span class="topbar__ticker-symbol">ASTR4</span>
+            <span class="topbar__ticker-dot" aria-hidden="true">·</span>
+            <span class="topbar__ticker-price">R$ 26,27</span>
+            <span class="topbar__ticker-change topbar__ticker-change--up" aria-label="Alta de 0,50%">
+              <svg viewBox="0 0 10 10" width="8" height="8" fill="currentColor" aria-hidden="true"><path d="M5 2 9 8H1z"/></svg>
+              0,50%
+            </span>
+          </div>
+          <div class="topbar__ticker" data-topbar-ticker>
+            <span class="topbar__ticker-symbol">ASTR3</span>
+            <span class="topbar__ticker-dot" aria-hidden="true">·</span>
+            <span class="topbar__ticker-price">R$ 22,15</span>
+            <span class="topbar__ticker-change topbar__ticker-change--down" aria-label="Baixa de 0,32%">
+              <svg viewBox="0 0 10 10" width="8" height="8" fill="currentColor" aria-hidden="true"><path d="M5 8 9 2H1z"/></svg>
+              0,32%
+            </span>
+          </div>
+        </div>
+
+        <!-- Right: Links -->
+        <div class="topbar__right">
+          <a href="/" class="topbar__link topbar__link--active">Relações com Investidores</a>
+          <a href="#" class="topbar__link">Institucional</a>
+        </div>
+
+      </div>
+    </div>
+
     <header class="site-header">
       <div class="site-header__inner">
         <a href="/" class="site-header__brand" aria-label="Astri Solutions">
@@ -99,11 +156,16 @@
 
           </ul>
         </nav>
-        <button class="site-header__hamburger" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="site-nav" data-nav-hamburger>
+        <div class="site-header__actions">
+          <button class="site-header__search" type="button" aria-label="Buscar" data-search-toggle>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </button>
+          <button class="site-header__hamburger" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="site-nav" data-nav-hamburger>
           <span></span>
           <span></span>
           <span></span>
         </button>
+        </div>
       </div>
       <div class="site-header__overlay" data-nav-overlay aria-hidden="true"></div>
     </header>
@@ -637,6 +699,20 @@
         </div>
       </div>
     </footer>
+
+    <!-- Search overlay -->
+    <div class="search-overlay" id="search-overlay" aria-hidden="true" aria-label="Busca" role="dialog">
+      <div class="search-overlay__inner">
+        <div class="search-overlay__box">
+          <svg class="search-overlay__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input class="search-overlay__input" type="search" placeholder="O que você está procurando?" aria-label="Campo de busca" data-search-input />
+          <button class="search-overlay__close" type="button" aria-label="Fechar busca" data-search-close>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <p class="search-overlay__hint">Pressione <kbd>ESC</kbd> para fechar</p>
+      </div>
+    </div>
 
     <script type="module" src="/scripts/home.js"></script>
   </body>

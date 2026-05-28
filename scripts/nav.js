@@ -133,5 +133,31 @@ function initNav() {
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Escape') return;
     closeDrawer();
+    closeSearch();
+  });
+
+  // ---------------------------------------------------------------------------
+  // Search overlay
+  // ---------------------------------------------------------------------------
+  const searchOverlay = document.getElementById('search-overlay');
+  const searchInput   = document.querySelector('[data-search-input]');
+
+  function openSearch() {
+    searchOverlay?.classList.add('is-open');
+    searchOverlay?.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    searchInput?.focus();
+  }
+
+  function closeSearch() {
+    searchOverlay?.classList.remove('is-open');
+    searchOverlay?.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelector('[data-search-toggle]')?.addEventListener('click', openSearch);
+  document.querySelector('[data-search-close]')?.addEventListener('click', closeSearch);
+  searchOverlay?.addEventListener('click', (e) => {
+    if (e.target === searchOverlay || e.target === searchOverlay.firstElementChild) closeSearch();
   });
 }

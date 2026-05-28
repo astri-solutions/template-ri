@@ -2,6 +2,7 @@
 // HOME — Slider do banner + handlers dos formulários
 // =============================================================================
 
+import './topbar.js';
 import './nav.js';
 import './reveal.js';
 

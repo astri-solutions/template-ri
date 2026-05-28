@@ -26,7 +26,7 @@ export default defineConfig({
         atasAssembleias:     resolve(__dirname, 'pages/governanca/atas-assembleias.html'),
         sustentabilidade:    resolve(__dirname, 'pages/governanca/sustentabilidade.html'),
 
-        // Informações Financeiras
+        // Financeiro
         centralResultados:   resolve(__dirname, 'pages/informacoes-financeiras/central-resultados.html'),
         apresentacoes:       resolve(__dirname, 'pages/informacoes-financeiras/apresentacoes.html'),
         endividamento:       resolve(__dirname, 'pages/informacoes-financeiras/endividamento.html'),

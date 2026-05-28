@@ -1,0 +1,88 @@
+@use '../abstracts' as *;
+
+// =============================================================================
+// DATA TABLE — componente padrão de tabela para todo o site
+// =============================================================================
+
+.data-table {
+  width: 100%;
+  background-color: var(--color-bg);
+  border: 1px dashed var(--color-primary-400);
+  border-radius: $radius-xl;
+  overflow: hidden;
+
+  &__scroller {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  thead {
+    background-color: var(--color-secondary-500);
+    color: #fff;
+
+    th {
+      padding: $spacing-4 $spacing-6;
+      font-family: var(--font-family-base);
+      font-size: $font-size-sm;
+      font-weight: $font-weight-semibold;
+      letter-spacing: $letter-spacing-wide;
+      text-align: center;
+      white-space: nowrap;
+
+      &:first-child {
+        text-align: left;
+        width: 36%;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      transition: background-color $transition-fast;
+      cursor: default;
+
+      &:hover { background-color: var(--color-tertiary-200); }
+    }
+
+    td {
+      padding: $spacing-4 $spacing-6;
+      font-size: $font-size-sm;
+      color: var(--color-text);
+      border-top: 1px solid var(--color-divider);
+      text-align: center;
+      vertical-align: middle;
+
+      &:first-child {
+        text-align: left;
+        font-weight: $font-weight-medium;
+        color: var(--color-secondary-600);
+        font-size: $font-size-md;
+        position: relative;
+        padding-left: $spacing-7;
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 25%;
+          bottom: 25%;
+          width: 3px;
+          background-color: transparent;
+          border-radius: 0 $radius-sm $radius-sm 0;
+          transition: background-color $transition-fast;
+        }
+      }
+    }
+
+    tr:hover td:first-child::before {
+      background-color: var(--color-primary-500);
+    }
+  }
+}

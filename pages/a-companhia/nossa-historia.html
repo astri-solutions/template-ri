@@ -190,9 +190,98 @@
         </div>
       </section>
 
-      <section class="page-section">
-        <div class="page-section__container">
-          <!-- Linha do tempo vertical: cada item com ano, título e descrição -->
+      <section class="timeline-section">
+        <div class="timeline" aria-label="Linha do tempo">
+
+          <!-- Linha vertical + preenchimento por scroll -->
+          <div class="timeline__track" data-timeline-track aria-hidden="true">
+            <div class="timeline__track-fill" data-timeline-fill></div>
+          </div>
+
+          <!-- 1999 -->
+          <article class="timeline__item" data-timeline-item>
+            <div class="timeline__node">
+              <span class="timeline__dot" aria-hidden="true"></span>
+            </div>
+            <div class="timeline__year-wrap">
+              <span class="timeline__year">1999</span>
+            </div>
+            <div class="timeline__content">
+              <h3 class="timeline__title">Fundação</h3>
+              <p class="timeline__desc">A empresa nasce com a missão de transformar o mercado de capitais brasileiro, conectando investidores e companhias com transparência e agilidade.</p>
+            </div>
+          </article>
+
+          <!-- 2004 -->
+          <article class="timeline__item" data-timeline-item>
+            <div class="timeline__node">
+              <span class="timeline__dot" aria-hidden="true"></span>
+            </div>
+            <div class="timeline__year-wrap">
+              <span class="timeline__year">2004</span>
+            </div>
+            <div class="timeline__content">
+              <h3 class="timeline__title">Primeiro IPO</h3>
+              <p class="timeline__desc">A companhia abre seu capital na B3 com uma oferta pública inicial bem-sucedida, captando R$ 480 milhões e ampliando sua base de acionistas.</p>
+            </div>
+          </article>
+
+          <!-- 2009 -->
+          <article class="timeline__item" data-timeline-item>
+            <div class="timeline__node">
+              <span class="timeline__dot" aria-hidden="true"></span>
+            </div>
+            <div class="timeline__year-wrap">
+              <span class="timeline__year">2009</span>
+            </div>
+            <div class="timeline__content">
+              <h3 class="timeline__title">Expansão Nacional</h3>
+              <p class="timeline__desc">Com presença em 12 estados, a empresa consolida sua posição como líder regional e inicia operações em novos segmentos estratégicos.</p>
+            </div>
+          </article>
+
+          <!-- 2015 -->
+          <article class="timeline__item" data-timeline-item>
+            <div class="timeline__node">
+              <span class="timeline__dot" aria-hidden="true"></span>
+            </div>
+            <div class="timeline__year-wrap">
+              <span class="timeline__year">2015</span>
+            </div>
+            <div class="timeline__content">
+              <h3 class="timeline__title">Aquisição Estratégica</h3>
+              <p class="timeline__desc">A incorporação da Grupo Norte amplia o portfólio em 40% e posiciona a companhia entre as cinco maiores do setor no país.</p>
+            </div>
+          </article>
+
+          <!-- 2019 -->
+          <article class="timeline__item" data-timeline-item>
+            <div class="timeline__node">
+              <span class="timeline__dot" aria-hidden="true"></span>
+            </div>
+            <div class="timeline__year-wrap">
+              <span class="timeline__year">2019</span>
+            </div>
+            <div class="timeline__content">
+              <h3 class="timeline__title">Internacionalização</h3>
+              <p class="timeline__desc">Abertura do escritório em Lisboa marca a entrada no mercado europeu, com foco em Portugal e Espanha como principais mercados-alvo.</p>
+            </div>
+          </article>
+
+          <!-- 2024 -->
+          <article class="timeline__item" data-timeline-item>
+            <div class="timeline__node">
+              <span class="timeline__dot" aria-hidden="true"></span>
+            </div>
+            <div class="timeline__year-wrap">
+              <span class="timeline__year">2024</span>
+            </div>
+            <div class="timeline__content">
+              <h3 class="timeline__title">25 Anos de Trajetória</h3>
+              <p class="timeline__desc">A companhia celebra 25 anos com receita recorde de R$ 2,1 bilhões, presença em 26 estados e mais de 280 colaboradores dedicados ao crescimento sustentável.</p>
+            </div>
+          </article>
+
         </div>
       </section>
     </main>
@@ -330,8 +419,6 @@
       </div>
     </div>
 
-    <script type="module" src="/scripts/nav.js"></script>
-    <script type="module" src="/scripts/topbar.js"></script>
-    <script type="module" src="/scripts/reveal.js"></script>
+    <script type="module" src="/scripts/nossa-historia.js"></script>
   </body>
 </html>

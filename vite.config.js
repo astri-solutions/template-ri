@@ -27,7 +27,7 @@ export default defineConfig({
         atasAssembleias:     resolve(__dirname, 'pages/governanca/atas-assembleias.html'),
         sustentabilidade:    resolve(__dirname, 'pages/governanca/sustentabilidade.html'),
 
-        // Informações Financeiras
+        // Financeiro
         centralResultados:   resolve(__dirname, 'pages/informacoes-financeiras/central-resultados.html'),
         apresentacoes:       resolve(__dirname, 'pages/informacoes-financeiras/apresentacoes.html'),
         endividamento:       resolve(__dirname, 'pages/informacoes-financeiras/endividamento.html'),
@@ -46,8 +46,6 @@ export default defineConfig({
         fatoresRisco:     resolve(__dirname, 'pages/contato/fatores-risco.html'),
         trabalheConosco:  resolve(__dirname, 'pages/contato/trabalhe-conosco.html'),
 
-        // Legado
-        centralResultadosV1: resolve(__dirname, 'pages/central-resultados-v1.html'),
       },
     },
   },

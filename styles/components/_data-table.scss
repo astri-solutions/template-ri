@@ -1,0 +1,96 @@
+@use '../abstracts' as *;
+
+// =============================================================================
+// DATA TABLE — componente padrão de tabela para todo o site
+// =============================================================================
+
+.data-table {
+  width: 100%;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-divider);
+  border-radius: $radius-xl;
+  overflow: hidden;
+  box-shadow: $shadow-sm;
+
+  &__scroller {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table {
+    width: 100%;
+    min-width: 580px;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Cabeçalho
+  // ---------------------------------------------------------------------------
+  thead {
+    background-color: var(--color-secondary-600);
+    color: #fff;
+
+    th {
+      padding: $spacing-4 $spacing-6;
+      font-family: var(--font-family-base);
+      font-size: $font-size-sm;
+      font-weight: $font-weight-semibold;
+      letter-spacing: $letter-spacing-wide;
+      text-align: center;
+      white-space: nowrap;
+
+      &:first-child {
+        text-align: left;
+        width: 40%;
+        font-size: $font-size-md;
+        letter-spacing: 0;
+      }
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Corpo
+  // ---------------------------------------------------------------------------
+  tbody {
+    tr {
+      transition: background-color $transition-fast;
+
+      &:hover { background-color: var(--color-tertiary-100, rgba(0,0,0,0.03)); }
+    }
+
+    td {
+      padding: $spacing-4 $spacing-6;
+      font-size: $font-size-sm;
+      color: var(--color-text);
+      border-top: 1px solid var(--color-divider);
+      text-align: center;
+      vertical-align: middle;
+
+      // Coluna do nome do documento
+      &:first-child {
+        text-align: left;
+        font-weight: $font-weight-regular;
+        color: var(--color-text);
+        position: relative;
+        padding-left: $spacing-7;
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 25%;
+          bottom: 25%;
+          width: 3px;
+          background-color: transparent;
+          border-radius: 0 $radius-sm $radius-sm 0;
+          transition: background-color $transition-fast;
+        }
+      }
+    }
+
+    tr:hover td:first-child::before {
+      background-color: var(--color-primary-500);
+    }
+  }
+}

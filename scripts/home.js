@@ -5,6 +5,7 @@
 import './topbar.js';
 import './nav.js';
 import './reveal.js';
+import './counter.js';
 
 /* -----------------------------------------------------------------------------
  * SLIDER do banner

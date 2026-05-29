@@ -182,7 +182,7 @@
         <div class="page-header__inner">
           <ol class="page-header__breadcrumb" aria-label="Você está em">
             <li><a href="/">Home</a></li>
-            <li><a href="/pages/informacoes-financeiras/central-resultados.html">Informações Financeiras</a></li>
+            <li><a href="/pages/informacoes-financeiras/central-resultados.html">Financeiro</a></li>
             <li aria-current="page">Central de Resultados</li>
           </ol>
           <h1 id="page-title" class="page-header__title">Central de Resultados</h1>
@@ -196,7 +196,8 @@
             <label class="results-filter__label" for="year-filter">Ano</label>
             <span class="select">
               <select id="year-filter" class="select__field" data-results-filter>
-                <option value="2025" selected>2025</option>
+                <option value="2026" selected>2026</option>
+                <option value="2025">2025</option>
                 <option value="2024">2024</option>
                 <option value="2023">2023</option>
                 <option value="2022">2022</option>
@@ -206,8 +207,8 @@
         </div>
 
         <div class="results-container">
-          <div class="results-table">
-            <div class="results-table-scroller">
+          <div class="data-table">
+            <div class="data-table__scroller">
               <table aria-label="Arquivos de resultados por trimestre">
                 <thead>
                   <tr data-results-head></tr>
@@ -353,8 +354,8 @@
       </div>
     </div>
 
-    <script type="module" src="/scripts/nav.js"></script>
-    <script type="module" src="/scripts/topbar.js"></script>
-    <script type="module" src="/scripts/reveal.js"></script>
+    
+    
+    <script type="module" src="/scripts/central-resultados.js"></script>
   </body>
 </html>

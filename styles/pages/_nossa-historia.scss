@@ -1,0 +1,203 @@
+@use '../abstracts' as *;
+
+// =============================================================================
+// PÁGINA: Nossa História — Linha do tempo vertical
+// =============================================================================
+
+.timeline-section {
+  padding-block: $spacing-20 $spacing-28;
+  background-color: var(--color-bg);
+  overflow-x: clip; // impede scroll horizontal das animações de slide
+}
+
+// =============================================================================
+// TIMELINE
+// =============================================================================
+
+.timeline {
+  @include container;
+  position: relative;
+
+  // ---------------------------------------------------------------------------
+  // Linha vertical
+  // ---------------------------------------------------------------------------
+  &__track {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 24px; // mobile: centro da coluna do nó (48px ÷ 2)
+    width: 2px;
+    background-color: var(--color-divider);
+    z-index: 0;
+
+    @include respond-up(md) {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  &__track-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: var(--color-primary-400);
+    will-change: height;
+    transition: height 0.08s linear;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Item
+  // ---------------------------------------------------------------------------
+  &__item {
+    position: relative;
+    display: grid;
+    // mobile: coluna do nó + conteúdo
+    grid-template-columns: 48px 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "node year"
+      "node content";
+    column-gap: $spacing-5;
+    row-gap: $spacing-2;
+    padding-block: $spacing-10 $spacing-12;
+
+    @include respond-up(md) {
+      // desktop: conteúdo | nó | ano
+      grid-template-columns: 1fr 64px 1fr;
+      grid-template-rows: auto;
+      grid-template-areas: "content node year";
+      column-gap: $spacing-6;
+      align-items: center;
+      padding-block: $spacing-14;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Nó (ponto + conector)
+  // ---------------------------------------------------------------------------
+  &__node {
+    grid-area: node;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 0.25em;
+    position: relative;
+    z-index: 1;
+
+    @include respond-up(md) {
+      align-items: center;
+      padding-top: 0;
+    }
+  }
+
+  &__dot {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    border-radius: $radius-full;
+    background-color: var(--color-gray-300, #d1d5db);
+    border: 3px solid var(--color-bg);
+    box-shadow: 0 0 0 2px var(--color-gray-300, #d1d5db);
+    transform: scale(0);
+    transition:
+      background-color 0.4s ease,
+      box-shadow       0.4s ease,
+      transform        0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    .timeline__item.is-active &,
+    .timeline__item.was-active & {
+      transform: scale(1);
+      background-color: var(--color-primary-500);
+      box-shadow: 0 0 0 2px var(--color-primary-500);
+    }
+
+    @media (prefers-reduced-motion: reduce) { transform: scale(1); }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Ano
+  // ---------------------------------------------------------------------------
+  &__year-wrap {
+    grid-area: year;
+    opacity: 0;
+    transform: translateX(52px);
+
+    @include respond-up(md) { padding-left: $spacing-5; }
+
+    &.is-visible {
+      animation: timelineSlideRight 0.65s cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+
+    @media (prefers-reduced-motion: reduce) { opacity: 1; transform: none; }
+  }
+
+  &__year {
+    display: block;
+    font-family: var(--font-family-display);
+    font-size: clamp(2rem, 4vw, 4rem);
+    font-weight: $font-weight-bold;
+    line-height: 1;
+    color: var(--color-gray-300, #d1d5db);
+    transition: color 0.5s ease;
+    user-select: none;
+
+    .timeline__item.is-active &,
+    .timeline__item.was-active & {
+      color: var(--color-primary-500);
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Conteúdo (título + descrição)
+  // ---------------------------------------------------------------------------
+  &__content {
+    grid-area: content;
+    opacity: 0;
+    transform: translateX(-52px);
+
+    @include respond-up(md) {
+      padding-right: $spacing-5;
+      text-align: right;
+    }
+
+    &.is-visible {
+      animation: timelineSlideLeft 0.65s cubic-bezier(0.4, 0, 0.2, 1) 0.12s both;
+    }
+
+    @media (prefers-reduced-motion: reduce) { opacity: 1; transform: none; }
+  }
+
+  &__title {
+    font-family: var(--font-family-display);
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    color: var(--color-secondary-700);
+    line-height: $line-height-snug;
+    margin-bottom: $spacing-3;
+  }
+
+  &__desc {
+    font-size: $font-size-sm;
+    color: var(--color-text-muted);
+    line-height: $line-height-relaxed;
+    max-width: 44ch;
+
+    @include respond-up(md) { margin-left: auto; }
+  }
+}
+
+// =============================================================================
+// Keyframes
+// =============================================================================
+
+@keyframes timelineSlideLeft {
+  from { opacity: 0; transform: translateX(-52px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes timelineSlideRight {
+  from { opacity: 0; transform: translateX(52px); }
+  to   { opacity: 1; transform: translateX(0); }
+}

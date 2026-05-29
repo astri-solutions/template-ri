@@ -1,19 +1,21 @@
 // =============================================================================
-// COLORS — Astri RI
+// PALETA — valores fixos por tema
+// Usar var(--color-*) no CSS. Estas variáveis SCSS servem apenas para o
+// _root.scss montar os custom properties e para mixins que precisem de
+// valores estáticos (ex.: calc, map-get).
 // =============================================================================
 
-// PRIMARY / light
+// PRIMARY — verde
 $color-primary-light-100: #66F5A2;
 $color-primary-light-200: #4DEF93;
 $color-primary-light-300: #33E883;
 $color-primary-light-400: #1AE174;
-$color-primary-light-500: #00D865;
+$color-primary-light-500: #00D865;   // default
 $color-primary-light-600: #00C75A;
-$color-primary-light-700: #00B54F;
+$color-primary-light-700: #00B54F;   // hover
 $color-primary-light-800: #00A344;
-$color-primary-light-900: #008F39;
+$color-primary-light-900: #008F39;   // pressed
 
-// PRIMARY / dark
 $color-primary-dark-100: #80FFB0;
 $color-primary-dark-200: #60FF9D;
 $color-primary-dark-300: #40F68A;
@@ -24,18 +26,17 @@ $color-primary-dark-700: #00B649;
 $color-primary-dark-800: #009F3B;
 $color-primary-dark-900: #00802E;
 
-// SECONDARY / light
+// SECONDARY — teal
 $color-secondary-light-100: #99C7D0;
 $color-secondary-light-200: #73AFBA;
 $color-secondary-light-300: #4D95A1;
 $color-secondary-light-400: #297986;
-$color-secondary-light-500: #0B5B68;
+$color-secondary-light-500: #0B5B68;  // default
 $color-secondary-light-600: #025562;
-$color-secondary-light-700: #004E5B;
+$color-secondary-light-700: #004E5B;  // hover
 $color-secondary-light-800: #004551;
-$color-secondary-light-900: #003B45;
+$color-secondary-light-900: #003B45;  // pressed
 
-// SECONDARY / dark
 $color-secondary-dark-100: #80B5BF;
 $color-secondary-dark-200: #60A0AC;
 $color-secondary-dark-300: #408A97;
@@ -46,18 +47,17 @@ $color-secondary-dark-700: #004B57;
 $color-secondary-dark-800: #00424C;
 $color-secondary-dark-900: #003740;
 
-// TERTIARY / light
+// TERTIARY — cinza quente
 $color-tertiary-light-100: #F9F9F4;
 $color-tertiary-light-200: #F6F6F0;
 $color-tertiary-light-300: #F3F3ED;
 $color-tertiary-light-400: #F0F0E9;
-$color-tertiary-light-500: #EDEDE6;
+$color-tertiary-light-500: #EDEDE6;  // default
 $color-tertiary-light-600: #D0D0C9;
-$color-tertiary-light-700: #B3B3AC;
+$color-tertiary-light-700: #B3B3AC;  // hover
 $color-tertiary-light-800: #95958F;
-$color-tertiary-light-900: #787872;
+$color-tertiary-light-900: #787872;  // pressed
 
-// TERTIARY / dark
 $color-tertiary-dark-100: #F4F4EC;
 $color-tertiary-dark-200: #F3F3EA;
 $color-tertiary-dark-300: #F1F1E9;
@@ -68,7 +68,7 @@ $color-tertiary-dark-700: #D2D2C9;
 $color-tertiary-dark-800: #C5C4BA;
 $color-tertiary-dark-900: #B7B7AC;
 
-// GRAYSCALE / light
+// GRAYSCALE — light (0 = branco, 950 = quase preto)
 $color-gray-light-0:   #FFFFFF;
 $color-gray-light-50:  #FAFAFA;
 $color-gray-light-100: #EFEFEF;
@@ -82,7 +82,7 @@ $color-gray-light-800: #393939;
 $color-gray-light-900: #262626;
 $color-gray-light-950: #141414;
 
-// GRAYSCALE / dark
+// GRAYSCALE — dark (escala invertida)
 $color-gray-dark-0:   #141414;
 $color-gray-dark-50:  #262626;
 $color-gray-dark-100: #4B4B4B;
@@ -96,13 +96,36 @@ $color-gray-dark-800: #F4F4F4;
 $color-gray-dark-900: #FAFAFA;
 $color-gray-dark-950: #FFFFFF;
 
-// SEMÂNTICAS
+// =============================================================================
+// ALIASES SCSS — valores estáticos do light-theme para uso em mixins/tokens
+// Para theming dinâmico usar sempre var(--color-*)
+// =============================================================================
+
 $color-primary:   $color-primary-light-500;
 $color-secondary: $color-secondary-light-500;
 $color-tertiary:  $color-tertiary-light-500;
 
+// Estados
+$color-primary-hover:   $color-primary-light-700;
+$color-primary-pressed: $color-primary-light-900;
+$color-primary-subtle:  $color-primary-light-100;
+
+$color-secondary-hover:   $color-secondary-light-700;
+$color-secondary-pressed: $color-secondary-light-900;
+$color-secondary-subtle:  $color-secondary-light-100;
+
+$color-tertiary-hover:   $color-tertiary-light-700;
+$color-tertiary-pressed: $color-tertiary-light-900;
+$color-tertiary-subtle:  $color-tertiary-light-100;
+
+// Texto sobre cor (on-color text)
+$color-on-primary:   #000000;   // preto — contraste 10.9:1 sobre #00D865
+$color-on-secondary: #ffffff;   // branco — contraste 7.6:1 sobre #0B5B68
+$color-on-tertiary:  $color-gray-light-900;  // escuro sobre cinza claro
+
+// Semânticas base
 $color-bg:         $color-gray-light-0;
-$color-surface:    $color-tertiary-light-500;
+$color-surface:    $color-tertiary-light-100;
 $color-text:       $color-gray-light-900;
 $color-text-muted: $color-gray-light-700;
 $color-border:     $color-gray-light-300;

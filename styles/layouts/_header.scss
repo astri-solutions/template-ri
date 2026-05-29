@@ -6,7 +6,7 @@
 
 .site-header {
   position: fixed;
-  top: 0;
+  top: var(--topbar-h, 0);
   left: 0;
   right: 0;
   width: 100%;
@@ -32,12 +32,12 @@
   }
 
   &__logo {
-    height: 36px;
+    height: 24px;
     width: auto;
     display: block;
   }
 
-  // Hamburger — visível apenas no mobile
+  // ---- Hamburger (mobile only)
   &__hamburger {
     display: inline-flex;
     flex-direction: column;
@@ -74,36 +74,271 @@
     }
   }
 
-  // Nav — mobile: oculto por padrão, aberto com .is-open
-  &__nav {
+  // ---- Overlay — escurece o fundo quando o drawer está aberto (mobile)
+  &__overlay {
     display: none;
-    position: absolute;
-    top: 72px;
-    left: 0;
-    right: 0;
-    background-color: #fff;
-    border-bottom: 1px solid var(--color-divider);
-    box-shadow: $shadow-md;
-    padding-bottom: $spacing-3;
+    position: fixed;
+    inset: 0;
+    z-index: 250;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    opacity: 0;
+    transition: opacity 400ms ease;
 
-    &.is-open { display: block; }
+    &.is-open {
+      display: block;
+      opacity: 1;
+    }
+
+    @include respond-up(desktop) { display: none !important; }
+  }
+
+  // ---- Nav — drawer slide-in left no mobile
+  &__nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100dvh;
+    width: min(85vw, 320px);
+    background-color: var(--color-secondary-700);
+    z-index: 260;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    transform: translateX(-100%);
+    transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+
+    &.is-open { transform: translateX(0); }
 
     // Desktop: incorporado à barra
     @include respond-up(desktop) {
-      display: flex;
       position: static;
+      height: auto;
+      width: auto;
       background: none;
-      border: none;
-      box-shadow: none;
-      padding: 0;
+      z-index: auto;
+      overflow: visible;
+      transform: none;
+      transition: none;
+      flex-direction: row;
+      display: flex;
 
-      &.is-open { display: flex; }
+      &.is-open { transform: none; }
+    }
+  }
+
+  // ---- Drawer header — logo + close (mobile only)
+  &__drawer-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $spacing-5 $spacing-6;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
+
+    @include respond-up(desktop) { display: none; }
+  }
+
+  &__drawer-logo {
+    height: 24px;
+    width: auto;
+    display: block;
+    filter: brightness(0) invert(1);
+  }
+
+  &__drawer-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: $radius-sm;
+    color: rgba(255, 255, 255, 0.7);
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+    transition: color $transition-fast, border-color $transition-fast;
+
+    svg { width: 18px; height: 18px; }
+
+    &:hover {
+      color: var(--color-primary-300);
+      border-color: var(--color-primary-300);
+    }
+  }
+
+  // ---- Drawer footer (mobile/tablet only) — ticker + idioma + links
+  &__drawer-footer {
+    margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: $spacing-5 $spacing-6 $spacing-6;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-4;
+    flex-shrink: 0;
+
+    @include respond-up(desktop) { display: none; }
+  }
+
+  &__drawer-tickers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-2 $spacing-5;
+    font-family: var(--font-family-mono);
+    font-size: $font-size-2xs;
+  }
+
+  &__drawer-ticker {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+    white-space: nowrap;
+  }
+
+  &__drawer-lang {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3;
+  }
+
+  &__drawer-links {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-2;
+  }
+
+  // ---- Actions group (search + hamburger)
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $spacing-1;
+  }
+
+  // ---- Search button
+  &__search {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    border-radius: $radius-sm;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: color $transition-fast, background-color $transition-fast;
+
+    svg { width: 18px; height: 18px; }
+
+    &:hover {
+      color: var(--color-secondary-500);
+      background-color: var(--color-tertiary-200);
     }
   }
 }
 
-// Compensa o header fixo em todas as páginas
-main { padding-top: $spacing-18; }
+// ============================================================
+// SEARCH OVERLAY
+// ============================================================
+
+.search-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: $z-modal;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: calc(var(--topbar-h, 0px) + #{$spacing-18} + #{$spacing-8});
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity $transition-base, visibility $transition-base;
+
+  &.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  &__inner {
+    width: 100%;
+    max-width: 640px;
+    padding-inline: $spacing-4;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-3;
+  }
+
+  &__box {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: $radius-xl;
+    padding: $spacing-3 $spacing-4;
+    gap: $spacing-3;
+    box-shadow: $shadow-xl;
+  }
+
+  &__icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: var(--color-text-muted);
+  }
+
+  &__input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    font-family: var(--font-family-base);
+    font-size: $font-size-md;
+    color: var(--color-text);
+
+    &::placeholder { color: var(--color-text-muted); }
+    &::-webkit-search-cancel-button { display: none; }
+  }
+
+  &__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: $radius-sm;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: color $transition-fast, border-color $transition-fast;
+
+    svg { width: 14px; height: 14px; }
+
+    &:hover { color: var(--color-text); border-color: var(--color-text-muted); }
+  }
+
+  &__hint {
+    text-align: center;
+    font-size: $font-size-xs;
+    color: rgba(255, 255, 255, 0.5);
+
+    kbd {
+      background-color: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: $radius-xs;
+      padding: 0 $spacing-1;
+      font-family: var(--font-family-mono);
+      font-size: $font-size-2xs;
+    }
+  }
+}
 
 // ============================================================
 // NAV LIST
@@ -114,10 +349,16 @@ main { padding-top: $spacing-18; }
   margin: 0;
   padding: 0;
 
+  // Mobile: scroll dentro do drawer
+  padding: $spacing-4 0;
+  flex: 1;
+
   @include respond-up(desktop) {
     display: flex;
     align-items: center;
     gap: $spacing-1;
+    padding: 0;
+    flex: none;
   }
 
   // Item
@@ -142,48 +383,65 @@ main { padding-top: $spacing-18; }
     }
   }
 
-  // Link simples e botão de trigger compartilham o mesmo visual
+  // Link simples e botão de trigger
   &__link,
   &__trigger {
     display: flex;
     align-items: center;
-    gap: $spacing-1;
-    padding: $spacing-3 $spacing-4;
-    font-size: $font-size-sm;
+    gap: $spacing-2;
+    padding: $spacing-4 $spacing-6;
+    font-size: $font-size-md;
     font-weight: $font-weight-medium;
-    color: var(--color-text-muted);
+    color: rgba(255, 255, 255, 0.8);
     background: none;
     border: none;
     cursor: pointer;
     width: 100%;
     text-align: left;
     text-decoration: none;
-    white-space: nowrap;
     line-height: 1;
-    transition: color $transition-fast;
+    transition: color $transition-fast, background-color $transition-fast;
 
     @include respond-up(desktop) {
-      width: auto;
+      font-size: $font-size-sm;
       padding: $spacing-2 $spacing-3;
+      color: var(--color-text-muted);
       border-radius: $radius-sm;
+      width: auto;
+      white-space: nowrap;
     }
 
-    &:hover,
+    &:hover {
+      color: var(--color-primary-300);
+      background-color: rgba(255, 255, 255, 0.06);
+
+      @include respond-up(desktop) {
+        color: var(--color-secondary-500);
+        background-color: transparent;
+      }
+    }
+
     &[aria-current='page'],
     &[aria-expanded='true'] {
-      color: var(--color-secondary-500);
+      color: var(--color-primary-300);
+
+      @include respond-up(desktop) { color: var(--color-secondary-500); }
     }
   }
 
   // Chevron do trigger
   &__chevron {
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
     flex-shrink: 0;
     margin-left: auto;
     transition: transform $transition-fast;
 
-    @include respond-up(desktop) { margin-left: 2px; }
+    @include respond-up(desktop) {
+      width: 14px;
+      height: 14px;
+      margin-left: 2px;
+    }
   }
 
   &__trigger[aria-expanded='true'] .nav-list__chevron {
@@ -199,11 +457,11 @@ main { padding-top: $spacing-18; }
   list-style: none;
   margin: 0;
 
-  // Mobile: inline, com indent e borda lateral
+  // Mobile: inline, com indent e borda lateral verde
   display: none;
-  padding: $spacing-1 0 $spacing-2 $spacing-6;
-  border-left: 2px solid var(--color-primary-500);
-  margin-left: $spacing-4;
+  padding: $spacing-1 0 $spacing-2 $spacing-8;
+  border-left: 2px solid var(--color-primary-400);
+  margin-left: $spacing-6;
 
   .nav-list__item.is-open > & { display: block; }
 
@@ -211,10 +469,11 @@ main { padding-top: $spacing-18; }
   @include respond-up(desktop) {
     display: block;
     position: absolute;
-    top: calc(100% + $spacing-2);
+    top: 100%;
     left: 0;
     min-width: 210px;
     padding: $spacing-2;
+    padding-top: $spacing-3;
     margin: 0;
     border-left: none;
     background: #fff;
@@ -232,19 +491,26 @@ main { padding-top: $spacing-18; }
 
   &__link {
     display: block;
-    padding: $spacing-2 $spacing-3;
+    padding: $spacing-2 $spacing-4;
     font-size: $font-size-sm;
-    color: var(--color-text-muted);
+    color: rgba(255, 255, 255, 0.65);
     text-decoration: none;
-    white-space: nowrap;
-    transition: color $transition-fast, background-color $transition-fast;
+    transition: color $transition-fast;
 
-    @include respond-up(desktop) { border-radius: $radius-sm; }
+    @include respond-up(desktop) {
+      padding: $spacing-2 $spacing-3;
+      color: var(--color-text-muted);
+      border-radius: $radius-sm;
+    }
 
     &:hover,
     &[aria-current='page'] {
-      color: var(--color-secondary-500);
-      background-color: var(--color-tertiary-100);
+      color: var(--color-primary-300);
+
+      @include respond-up(desktop) {
+        color: var(--color-secondary-500);
+        background-color: var(--color-tertiary-100);
+      }
     }
   }
 }

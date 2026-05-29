@@ -1,0 +1,26 @@
+// =============================================================================
+// ANIMAÇÕES GLOBAIS — fade-in bottom (padrão do projeto)
+// =============================================================================
+
+@keyframes fadeInBottom {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+// Estado inicial: invisível e deslocado
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: none;
+}
+
+// Visível após IntersectionObserver
+[data-reveal].is-visible {
+  animation: fadeInBottom 600ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+// Respeita preferência do usuário
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1; transform: none; }
+  [data-reveal].is-visible { animation: none; }
+}

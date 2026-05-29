@@ -9,8 +9,9 @@ export default defineConfig({
     rollupOptions: {
       input: {
         // Raiz
-        main:    resolve(__dirname, 'index.html'),
-        sumario: resolve(__dirname, 'pages/sumario.html'),
+        main:         resolve(__dirname, 'index.html'),
+        homeAtalhos:  resolve(__dirname, 'home-atalhos.html'),
+        sumario:      resolve(__dirname, 'pages/sumario.html'),
 
         // A Companhia
         visaoGeral:           resolve(__dirname, 'pages/a-companhia/visao-geral.html'),

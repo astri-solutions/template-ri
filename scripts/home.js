@@ -2,8 +2,11 @@
 // HOME — Slider do banner + handlers dos formulários
 // =============================================================================
 
+import './topbar.js';
 import './nav.js';
+import './reveal.js';
 import './counter.js';
+import './accordion.js';
 
 /* -----------------------------------------------------------------------------
  * SLIDER do banner

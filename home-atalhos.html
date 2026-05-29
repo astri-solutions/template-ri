@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Estatuto, Políticas e Regimentos — Astri RI</title>
-    <meta name="description" content="Documentos oficiais: estatuto social, políticas e regimentos internos da companhia." />
+    <title>Home Atalhos — Astri RI</title>
+    <meta name="description" content="Acesso rápido às principais páginas de Relações com Investidores da Astri." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
+    <link
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
@@ -15,7 +15,7 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   </head>
   <body>
-    <!-- ===================================================
+        <!-- ===================================================
          TOPBAR — Ticker · Acessibilidade · Idioma · Links
          =================================================== -->
     <div class="topbar" role="navigation" aria-label="Barra de utilitários">
@@ -121,7 +121,7 @@
 
             <li class="nav-list__item nav-list__item--has-sub">
               <button class="nav-list__trigger" type="button" aria-haspopup="true" aria-expanded="false" data-nav-trigger>
-                Financeiro
+                Inf. Financeiras
                 <svg class="nav-list__chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 6 8 10 12 6"/></svg>
               </button>
               <ul class="nav-dropdown">
@@ -207,24 +207,51 @@
     </header>
 
     <main>
-      <section class="page-header" aria-labelledby="page-title">
-        <img class="page-header__bg" src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1920&q=80" alt="" aria-hidden="true" />
-        <div class="page-header__overlay" aria-hidden="true"></div>
-        <div class="page-header__inner">
-          <ol class="page-header__breadcrumb" aria-label="Você está em">
-            <li><a href="/">Home</a></li>
-            <li><a href="/pages/governanca/composicao-acionaria.html">Governança</a></li>
-            <li aria-current="page">Estatuto, Políticas e Regimentos</li>
-          </ol>
-          <h1 id="page-title" class="page-header__title">Estatuto, Políticas e Regimentos</h1>
-          <p class="page-header__lede">Documentos que regem a governança corporativa da companhia.</p>
-        </div>
-      </section>
+      <section class="hero-atalhos" aria-labelledby="atalhos-title">
 
-      <section class="page-section">
-        <div class="page-section__container">
-          <!-- Accordion: grupos de documentos (Estatuto Social, Políticas, Regimentos) com lista de arquivos para download -->
+        <!-- Background -->
+        <div class="hero-atalhos__bg" aria-hidden="true">
+          <img
+            src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1920&q=80"
+            alt=""
+            loading="eager"
+          />
         </div>
+        <div class="hero-atalhos__overlay" aria-hidden="true"></div>
+        <div class="hero-atalhos__accent"  aria-hidden="true"></div>
+
+        <!-- Content -->
+        <div class="hero-atalhos__content">
+          <div class="hero-atalhos__inner">
+            <span class="hero-atalhos__eyebrow">Relações com Investidores</span>
+            <h1 id="atalhos-title" class="hero-atalhos__title">Divulgação de Resultados</h1>
+            <p class="hero-atalhos__desc">Confira os últimos números divulgados pela companhia e acesse os documentos disponíveis para investidores.</p>
+            <a href="/pages/informacoes-financeiras/central-resultados.html" class="btn btn--outline-on-dark btn--lg">Ver resultados</a>
+          </div>
+        </div>
+
+        <!-- Shortcuts -->
+        <div class="hero-atalhos__shortcuts">
+          <nav class="shortcuts" aria-label="Atalhos principais">
+            <a href="/pages/informacoes-financeiras/central-resultados.html" class="shortcuts__card" data-reveal>
+              <span class="shortcuts__title">Resultados</span>
+              <span class="shortcuts__desc">Números da companhia</span>
+            </a>
+            <a href="/pages/investidores/documentos-cvm.html" class="shortcuts__card" data-reveal data-reveal-delay="80">
+              <span class="shortcuts__title">CVM</span>
+              <span class="shortcuts__desc">Documentos públicos</span>
+            </a>
+            <a href="/pages/contato/fale-com-ri.html" class="shortcuts__card" data-reveal data-reveal-delay="160">
+              <span class="shortcuts__title">Contato</span>
+              <span class="shortcuts__desc">Entre em contato</span>
+            </a>
+            <a href="/pages/investidores/calendario-eventos.html" class="shortcuts__card" data-reveal data-reveal-delay="240">
+              <span class="shortcuts__title">Calendário</span>
+              <span class="shortcuts__desc">Confira nossos eventos</span>
+            </a>
+          </nav>
+        </div>
+
       </section>
     </main>
 
@@ -361,6 +388,6 @@
       </div>
     </div>
 
-    <script type="module" src="/scripts/page.js"></script>
+    <script type="module" src="/scripts/home-atalhos.js"></script>
   </body>
 </html>

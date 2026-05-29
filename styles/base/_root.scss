@@ -1,70 +1,149 @@
 @use '../abstracts' as *;
 
+// =============================================================================
+// CSS CUSTOM PROPERTIES
+// Light theme → :root   |   Dark theme → [data-theme='dark']
+//
+// Hierarquia:
+//   1. Paleta       — --color-{categoria}-{escala}   ex: --color-primary-500
+//   2. Estados      — --color-{categoria}             ex: --color-primary (default)
+//                     --color-{categoria}-hover        --color-primary-hover
+//                     --color-{categoria}-pressed      --color-primary-pressed
+//                     --color-{categoria}-subtle       --color-primary-subtle
+//                     --color-on-{categoria}           texto SOBRE essa cor
+//   3. Semânticos   — propósito claro, tema-agnósticos
+//                     --color-bg, --color-surface
+//                     --color-text, --color-text-muted, --color-text-light
+//                     --color-section-bg(-alt|-brand|-dark)
+//                     --color-title(-accent|-on-dark|-on-brand)
+//                     --color-link, --color-link-hover, --color-focus-ring
+// =============================================================================
+
 :root {
-  // PRIMARY (light)
-  --color-primary-100: #{$color-primary-light-100};
-  --color-primary-200: #{$color-primary-light-200};
-  --color-primary-300: #{$color-primary-light-300};
-  --color-primary-400: #{$color-primary-light-400};
-  --color-primary-500: #{$color-primary-light-500};
-  --color-primary-600: #{$color-primary-light-600};
-  --color-primary-700: #{$color-primary-light-700};
-  --color-primary-800: #{$color-primary-light-800};
-  --color-primary-900: #{$color-primary-light-900};
-  --color-primary: var(--color-primary-500);
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // 1. PALETA
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  // SECONDARY (light)
-  --color-secondary-100: #{$color-secondary-light-100};
-  --color-secondary-200: #{$color-secondary-light-200};
-  --color-secondary-300: #{$color-secondary-light-300};
-  --color-secondary-400: #{$color-secondary-light-400};
-  --color-secondary-500: #{$color-secondary-light-500};
-  --color-secondary-600: #{$color-secondary-light-600};
-  --color-secondary-700: #{$color-secondary-light-700};
-  --color-secondary-800: #{$color-secondary-light-800};
-  --color-secondary-900: #{$color-secondary-light-900};
-  --color-secondary: var(--color-secondary-500);
+  // Primary — verde
+  --color-primary-100: #{$color-primary-light-100};  // #66F5A2
+  --color-primary-200: #{$color-primary-light-200};  // #4DEF93
+  --color-primary-300: #{$color-primary-light-300};  // #33E883
+  --color-primary-400: #{$color-primary-light-400};  // #1AE174
+  --color-primary-500: #{$color-primary-light-500};  // #00D865
+  --color-primary-600: #{$color-primary-light-600};  // #00C75A
+  --color-primary-700: #{$color-primary-light-700};  // #00B54F
+  --color-primary-800: #{$color-primary-light-800};  // #00A344
+  --color-primary-900: #{$color-primary-light-900};  // #008F39
 
-  // TERTIARY (light)
-  --color-tertiary-100: #{$color-tertiary-light-100};
-  --color-tertiary-200: #{$color-tertiary-light-200};
-  --color-tertiary-300: #{$color-tertiary-light-300};
-  --color-tertiary-400: #{$color-tertiary-light-400};
-  --color-tertiary-500: #{$color-tertiary-light-500};
-  --color-tertiary-600: #{$color-tertiary-light-600};
-  --color-tertiary-700: #{$color-tertiary-light-700};
-  --color-tertiary-800: #{$color-tertiary-light-800};
-  --color-tertiary-900: #{$color-tertiary-light-900};
-  --color-tertiary: var(--color-tertiary-500);
+  // Secondary — teal
+  --color-secondary-100: #{$color-secondary-light-100};  // #99C7D0
+  --color-secondary-200: #{$color-secondary-light-200};  // #73AFBA
+  --color-secondary-300: #{$color-secondary-light-300};  // #4D95A1
+  --color-secondary-400: #{$color-secondary-light-400};  // #297986
+  --color-secondary-500: #{$color-secondary-light-500};  // #0B5B68
+  --color-secondary-600: #{$color-secondary-light-600};  // #025562
+  --color-secondary-700: #{$color-secondary-light-700};  // #004E5B
+  --color-secondary-800: #{$color-secondary-light-800};  // #004551
+  --color-secondary-900: #{$color-secondary-light-900};  // #003B45
 
-  // GRAYSCALE (light)
-  --color-gray-0:   #{$color-gray-light-0};
-  --color-gray-50:  #{$color-gray-light-50};
-  --color-gray-100: #{$color-gray-light-100};
-  --color-gray-200: #{$color-gray-light-200};
-  --color-gray-300: #{$color-gray-light-300};
-  --color-gray-400: #{$color-gray-light-400};
-  --color-gray-500: #{$color-gray-light-500};
-  --color-gray-600: #{$color-gray-light-600};
-  --color-gray-700: #{$color-gray-light-700};
-  --color-gray-800: #{$color-gray-light-800};
-  --color-gray-900: #{$color-gray-light-900};
-  --color-gray-950: #{$color-gray-light-950};
+  // Tertiary — cinza quente
+  --color-tertiary-100: #{$color-tertiary-light-100};  // #F9F9F4
+  --color-tertiary-200: #{$color-tertiary-light-200};  // #F6F6F0
+  --color-tertiary-300: #{$color-tertiary-light-300};  // #F3F3ED
+  --color-tertiary-400: #{$color-tertiary-light-400};  // #F0F0E9
+  --color-tertiary-500: #{$color-tertiary-light-500};  // #EDEDE6
+  --color-tertiary-600: #{$color-tertiary-light-600};  // #D0D0C9
+  --color-tertiary-700: #{$color-tertiary-light-700};  // #B3B3AC
+  --color-tertiary-800: #{$color-tertiary-light-800};  // #95958F
+  --color-tertiary-900: #{$color-tertiary-light-900};  // #787872
 
-  // SEMÂNTICAS
-  --color-bg:         var(--color-gray-0);
-  --color-surface:    var(--color-tertiary-500);
-  --color-text:       var(--color-gray-900);
-  --color-text-muted: var(--color-gray-700);
-  --color-border:     var(--color-gray-300);
-  --color-divider:    var(--color-gray-200);
+  // Grayscale
+  --color-gray-0:   #{$color-gray-light-0};    // #FFFFFF
+  --color-gray-50:  #{$color-gray-light-50};   // #FAFAFA
+  --color-gray-100: #{$color-gray-light-100};  // #EFEFEF
+  --color-gray-200: #{$color-gray-light-200};  // #E5E5E5
+  --color-gray-300: #{$color-gray-light-300};  // #DADADA
+  --color-gray-400: #{$color-gray-light-400};  // #CFCFCF
+  --color-gray-500: #{$color-gray-light-500};  // #B8B8B8
+  --color-gray-600: #{$color-gray-light-600};  // #949494
+  --color-gray-700: #{$color-gray-light-700};  // #6F6F6F
+  --color-gray-800: #{$color-gray-light-800};  // #393939
+  --color-gray-900: #{$color-gray-light-900};  // #262626
+  --color-gray-950: #{$color-gray-light-950};  // #141414
 
-  // TYPOGRAPHY
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // 2. ESTADOS
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  // Primary — verde
+  // Contraste texto: preto (#000) sobre 500 = 10.9:1 ✓ AAA
+  --color-primary:         var(--color-primary-500);  // default  #00D865
+  --color-primary-hover:   var(--color-primary-700);  // hover    #00B54F
+  --color-primary-pressed: var(--color-primary-900);  // pressed  #008F39
+  --color-primary-subtle:  var(--color-primary-100);  // bg sutil #66F5A2
+  --color-on-primary:      #000000;                   // texto sobre primary
+
+  // Secondary — teal
+  // Contraste texto: branco (#fff) sobre 500 = 7.6:1 ✓ AAA
+  --color-secondary:         var(--color-secondary-500);  // default  #0B5B68
+  --color-secondary-hover:   var(--color-secondary-700);  // hover    #004E5B
+  --color-secondary-pressed: var(--color-secondary-900);  // pressed  #003B45
+  --color-secondary-subtle:  var(--color-secondary-100);  // bg sutil #99C7D0
+  --color-on-secondary:      #ffffff;                     // texto sobre secondary
+
+  // Tertiary — cinza quente
+  // Contraste texto: gray-900 (#262626) sobre 500 = 9.1:1 ✓ AAA
+  --color-tertiary:         var(--color-tertiary-500);  // default  #EDEDE6
+  --color-tertiary-hover:   var(--color-tertiary-700);  // hover    #B3B3AC
+  --color-tertiary-pressed: var(--color-tertiary-900);  // pressed  #787872
+  --color-tertiary-subtle:  var(--color-tertiary-100);  // bg sutil #F9F9F4
+  --color-on-tertiary:      var(--color-gray-900);      // texto sobre tertiary
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // 3. SEMÂNTICOS
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  // — Superfícies
+  --color-bg:      var(--color-gray-0);         // #FFFFFF — fundo da página
+  --color-surface: var(--color-tertiary-100);   // #F9F9F4 — cards, painéis
+  --color-border:  var(--color-gray-300);       // #DADADA
+  --color-divider: var(--color-gray-200);       // #E5E5E5
+
+  // — Texto
+  --color-text:       var(--color-gray-900);    // #262626 — corpo
+  --color-text-muted: var(--color-gray-700);    // #6F6F6F — secundário
+  --color-text-light: var(--color-gray-500);    // #B8B8B8 — placeholder/hint
+
+  // — Sections (background de seções)
+  --color-section-bg:       var(--color-bg);               // branco — padrão
+  --color-section-bg-alt:   var(--color-tertiary-100);     // #F9F9F4 — alternado
+  --color-section-bg-brand: var(--color-secondary-700);    // #004E5B — teal escuro
+  --color-section-bg-dark:  var(--color-gray-900);         // #262626 — seção escura
+
+  // — Títulos / headings
+  --color-title:          var(--color-secondary-700);  // #004E5B — padrão (teal)
+  --color-title-accent:   var(--color-primary-700);    // #00B54F — destaque (verde)
+  --color-title-on-dark:  #ffffff;                     // sobre bg escuro
+  --color-title-on-brand: #ffffff;                     // sobre bg teal/brand
+
+  // — Links e interações
+  --color-link:       var(--color-secondary-600);  // #025562
+  --color-link-hover: var(--color-secondary-400);  // #297986
+  --color-focus-ring: var(--color-secondary-500);  // #0B5B68
+
+  // — Feedback
+  --color-success: var(--color-primary-600);   // #00C75A
+  --color-danger:  #D92D20;
+  --color-warning: #F79009;
+  --color-info:    var(--color-secondary-500); // #0B5B68
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // TYPOGRAPHY / TOKENS (não mudam com o tema)
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   --font-family-base:    #{$font-family-base};
   --font-family-display: #{$font-family-display};
   --font-family-mono:    #{$font-family-mono};
 
-  // RADII / SHADOWS
   --radius-sm: #{$radius-sm};
   --radius-md: #{$radius-md};
   --radius-lg: #{$radius-lg};
@@ -75,7 +154,14 @@
   --shadow-lg: #{$shadow-lg};
 }
 
+// =============================================================================
+// DARK THEME — [data-theme='dark']
+// Apenas os valores que diferem do light-theme precisam ser declarados.
+// Os vars semânticos que apontam para paleta se adaptam automaticamente.
+// =============================================================================
+
 [data-theme='dark'] {
+  // Paleta — variantes dark
   --color-primary-100: #{$color-primary-dark-100};
   --color-primary-200: #{$color-primary-dark-200};
   --color-primary-300: #{$color-primary-dark-300};
@@ -106,23 +192,37 @@
   --color-tertiary-800: #{$color-tertiary-dark-800};
   --color-tertiary-900: #{$color-tertiary-dark-900};
 
-  --color-gray-0:   #{$color-gray-dark-0};
-  --color-gray-50:  #{$color-gray-dark-50};
-  --color-gray-100: #{$color-gray-dark-100};
-  --color-gray-200: #{$color-gray-dark-200};
-  --color-gray-300: #{$color-gray-dark-300};
-  --color-gray-400: #{$color-gray-dark-400};
-  --color-gray-500: #{$color-gray-dark-500};
-  --color-gray-600: #{$color-gray-dark-600};
-  --color-gray-700: #{$color-gray-dark-700};
-  --color-gray-800: #{$color-gray-dark-800};
-  --color-gray-900: #{$color-gray-dark-900};
-  --color-gray-950: #{$color-gray-dark-950};
+  --color-gray-0:   #{$color-gray-dark-0};    // #141414
+  --color-gray-50:  #{$color-gray-dark-50};   // #262626
+  --color-gray-100: #{$color-gray-dark-100};  // #4B4B4B
+  --color-gray-200: #{$color-gray-dark-200};  // #6F6F6F
+  --color-gray-300: #{$color-gray-dark-300};  // #949494
+  --color-gray-400: #{$color-gray-dark-400};  // #B8B8B8
+  --color-gray-500: #{$color-gray-dark-500};  // #CFCFCF
+  --color-gray-600: #{$color-gray-dark-600};  // #DADADA
+  --color-gray-700: #{$color-gray-dark-700};  // #E5E5E5
+  --color-gray-800: #{$color-gray-dark-800};  // #F4F4F4
+  --color-gray-900: #{$color-gray-dark-900};  // #FAFAFA
+  --color-gray-950: #{$color-gray-dark-950};  // #FFFFFF
 
-  --color-bg:         var(--color-gray-0);
-  --color-surface:    #1F1F1F;
+  // Superfícies dark
+  // Tertiary dark ainda é claro — substituir por tons escuros do grayscale
+  --color-bg:      var(--color-gray-0);    // #141414
+  --color-surface: var(--color-gray-50);  // #262626
+  --color-border:  #2E2E2E;
+  --color-divider: #222222;
+
+  // Texto dark (gray-900 dark = #FAFAFA, gray-700 dark = #E5E5E5)
   --color-text:       var(--color-gray-900);
   --color-text-muted: var(--color-gray-700);
-  --color-border:     #2E2E2E;
-  --color-divider:    #222222;
+  --color-text-light: var(--color-gray-500);
+
+  // Sections dark
+  --color-section-bg:     var(--color-bg);           // #141414
+  --color-section-bg-alt: var(--color-gray-50);      // #262626 — alternado escuro
+  // section-bg-brand e section-bg-dark herdam da paleta remapeada
+
+  // Títulos dark — usar cinza claro ao invés do teal escuro
+  --color-title:        var(--color-gray-900);        // #FAFAFA
+  --color-title-accent: var(--color-primary-300);     // #40F68A — verde mais claro
 }

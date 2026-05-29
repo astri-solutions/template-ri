@@ -4,10 +4,26 @@
   background-color: var(--color-secondary-700);
   color: rgba(255, 255, 255, 0.75);
   padding-block: $spacing-16 $spacing-8;
-  margin-top: $spacing-16;
 
   &__inner { @include container; }
 
+  // ---- Logo row
+  &__top {
+    display: flex;
+    align-items: center;
+    padding-bottom: $spacing-8;
+    margin-bottom: $spacing-10;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  &__logo {
+    height: 24px;
+    width: auto;
+    display: block;
+    filter: brightness(0) invert(1);
+  }
+
+  // ---- Grid — 2 cols info + 5 cols nav
   &__grid {
     display: grid;
     gap: $spacing-8;
@@ -17,11 +33,19 @@
     @include respond-up(sm) { grid-template-columns: repeat(2, 1fr); }
 
     @include respond-up(md) {
-      grid-template-columns: 2fr repeat(5, 1fr);
-      gap: $spacing-6;
+      grid-template-columns: repeat(6, 1fr);
+      gap: $spacing-5;
     }
   }
 
+  // ---- Info wrapper — stacks Endereço + Entre em Contato vertically
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-8;
+  }
+
+  // ---- Block genérico (todos os 7 blocos usam esta classe)
   &__block {
     h4 {
       font-family: var(--font-family-base);
@@ -33,7 +57,7 @@
       margin-bottom: $spacing-4;
     }
 
-    ul { display: flex; flex-direction: column; gap: $spacing-2; font-size: $font-size-sm; }
+    ul { display: flex; flex-direction: column; gap: $spacing-2; font-size: $font-size-xs; line-height: $line-height-normal; }
     a {
       color: rgba(255, 255, 255, 0.75);
       transition: color $transition-fast;
@@ -41,41 +65,18 @@
     }
   }
 
-  &__brand {
-    display: flex;
-    flex-direction: column;
-    gap: $spacing-5;
-
-    @include respond-up(sm) { grid-column: span 2; }
-    @include respond-up(md) { grid-column: span 1; }
-  }
-
-  &__logo {
-    height: 44px;
-    width: auto;
-    display: block;
-    filter: brightness(0) invert(1);
-  }
-
-  &__section-label {
-    font-size: $font-size-xs;
-    font-weight: $font-weight-bold;
-    letter-spacing: $letter-spacing-widest;
-    text-transform: uppercase;
-    color: var(--color-primary-300);
-    margin-bottom: $spacing-2;
-  }
-
+  // ---- Info blocks (Endereço / Entre em Contato)
   &__address-text {
-    font-size: $font-size-sm;
-    line-height: $line-height-relaxed;
+    font-size: $font-size-xs;
+    line-height: $line-height-normal;
+    color: rgba(255, 255, 255, 0.75);
   }
 
   &__contact-details {
     display: flex;
     flex-direction: column;
     gap: $spacing-1;
-    font-size: $font-size-sm;
+    font-size: $font-size-xs;
 
     a {
       color: rgba(255, 255, 255, 0.75);
@@ -86,11 +87,12 @@
     p {
       font-size: $font-size-xs;
       color: rgba(255, 255, 255, 0.5);
-      line-height: $line-height-relaxed;
+      line-height: $line-height-normal;
       margin-top: $spacing-1;
     }
   }
 
+  // ---- Bottom bar
   &__bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: $spacing-6;
@@ -154,23 +156,39 @@
   }
 
   &__powered {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: $spacing-2;
     white-space: nowrap;
+    padding: $spacing-2 $spacing-3;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: $radius-full;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: $font-size-2xs;
+    letter-spacing: $letter-spacing-wide;
+    transition: border-color $transition-fast, color $transition-fast;
+
+    &:hover {
+      border-color: rgba(255, 255, 255, 0.35);
+      color: rgba(255, 255, 255, 0.7);
+
+      img { opacity: 0.75; }
+    }
 
     img {
-      height: 18px;
+      height: 14px;
       width: auto;
       filter: brightness(0) invert(1);
-      opacity: 0.55;
+      opacity: 0.5;
+      transition: opacity $transition-fast;
     }
   }
 
   &__legal {
     font-size: $font-size-2xs;
     color: rgba(255, 255, 255, 0.35);
-    line-height: $line-height-relaxed;
+    line-height: $line-height-normal;
     border-top: 1px solid rgba(255, 255, 255, 0.07);
     padding-top: $spacing-4;
   }

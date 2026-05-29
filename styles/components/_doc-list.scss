@@ -1,0 +1,190 @@
+@use '../abstracts' as *;
+
+// =============================================================================
+// DOC-LIST — lista de documentos para download
+//
+// Uso básico:
+//   <ul class="doc-list">
+//     <li class="doc-list__item">
+//       <span class="doc-list__badge doc-list__badge--pdf">PDF</span>
+//       <div class="doc-list__info">
+//         <span class="doc-list__name">Relatório Anual 2024</span>
+//         <span class="doc-list__meta">Mar 2024 · 2,4 MB</span>
+//       </div>
+//       <a class="doc-list__btn" href="#" download aria-label="Baixar Relatório Anual 2024">
+//         <svg>…download icon…</svg>
+//       </a>
+//     </li>
+//   </ul>
+//
+// Variantes de badge:  --pdf  --xls  --doc  --ppt  --zip  --xml
+// Variante de lista:   .doc-list--compact  (menos espaçamento)
+//                      .doc-list--divided  (com linha divisória entre itens)
+// =============================================================================
+
+.doc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  // ---- Item
+  &__item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: $spacing-4;
+    padding: $spacing-4 0;
+    border-bottom: 1px solid var(--color-divider);
+    transition: background-color $transition-fast;
+
+    &:first-child { border-top: 1px solid var(--color-divider); }
+
+    &:hover { background-color: var(--color-section-bg-alt); }
+
+    // Com padding lateral quando dentro de card/accordion
+    .accordion__body & { padding-inline: $spacing-4; }
+  }
+
+  // ---- Badge de tipo de arquivo
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 $spacing-2;
+    border-radius: $radius-sm;
+    font-family: var(--font-family-mono);
+    font-size: $font-size-2xs;
+    font-weight: $font-weight-bold;
+    letter-spacing: $letter-spacing-wider;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    background-color: var(--color-tertiary-subtle);
+    color: var(--color-text-muted);
+
+    // Variantes por tipo
+    &--pdf { background-color: #FEE2E2; color: #DC2626; }
+    &--xls { background-color: #DCFCE7; color: #16A34A; }
+    &--doc { background-color: #DBEAFE; color: #2563EB; }
+    &--ppt { background-color: #FFEDD5; color: #EA580C; }
+    &--zip { background-color: #F3E8FF; color: #9333EA; }
+    &--xml { background-color: #FEF9C3; color: #CA8A04; }
+  }
+
+  // ---- Info (nome + meta)
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-1;
+    min-width: 0;
+  }
+
+  &__name {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: var(--color-text);
+    line-height: $line-height-normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__meta {
+    font-size: $font-size-xs;
+    color: var(--color-text-muted);
+    line-height: 1;
+  }
+
+  // ---- Botão de download
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: $radius-sm;
+    color: var(--color-secondary);
+    background-color: transparent;
+    border: 1px solid var(--color-border);
+    transition:
+      color $transition-fast,
+      background-color $transition-fast,
+      border-color $transition-fast,
+      transform $transition-fast;
+    flex-shrink: 0;
+    text-decoration: none;
+
+    svg { width: 16px; height: 16px; }
+
+    &:hover {
+      color: var(--color-on-secondary);
+      background-color: var(--color-secondary);
+      border-color: var(--color-secondary);
+      transform: translateY(-1px);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-focus-ring);
+      outline-offset: 2px;
+    }
+  }
+
+  // ---- Variante: compact
+  &--compact &__item {
+    padding-block: $spacing-3;
+    gap: $spacing-3;
+  }
+
+  &--compact &__badge {
+    min-width: 30px;
+    height: 30px;
+    font-size: 0.6rem;
+  }
+
+  &--compact &__name { font-size: $font-size-xs; }
+  &--compact &__meta { font-size: 0.65rem; }
+
+  &--compact &__btn {
+    width: 30px;
+    height: 30px;
+    svg { width: 13px; height: 13px; }
+  }
+
+  // ---- Variante: sem borda (dentro de tabelas ou accordion sem padding)
+  &--bare &__item {
+    border-top: none;
+    padding-inline: 0;
+    &:hover { background-color: transparent; }
+  }
+}
+
+// ---- Cabeçalho de grupo de documentos (ex.: "2024", "Documentos Legais")
+.doc-list-group {
+  & + & { margin-top: $spacing-8; }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3;
+    margin-bottom: $spacing-2;
+    padding-bottom: $spacing-3;
+    border-bottom: 2px solid var(--color-primary);
+  }
+
+  &__title {
+    font-family: var(--font-family-display);
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: var(--color-title);
+    line-height: 1;
+  }
+
+  &__count {
+    font-size: $font-size-xs;
+    color: var(--color-text-muted);
+    background-color: var(--color-tertiary);
+    padding: 2px $spacing-2;
+    border-radius: $radius-full;
+  }
+}

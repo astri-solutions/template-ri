@@ -115,7 +115,6 @@ function renderList(year) {
       return `<div class="accordion__item" data-accordion-item>
         <button class="accordion__trigger" data-accordion-trigger aria-expanded="false" aria-controls="${contentId}">
           <span class="accordion__label">${TYPE_LABELS[type]}</span>
-          <span class="accordion__meta">${docs.length} ${docs.length === 1 ? 'documento' : 'documentos'}</span>
         </button>
         <div class="accordion__content" id="${contentId}" role="region">
           <div class="accordion__body">

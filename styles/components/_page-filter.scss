@@ -1,0 +1,82 @@
+@use '../abstracts' as *;
+
+// =============================================================================
+// PAGE-FILTER — filtro de ano + trimestres reutilizável
+//
+// Uso básico (só ano):
+//   <div class="page-filter">
+//     <div class="page-filter__group">
+//       <span class="page-filter__label">ANO</span>
+//       <span class="select"><select class="select__field" ...></select></span>
+//     </div>
+//   </div>
+//
+// Com trimestres:
+//   <div class="page-filter">
+//     <div class="page-filter__group"> ... </div>
+//     <div class="page-filter__quarters" role="group" aria-label="Trimestre">
+//       <button class="page-filter__q-btn is-active" type="button">1T</button>
+//       ...
+//     </div>
+//   </div>
+// =============================================================================
+
+.page-filter {
+  display: flex;
+  align-items: center;
+  gap: $spacing-3;
+  flex-wrap: wrap;
+
+  // ---- Group: label + select
+  &__group {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3;
+  }
+
+  &__label {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    letter-spacing: $letter-spacing-widest;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+  }
+
+  // ---- Segmented quarters control
+  &__quarters {
+    display: flex;
+    border: 1px solid var(--color-border);
+    border-radius: $radius-md;
+    overflow: hidden;
+  }
+
+  &__q-btn {
+    padding: $spacing-2 $spacing-4;
+    background: none;
+    border: none;
+    border-right: 1px solid var(--color-border);
+    cursor: pointer;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: var(--color-text);
+    font-family: var(--font-family-mono);
+    letter-spacing: $letter-spacing-wide;
+    transition: background-color $transition-fast, color $transition-fast;
+    line-height: 1;
+
+    &:last-child { border-right: none; }
+
+    &:hover { background-color: var(--color-tertiary-subtle); }
+
+    &.is-active {
+      background-color: var(--color-secondary);
+      color: var(--color-on-secondary);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-focus-ring);
+      outline-offset: -2px;
+    }
+  }
+}

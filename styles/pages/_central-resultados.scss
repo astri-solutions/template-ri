@@ -26,25 +26,6 @@
 }
 
 // -----------------------------------------------------------------------------
-// FILTRO DE ANO
-// -----------------------------------------------------------------------------
-
-.results-filter {
-  display: flex;
-  align-items: center;
-  gap: $spacing-3;
-  flex-wrap: wrap;
-
-  &__label {
-    font-size: $font-size-sm;
-    font-weight: $font-weight-semibold;
-    letter-spacing: $letter-spacing-wide;
-    text-transform: uppercase;
-    color: var(--color-text-muted);
-  }
-}
-
-// -----------------------------------------------------------------------------
 // TABELA
 // -----------------------------------------------------------------------------
 

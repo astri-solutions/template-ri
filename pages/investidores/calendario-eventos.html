@@ -224,21 +224,17 @@
       <section class="page-section">
         <div class="page-section__container">
 
-          <!-- ---- Filter bar: year select + quarter tabs + legend ---- -->
-          <div class="cal-filter">
-            <div class="cal-filter__controls">
-              <label class="sr-only" for="cal-year">Ano</label>
-              <select id="cal-year" class="select" data-cal-year aria-label="Selecionar ano">
-                <option value="2026">2026</option>
-                <option value="2025">2025</option>
-                <option value="2024">2024</option>
-              </select>
-              <div class="cal-filter__quarters" role="group" aria-label="Filtrar por trimestre">
-                <button class="cal-filter__q-btn" type="button" data-cal-quarter="0" aria-label="1º Trimestre">1T</button>
-                <button class="cal-filter__q-btn" type="button" data-cal-quarter="3" aria-label="2º Trimestre">2T</button>
-                <button class="cal-filter__q-btn" type="button" data-cal-quarter="6" aria-label="3º Trimestre">3T</button>
-                <button class="cal-filter__q-btn" type="button" data-cal-quarter="9" aria-label="4º Trimestre">4T</button>
-              </div>
+          <!-- ---- Filter bar: year select + legend ---- -->
+          <div class="page-filter">
+            <div class="page-filter__group">
+              <span class="page-filter__label">ANO</span>
+              <span class="select">
+                <select id="cal-year" class="select__field" data-cal-year aria-label="Selecionar ano">
+                  <option value="2026">2026</option>
+                  <option value="2025">2025</option>
+                  <option value="2024">2024</option>
+                </select>
+              </span>
             </div>
             <div class="cal-legend" aria-label="Legenda">
               <span class="cal-legend__item">
@@ -284,13 +280,17 @@
           <div class="events-past" aria-labelledby="past-heading">
             <div class="events-past__header">
               <h3 class="events-past__heading" id="past-heading">Eventos Realizados</h3>
-              <div>
-                <label class="sr-only" for="past-year">Filtrar por ano</label>
-                <select id="past-year" class="select" data-cal-past-year aria-label="Filtrar eventos por ano">
-                  <option value="2026">2026</option>
-                  <option value="2025">2025</option>
-                  <option value="2024">2024</option>
-                </select>
+              <div class="page-filter">
+                <div class="page-filter__group">
+                  <span class="page-filter__label">ANO</span>
+                  <span class="select">
+                    <select id="past-year" class="select__field" data-cal-past-year aria-label="Filtrar eventos por ano">
+                      <option value="2026">2026</option>
+                      <option value="2025">2025</option>
+                      <option value="2024">2024</option>
+                    </select>
+                  </span>
+                </div>
               </div>
             </div>
             <ul class="events-past__list" data-cal-past aria-live="polite">

@@ -199,7 +199,6 @@ function navigateMonth(delta) {
   state.month = m;
   state.year  = y;
   renderMonthGrid();
-  syncQuarterButtons();
   syncYearSelect();
 }
 
@@ -281,19 +280,6 @@ function renderPast(year) {
   }).join('');
 }
 
-// ---------------------------------------------------------------------------
-// Quarter tabs sync
-// ---------------------------------------------------------------------------
-
-function syncQuarterButtons() {
-  const btns = document.querySelectorAll('[data-cal-quarter]');
-  btns.forEach(btn => {
-    const qMonth = Number(btn.dataset.calQuarter);
-    const active = state.month >= qMonth && state.month < qMonth + 3;
-    btn.classList.toggle('is-active', active);
-  });
-}
-
 function syncYearSelect() {
   const sel = document.querySelector('[data-cal-year]');
   if (sel) sel.value = String(state.year);
@@ -311,18 +297,8 @@ document.addEventListener('DOMContentLoaded', () => {
     yearSel.addEventListener('change', (e) => {
       state.year = Number(e.target.value);
       renderMonthGrid();
-      syncQuarterButtons();
     });
   }
-
-  // Quarter buttons
-  document.querySelectorAll('[data-cal-quarter]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      state.month = Number(btn.dataset.calQuarter);
-      renderMonthGrid();
-      syncQuarterButtons();
-    });
-  });
 
   // Past events year filter
   const pastYearSel = document.querySelector('[data-cal-past-year]');
@@ -336,7 +312,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initial render
   renderMonthGrid();
-  syncQuarterButtons();
   renderUpcoming();
   renderPast(state.pastYear);
 });

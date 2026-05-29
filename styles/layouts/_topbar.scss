@@ -160,19 +160,21 @@ $topbar-h: 2rem; // 32px
   }
 
   // ===========================================================================
-  // CENTER — Ticker(s)
+  // CENTER — Ticker(s) — oculto em mobile/tablet, visível no desktop
   // ===========================================================================
   &__tickers {
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     gap: $spacing-4;
     overflow: hidden;
     min-width: 0;
+
+    @include respond-up(desktop) { display: flex; }
   }
 
   &__ticker {
-    display: none;
+    display: flex;
     align-items: center;
     gap: $spacing-2;
     font-family: var(--font-family-mono);
@@ -180,16 +182,9 @@ $topbar-h: 2rem; // 32px
     white-space: nowrap;
     animation: tickerFadeIn 350ms ease both;
 
-    &.is-active { display: flex; }
-
-    // Desktop: all tickers visible inline
-    @include respond-up(md) {
-      display: flex;
-
-      & + & {
-        padding-left: $spacing-4;
-        border-left: 1px solid rgba(255, 255, 255, 0.15);
-      }
+    & + & {
+      padding-left: $spacing-4;
+      border-left: 1px solid rgba(255, 255, 255, 0.15);
     }
   }
 
@@ -222,13 +217,15 @@ $topbar-h: 2rem; // 32px
   }
 
   // ===========================================================================
-  // RIGHT — Acessibilidade + Idioma
+  // RIGHT — Acessibilidade + Idioma — oculto em mobile/tablet
   // ===========================================================================
   &__right {
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: flex-end;
     gap: $spacing-3;
+
+    @include respond-up(desktop) { display: flex; }
   }
 
   &__link {

@@ -169,6 +169,46 @@
     }
   }
 
+  // ---- Drawer footer (mobile/tablet only) — ticker + idioma + links
+  &__drawer-footer {
+    margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: $spacing-5 $spacing-6 $spacing-6;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-4;
+    flex-shrink: 0;
+
+    @include respond-up(desktop) { display: none; }
+  }
+
+  &__drawer-tickers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-2 $spacing-5;
+    font-family: var(--font-family-mono);
+    font-size: $font-size-2xs;
+  }
+
+  &__drawer-ticker {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+    white-space: nowrap;
+  }
+
+  &__drawer-lang {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3;
+  }
+
+  &__drawer-links {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-2;
+  }
+
   // ---- Actions group (search + hamburger)
   &__actions {
     display: flex;

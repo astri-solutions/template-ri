@@ -399,7 +399,7 @@
     transition: background-color $transition-fast;
 
     &:first-child { border-top: 1px solid var(--color-divider); }
-    &:hover { background-color: var(--color-section-bg-alt); }
+    &:hover { background-color: var(--color-section-bg-alt); padding-inline: $spacing-2; }
 
     @include respond-down(tablet) {
       grid-template-columns: 1fr auto;

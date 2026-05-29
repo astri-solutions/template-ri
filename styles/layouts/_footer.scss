@@ -57,7 +57,7 @@
       margin-bottom: $spacing-4;
     }
 
-    ul { display: flex; flex-direction: column; gap: $spacing-2; font-size: $font-size-sm; }
+    ul { display: flex; flex-direction: column; gap: $spacing-2; font-size: $font-size-xs; line-height: $line-height-normal; }
     a {
       color: rgba(255, 255, 255, 0.75);
       transition: color $transition-fast;
@@ -67,8 +67,8 @@
 
   // ---- Info blocks (Endereço / Entre em Contato)
   &__address-text {
-    font-size: $font-size-sm;
-    line-height: $line-height-relaxed;
+    font-size: $font-size-xs;
+    line-height: $line-height-normal;
     color: rgba(255, 255, 255, 0.75);
   }
 
@@ -76,7 +76,7 @@
     display: flex;
     flex-direction: column;
     gap: $spacing-1;
-    font-size: $font-size-sm;
+    font-size: $font-size-xs;
 
     a {
       color: rgba(255, 255, 255, 0.75);
@@ -87,7 +87,7 @@
     p {
       font-size: $font-size-xs;
       color: rgba(255, 255, 255, 0.5);
-      line-height: $line-height-relaxed;
+      line-height: $line-height-normal;
       margin-top: $spacing-1;
     }
   }
@@ -188,7 +188,7 @@
   &__legal {
     font-size: $font-size-2xs;
     color: rgba(255, 255, 255, 0.35);
-    line-height: $line-height-relaxed;
+    line-height: $line-height-normal;
     border-top: 1px solid rgba(255, 255, 255, 0.07);
     padding-top: $spacing-4;
   }

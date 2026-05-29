@@ -1,0 +1,148 @@
+@use '../abstracts' as *;
+
+// =============================================================================
+// ACCORDION
+//
+// Variantes:
+//   .accordion--flush     → sem borda externa, apenas divisores internos
+//   .accordion--card      → cada item é um card com borda e sombra
+//   .accordion--bordered  → borda ao redor de todo o grupo
+//
+// Dentro do body do accordion, use os componentes .doc-list, .data-table, etc.
+// =============================================================================
+
+.accordion {
+  // — Bordered (padrão com borda ao redor do grupo)
+  border: 1px solid var(--color-border);
+  border-radius: $radius-lg;
+  overflow: hidden;
+
+  // — Flush: sem borda/radius externos
+  &--flush {
+    border: none;
+    border-radius: 0;
+    overflow: visible;
+
+    .accordion__item {
+      border-radius: 0;
+      &:first-child { border-top: 1px solid var(--color-border); }
+    }
+  }
+
+  // — Card: cada item isolado
+  &--card {
+    border: none;
+    background: none;
+    border-radius: 0;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-3;
+
+    .accordion__item {
+      border: 1px solid var(--color-border);
+      border-radius: $radius-md;
+      overflow: hidden;
+      box-shadow: $shadow-xs;
+
+      & + & { border-top: 1px solid var(--color-border); }
+    }
+  }
+
+  // ---- Item
+  &__item {
+    background-color: var(--color-bg);
+    border-bottom: 1px solid var(--color-divider);
+
+    &:last-child { border-bottom: none; }
+
+    &.is-open > .accordion__trigger { color: var(--color-secondary-700); }
+  }
+
+  // ---- Trigger (botão que abre/fecha)
+  &__trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: $spacing-4;
+    padding: $spacing-5 $spacing-6;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    color: var(--color-title);
+    font-family: var(--font-family-display);
+    font-size: $font-size-md;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-normal;
+    transition: background-color $transition-fast, color $transition-fast;
+
+    &:hover { background-color: var(--color-tertiary-subtle); }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-focus-ring);
+      outline-offset: -2px;
+    }
+  }
+
+  // ---- Ícone/badge à esquerda do trigger (opcional)
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: $radius-sm;
+    background-color: var(--color-secondary-subtle);
+    color: var(--color-secondary);
+    flex-shrink: 0;
+
+    svg { width: 18px; height: 18px; }
+  }
+
+  // ---- Label e meta do trigger
+  &__label {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__meta {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-regular;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+    margin-left: $spacing-3;
+  }
+
+  // ---- Chevron
+  &__chevron {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: var(--color-text-muted);
+    transition: transform $transition-base, color $transition-fast;
+
+    .is-open > & { transform: rotate(180deg); color: var(--color-secondary); }
+  }
+
+  // ---- Content (height animado por JS)
+  &__content {
+    height: 0;
+    overflow: hidden;
+  }
+
+  // ---- Body (padding interno do conteúdo)
+  &__body {
+    padding: 0 $spacing-6 $spacing-5;
+    font-size: $font-size-sm;
+    color: var(--color-text);
+    line-height: $line-height-relaxed;
+
+    // Sem padding-top quando há doc-list diretamente
+    &:has(> .doc-list:first-child) { padding-top: 0; }
+
+    p + p { margin-top: $spacing-3; }
+
+    p:first-child { margin-top: 0; }
+  }
+}

@@ -1,0 +1,550 @@
+@use '../abstracts' as *;
+
+// ---- Category color tokens
+:root {
+  --cal-resultados: var(--color-primary-600);
+  --cal-conferencia: var(--color-secondary-500);
+  --cal-assembleia: #D97706;
+  --cal-outros: var(--color-text-muted);
+
+  --cal-resultados-bg: var(--color-primary-100);
+  --cal-conferencia-bg: var(--color-secondary-100);
+  --cal-assembleia-bg: #FEF3C7;
+  --cal-outros-bg: var(--color-tertiary-subtle);
+}
+
+// ---- Filter bar
+.cal-filter {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $spacing-4;
+  flex-wrap: wrap;
+  margin-bottom: $spacing-8;
+
+  &__controls {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3;
+    flex-wrap: wrap;
+  }
+
+  &__quarters {
+    display: flex;
+    border: 1px solid var(--color-border);
+    border-radius: $radius-md;
+    overflow: hidden;
+  }
+
+  &__q-btn {
+    padding: $spacing-2 $spacing-4;
+    background: none;
+    border: none;
+    border-right: 1px solid var(--color-border);
+    cursor: pointer;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: var(--color-text);
+    font-family: var(--font-family-mono);
+    transition: background-color $transition-fast, color $transition-fast;
+    letter-spacing: $letter-spacing-wide;
+
+    &:last-child { border-right: none; }
+    &:hover { background-color: var(--color-tertiary-subtle); }
+
+    &.is-active {
+      background-color: var(--color-secondary);
+      color: var(--color-on-secondary);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-focus-ring);
+      outline-offset: -2px;
+    }
+  }
+}
+
+// ---- Legend
+.cal-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-2 $spacing-5;
+  align-items: center;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+  }
+
+  &__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: $radius-full;
+    flex-shrink: 0;
+
+    &--resultados  { background-color: var(--cal-resultados);  }
+    &--conferencia { background-color: var(--cal-conferencia); }
+    &--assembleia  { background-color: var(--cal-assembleia);  }
+    &--outros      { background-color: var(--cal-outros);      }
+  }
+
+  &__label {
+    font-size: $font-size-xs;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+  }
+}
+
+// ---- Main 2-col layout (calendar left + upcoming right)
+.cal-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-6;
+  align-items: start;
+
+  @include respond-up(desktop) {
+    grid-template-columns: 1fr 320px;
+  }
+}
+
+// ---- Month calendar card
+.cal-month {
+  border: 1px solid var(--color-border);
+  border-radius: $radius-lg;
+  overflow: hidden;
+  background-color: var(--color-bg);
+  box-shadow: $shadow-xs;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacing-3;
+    padding: $spacing-4 $spacing-5;
+    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+  }
+
+  &__title {
+    font-family: var(--font-family-display);
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: var(--color-title);
+    text-align: center;
+    margin: 0;
+    flex: 1;
+  }
+
+  &__nav-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: $radius-sm;
+    background: none;
+    border: 1px solid var(--color-border);
+    cursor: pointer;
+    color: var(--color-text);
+    transition: background-color $transition-fast, border-color $transition-fast, color $transition-fast;
+    flex-shrink: 0;
+
+    svg { width: 16px; height: 16px; }
+
+    &:hover {
+      background-color: var(--color-secondary-subtle);
+      border-color: var(--color-secondary);
+      color: var(--color-secondary);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-focus-ring);
+      outline-offset: 2px;
+    }
+  }
+
+  &__weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: var(--color-section-bg-alt);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  &__weekday {
+    padding: $spacing-2 $spacing-1;
+    text-align: center;
+    font-size: $font-size-2xs;
+    font-weight: $font-weight-semibold;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-wide;
+  }
+
+  &__days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  &__day {
+    min-height: 72px;
+    padding: $spacing-2;
+    border-right: 1px solid var(--color-divider);
+    border-bottom: 1px solid var(--color-divider);
+    transition: background-color $transition-fast;
+    cursor: default;
+
+    &:nth-child(7n) { border-right: none; }
+
+    &:hover { background-color: var(--color-section-bg-alt); }
+
+    &--other {
+      background-color: var(--color-section-bg-alt);
+
+      .cal-month__day-num { color: var(--color-text-light); }
+    }
+
+    &--today .cal-month__day-num {
+      background-color: var(--color-secondary);
+      color: var(--color-on-secondary);
+    }
+
+    @include respond-down(tablet) {
+      min-height: 52px;
+    }
+  }
+
+  &__day-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: $radius-full;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    color: var(--color-text);
+    line-height: 1;
+  }
+
+  &__dots {
+    display: flex;
+    gap: 3px;
+    flex-wrap: wrap;
+    margin-top: $spacing-1;
+  }
+
+  &__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: $radius-full;
+    flex-shrink: 0;
+    cursor: default;
+
+    &--resultados  { background-color: var(--cal-resultados);  }
+    &--conferencia { background-color: var(--cal-conferencia); }
+    &--assembleia  { background-color: var(--cal-assembleia);  }
+    &--outros      { background-color: var(--cal-outros);      }
+  }
+}
+
+// ---- Upcoming events sidebar
+.cal-upcoming {
+  border: 1px solid var(--color-border);
+  border-radius: $radius-lg;
+  overflow: hidden;
+  background-color: var(--color-bg);
+  box-shadow: $shadow-xs;
+
+  &__header {
+    padding: $spacing-4 $spacing-5;
+    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+  }
+
+  &__heading {
+    font-family: var(--font-family-display);
+    font-size: $font-size-md;
+    font-weight: $font-weight-semibold;
+    color: var(--color-title);
+    margin: 0;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 460px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    gap: $spacing-3;
+    align-items: start;
+    padding: $spacing-4 $spacing-5;
+    border-bottom: 1px solid var(--color-divider);
+    transition: background-color $transition-fast;
+
+    &:last-child { border-bottom: none; }
+    &:hover { background-color: var(--color-section-bg-alt); }
+  }
+
+  &__date-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--color-secondary-subtle);
+    border-radius: $radius-sm;
+    padding: $spacing-2 $spacing-1;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  &__day {
+    font-family: var(--font-family-display);
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: var(--color-secondary-700);
+    line-height: 1;
+  }
+
+  &__month-abbr {
+    font-size: $font-size-2xs;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-wide;
+    color: var(--color-secondary-700);
+    line-height: 1;
+    margin-top: 2px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-1;
+    min-width: 0;
+  }
+
+  &__cat {
+    font-size: $font-size-2xs;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-wider;
+    padding: 2px $spacing-2;
+    border-radius: $radius-full;
+    display: inline-block;
+    align-self: flex-start;
+    white-space: nowrap;
+
+    &--resultados  { background-color: var(--cal-resultados-bg);  color: var(--color-primary-700);   }
+    &--conferencia { background-color: var(--cal-conferencia-bg); color: var(--color-secondary-700); }
+    &--assembleia  { background-color: var(--cal-assembleia-bg);  color: #92400E;                    }
+    &--outros      { background-color: var(--cal-outros-bg);      color: var(--color-text-muted);    }
+  }
+
+  &__title {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: var(--color-text);
+    line-height: $line-height-normal;
+    margin: 0;
+  }
+
+  &__time {
+    display: flex;
+    align-items: center;
+    gap: $spacing-1;
+    font-size: $font-size-xs;
+    color: var(--color-text-muted);
+
+    svg { width: 11px; height: 11px; flex-shrink: 0; }
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-1;
+    flex-shrink: 0;
+  }
+
+  &__export {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: $radius-sm;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color $transition-fast, border-color $transition-fast, background-color $transition-fast;
+
+    svg { width: 13px; height: 13px; }
+
+    &:hover {
+      color: var(--color-secondary);
+      border-color: var(--color-secondary);
+      background-color: var(--color-secondary-subtle);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-focus-ring);
+      outline-offset: 2px;
+    }
+  }
+
+  &__empty {
+    padding: $spacing-8 $spacing-6;
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: $font-size-sm;
+  }
+}
+
+// ---- Past events section
+.events-past {
+  margin-top: $spacing-12;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: $spacing-4;
+    margin-bottom: $spacing-6;
+    padding-bottom: $spacing-4;
+    border-bottom: 2px solid var(--color-primary);
+  }
+
+  &__heading {
+    font-family: var(--font-family-display);
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    color: var(--color-title);
+    margin: 0;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: 130px 1fr auto;
+    gap: $spacing-4;
+    align-items: center;
+    padding: $spacing-4 0;
+    border-bottom: 1px solid var(--color-divider);
+    transition: background-color $transition-fast;
+
+    &:first-child { border-top: 1px solid var(--color-divider); }
+    &:hover { background-color: var(--color-section-bg-alt); }
+
+    @include respond-down(tablet) {
+      grid-template-columns: 1fr auto;
+    }
+  }
+
+  &__date {
+    font-family: var(--font-family-mono);
+    font-size: $font-size-sm;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+
+    @include respond-down(tablet) { display: none; }
+  }
+
+  &__info {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3;
+    min-width: 0;
+
+    @include respond-down(tablet) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: $spacing-1;
+    }
+  }
+
+  &__cat {
+    font-size: $font-size-2xs;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-wider;
+    padding: 2px $spacing-2;
+    border-radius: $radius-full;
+    white-space: nowrap;
+    flex-shrink: 0;
+
+    &--resultados  { background-color: var(--cal-resultados-bg);  color: var(--color-primary-700);   }
+    &--conferencia { background-color: var(--cal-conferencia-bg); color: var(--color-secondary-700); }
+    &--assembleia  { background-color: var(--cal-assembleia-bg);  color: #92400E;                    }
+    &--outros      { background-color: var(--cal-outros-bg);      color: var(--color-text-muted);    }
+  }
+
+  &__info-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  &__title-text {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: var(--color-text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__date-mobile {
+    font-size: $font-size-xs;
+    color: var(--color-text-muted);
+    font-family: var(--font-family-mono);
+    display: none;
+
+    @include respond-down(tablet) { display: block; }
+  }
+
+  &__add {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: $radius-sm;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: color $transition-fast, border-color $transition-fast, background-color $transition-fast;
+
+    svg { width: 14px; height: 14px; }
+
+    &:hover {
+      color: var(--color-secondary);
+      border-color: var(--color-secondary);
+      background-color: var(--color-secondary-subtle);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-focus-ring);
+      outline-offset: 2px;
+    }
+  }
+
+  &__empty {
+    padding: $spacing-8 0;
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: $font-size-sm;
+  }
+}

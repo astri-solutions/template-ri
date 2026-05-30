@@ -127,7 +127,7 @@
               <ul class="nav-dropdown">
                 <li><a class="nav-dropdown__link" href="/pages/informacoes-financeiras/central-resultados.html">Central de Resultados</a></li>
                 <li><a class="nav-dropdown__link" href="/pages/informacoes-financeiras/apresentacoes.html">Apresentações</a></li>
-                <li><a class="nav-dropdown__link" href="/pages/informacoes-financeiras/dividendos-recompra.html">Dividendos e Recompra</a></li>
+                <li><a class="nav-dropdown__link" aria-current="page" href="/pages/informacoes-financeiras/dividendos-recompra.html">Dividendos e Recompra</a></li>
                 <li><a class="nav-dropdown__link" href="/pages/informacoes-financeiras/endividamento.html">Endividamento</a></li>
               </ul>
             </li>
@@ -206,7 +206,11 @@
       <div class="site-header__overlay" data-nav-overlay aria-hidden="true"></div>
     </header>
 
-    <main>
+    <main data-div-main>
+
+      <!-- ===================================================
+           PAGE HEADER
+           =================================================== -->
       <section class="page-header" aria-labelledby="page-title">
         <img class="page-header__bg" src="https://images.unsplash.com/photo-1554260570-e9689a3418b8?auto=format&fit=crop&w=1920&q=80" alt="" aria-hidden="true" />
         <div class="page-header__overlay" aria-hidden="true"></div>
@@ -221,11 +225,144 @@
         </div>
       </section>
 
-      <section class="page-section">
+      <!-- ===================================================
+           KPIs — Proventos
+           =================================================== -->
+      <section class="page-section page-section--alt" aria-label="Indicadores de proventos" data-reveal>
         <div class="page-section__container">
-          <!-- Gráfico dinâmico (dados lidos de planilha Excel/CSV) + tabela com histórico de dividendos -->
+          <div class="div-kpis">
+            <div class="div-kpi" data-reveal>
+              <span class="div-kpi__label">Total Distribuído</span>
+              <span class="div-kpi__value" data-kpi="total">—</span>
+            </div>
+            <div class="div-kpi" data-reveal>
+              <span class="div-kpi__label">Últ. 12 meses</span>
+              <span class="div-kpi__value" data-kpi="ult12">—</span>
+            </div>
+            <div class="div-kpi" data-reveal>
+              <span class="div-kpi__label">Provento/ação (últ. 12m)</span>
+              <span class="div-kpi__value" data-kpi="provento">—</span>
+            </div>
+            <div class="div-kpi" data-reveal>
+              <span class="div-kpi__label">Distribuições realizadas</span>
+              <span class="div-kpi__value" data-kpi="count">—</span>
+            </div>
+          </div>
         </div>
       </section>
+
+      <!-- ===================================================
+           GRÁFICO + TABELA DE DIVIDENDOS
+           =================================================== -->
+      <section class="page-section" aria-labelledby="sec-div-title" data-reveal>
+        <div class="page-section__container">
+
+          <div class="div-section-header">
+            <h2 id="sec-div-title" class="div-section-header__title">Histórico de Proventos</h2>
+            <a class="div-download-btn" href="#" data-div-download aria-label="Baixar planilha de dividendos">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Baixar planilha
+            </a>
+          </div>
+
+          <!-- Gráfico -->
+          <div class="div-chart-card" data-reveal>
+            <div class="div-chart-card__inner">
+              <canvas id="div-chart" aria-label="Gráfico de proventos por ano" role="img"></canvas>
+            </div>
+          </div>
+
+          <!-- Filtro + tabela -->
+          <div class="div-table-header" data-reveal>
+            <h3 class="div-table-header__title">Detalhamento por distribuição</h3>
+            <div class="page-filter__group">
+              <span class="page-filter__label">ANO</span>
+              <span class="select">
+                <select class="select__field" data-div-year aria-label="Filtrar por ano">
+                  <option value="">Todos</option>
+                </select>
+              </span>
+            </div>
+          </div>
+
+          <div class="data-table" data-reveal>
+            <div class="data-table__scroller">
+              <table aria-label="Histórico de dividendos e JCP">
+                <thead>
+                  <tr>
+                    <th>Período</th>
+                    <th>Tipo</th>
+                    <th>Valor/ação</th>
+                    <th>Data-base</th>
+                    <th>Pagamento</th>
+                    <th>Total distribuído</th>
+                  </tr>
+                </thead>
+                <tbody data-div-tbody>
+                  <tr><td colspan="6" class="div-table__empty">Carregando dados…</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ===================================================
+           RECOMPRA DE AÇÕES
+           =================================================== -->
+      <section class="page-section page-section--alt" aria-labelledby="sec-rec-title" data-reveal>
+        <div class="page-section__container">
+
+          <h2 id="sec-rec-title" class="div-section-header__title" style="margin-bottom: 2rem;">Programas de Recompra</h2>
+
+          <!-- KPIs recompra -->
+          <div class="div-kpis div-kpis--rec" data-reveal>
+            <div class="div-kpi">
+              <span class="div-kpi__label">Total investido</span>
+              <span class="div-kpi__value" data-kpi="rec-total">—</span>
+            </div>
+            <div class="div-kpi">
+              <span class="div-kpi__label">Ações autorizadas</span>
+              <span class="div-kpi__value" data-kpi="rec-qtd-aut">—</span>
+            </div>
+            <div class="div-kpi">
+              <span class="div-kpi__label">Ações recompradas</span>
+              <span class="div-kpi__value" data-kpi="rec-qtd-rec">—</span>
+            </div>
+            <div class="div-kpi">
+              <span class="div-kpi__label">Execução total</span>
+              <span class="div-kpi__value" data-kpi="rec-pct">—</span>
+            </div>
+          </div>
+
+          <!-- Tabela recompra -->
+          <div class="data-table" style="margin-top: 2rem;" data-reveal>
+            <div class="data-table__scroller">
+              <table aria-label="Programas de recompra de ações">
+                <thead>
+                  <tr>
+                    <th>Programa</th>
+                    <th>Início</th>
+                    <th>Término</th>
+                    <th>Qtd. autorizada</th>
+                    <th>Qtd. recomprada</th>
+                    <th>Execução</th>
+                    <th>Total gasto</th>
+                    <th>Preço médio</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody data-recompra-tbody>
+                  <tr><td colspan="9" class="div-table__empty">Carregando dados…</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
     </main>
 
     <footer class="site-footer">
@@ -361,6 +498,6 @@
       </div>
     </div>
 
-    <script type="module" src="/scripts/page.js"></script>
+    <script type="module" src="/scripts/dividendos-recompra.js"></script>
   </body>
 </html>

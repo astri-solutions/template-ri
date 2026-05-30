@@ -99,7 +99,8 @@
     position: fixed;
     top: 0;
     right: 0;
-    bottom: 0;
+    height: 100vh;
+    height: 100dvh;
     width: min(85vw, 320px);
     background-color: var(--color-secondary-700);
     z-index: 260;

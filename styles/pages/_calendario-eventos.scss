@@ -340,8 +340,14 @@
 
     svg { width: 13px; height: 13px; }
 
+    .cal-export__icon {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+      display: block;
+    }
+
     &:hover {
-      color: var(--color-secondary);
       border-color: var(--color-secondary);
       background-color: var(--color-secondary-subtle);
     }
@@ -484,8 +490,14 @@
 
     svg { width: 14px; height: 14px; }
 
+    .cal-export__icon {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+      display: block;
+    }
+
     &:hover {
-      color: var(--color-secondary);
       border-color: var(--color-secondary);
       background-color: var(--color-secondary-subtle);
     }

@@ -94,18 +94,18 @@
     @include respond-up(desktop) { display: none !important; }
   }
 
-  // ---- Nav — drawer slide-in left no mobile
+  // ---- Nav — drawer slide-in right no mobile
   &__nav {
     position: fixed;
     top: 0;
-    left: 0;
-    height: 100dvh;
+    right: 0;
+    bottom: 0;
     width: min(85vw, 320px);
     background-color: var(--color-secondary-700);
     z-index: 260;
     overflow-y: auto;
     overscroll-behavior: contain;
-    transform: translateX(-100%);
+    transform: translateX(100%);
     transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
@@ -468,11 +468,31 @@
   padding: 0 0 0 $spacing-8;
   border-left: 2px solid transparent;
   margin-left: $spacing-6;
-  transition: max-height 320ms ease, border-color 250ms ease;
+  transition:
+    max-height 380ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 280ms ease;
 
   .nav-list__item.is-open > & {
     max-height: 400px;
     border-left-color: var(--color-primary-400);
+  }
+
+  // Links: fade-in suave quando o submenu abre
+  @include respond-down(desktop) {
+    & .nav-dropdown__link {
+      opacity: 0;
+      transform: translateX(-6px);
+      transition:
+        opacity 220ms ease,
+        transform 220ms ease,
+        color $transition-fast;
+    }
+
+    .nav-list__item.is-open > & .nav-dropdown__link {
+      opacity: 1;
+      transform: translateX(0);
+      transition-delay: 120ms;
+    }
   }
 
   // Desktop: painel flutuante

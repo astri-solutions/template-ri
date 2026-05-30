@@ -13,55 +13,10 @@
   --cal-outros-bg: var(--color-tertiary-subtle);
 }
 
-// ---- Filter bar
-.cal-filter {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: $spacing-4;
-  flex-wrap: wrap;
+// ---- Filter bar (usa .page-filter do componente global)
+.page-filter {
   margin-bottom: $spacing-8;
-
-  &__controls {
-    display: flex;
-    align-items: center;
-    gap: $spacing-3;
-    flex-wrap: wrap;
-  }
-
-  &__quarters {
-    display: flex;
-    border: 1px solid var(--color-border);
-    border-radius: $radius-md;
-    overflow: hidden;
-  }
-
-  &__q-btn {
-    padding: $spacing-2 $spacing-4;
-    background: none;
-    border: none;
-    border-right: 1px solid var(--color-border);
-    cursor: pointer;
-    font-size: $font-size-sm;
-    font-weight: $font-weight-semibold;
-    color: var(--color-text);
-    font-family: var(--font-family-mono);
-    transition: background-color $transition-fast, color $transition-fast;
-    letter-spacing: $letter-spacing-wide;
-
-    &:last-child { border-right: none; }
-    &:hover { background-color: var(--color-tertiary-subtle); }
-
-    &.is-active {
-      background-color: var(--color-secondary);
-      color: var(--color-on-secondary);
-    }
-
-    &:focus-visible {
-      outline: 2px solid var(--color-focus-ring);
-      outline-offset: -2px;
-    }
-  }
+  justify-content: space-between;
 }
 
 // ---- Legend
@@ -104,7 +59,7 @@
   align-items: start;
 
   @include respond-up(desktop) {
-    grid-template-columns: 1fr 320px;
+    grid-template-columns: 3fr 2fr;
   }
 }
 
@@ -444,7 +399,7 @@
     transition: background-color $transition-fast;
 
     &:first-child { border-top: 1px solid var(--color-divider); }
-    &:hover { background-color: var(--color-section-bg-alt); }
+    &:hover { background-color: var(--color-section-bg-alt); padding-inline: $spacing-2; }
 
     @include respond-down(tablet) {
       grid-template-columns: 1fr auto;

@@ -199,7 +199,6 @@ function navigateMonth(delta) {
   state.month = m;
   state.year  = y;
   renderMonthGrid();
-  syncQuarterButtons();
   syncYearSelect();
 }
 
@@ -233,7 +232,6 @@ function renderUpcoming() {
         <span class="cal-upcoming__month-abbr">${MONTHS_SHORT[d.getMonth()]}</span>
       </div>
       <div class="cal-upcoming__info">
-        <span class="cal-upcoming__cat cal-upcoming__cat--${event.category}">${CAT_LABELS[event.category]}</span>
         <p class="cal-upcoming__title">${event.title}</p>
         ${event.time ? `<span class="cal-upcoming__time">${ICON_CLOCK} ${event.time} &bull; Horário de Brasília</span>` : ''}
       </div>
@@ -270,7 +268,6 @@ function renderPast(year) {
     return `<li class="events-past__item">
       <span class="events-past__date">${formatDatePt(d)}</span>
       <div class="events-past__info">
-        <span class="events-past__cat events-past__cat--${event.category}">${CAT_LABELS[event.category]}</span>
         <div class="events-past__info-text">
           <span class="events-past__title-text">${event.title}</span>
           <span class="events-past__date-mobile">${formatDatePt(d)}</span>
@@ -279,19 +276,6 @@ function renderPast(year) {
       <a class="events-past__add" href="${gmailUrl}" target="_blank" rel="noopener noreferrer" aria-label="Adicionar ao calendário: ${event.title}" title="Adicionar ao calendário">${ICON_ADD_CAL}</a>
     </li>`;
   }).join('');
-}
-
-// ---------------------------------------------------------------------------
-// Quarter tabs sync
-// ---------------------------------------------------------------------------
-
-function syncQuarterButtons() {
-  const btns = document.querySelectorAll('[data-cal-quarter]');
-  btns.forEach(btn => {
-    const qMonth = Number(btn.dataset.calQuarter);
-    const active = state.month >= qMonth && state.month < qMonth + 3;
-    btn.classList.toggle('is-active', active);
-  });
 }
 
 function syncYearSelect() {
@@ -311,18 +295,8 @@ document.addEventListener('DOMContentLoaded', () => {
     yearSel.addEventListener('change', (e) => {
       state.year = Number(e.target.value);
       renderMonthGrid();
-      syncQuarterButtons();
     });
   }
-
-  // Quarter buttons
-  document.querySelectorAll('[data-cal-quarter]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      state.month = Number(btn.dataset.calQuarter);
-      renderMonthGrid();
-      syncQuarterButtons();
-    });
-  });
 
   // Past events year filter
   const pastYearSel = document.querySelector('[data-cal-past-year]');
@@ -336,7 +310,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initial render
   renderMonthGrid();
-  syncQuarterButtons();
   renderUpcoming();
   renderPast(state.pastYear);
 });

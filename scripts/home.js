@@ -50,14 +50,17 @@ function initHeroSlider() {
     const outgoing = slides[current];
     const incoming = slides[nextIndex];
 
-    // Posiciona o incoming antes de animar
+    // Clear any stale inline styles from an interrupted previous transition
+    incoming.style.transition = 'none';
+    incoming.classList.remove('is-leaving');
+    void incoming.offsetWidth;
+    incoming.style.transition = '';
+
+    // Position incoming off-screen before the transition starts
     incoming.style.transform = `translateX(${direction > 0 ? '100%' : '-100%'})`;
     incoming.style.opacity = '0';
+    void incoming.offsetWidth; // reflow so position is applied before animation
 
-    // Força reflow para a transição funcionar
-    void incoming.offsetWidth;
-
-    // Aplica classes — o CSS cuida da animação
     outgoing.classList.remove('is-active');
     outgoing.classList.add('is-leaving');
     outgoing.style.transform = `translateX(${direction > 0 ? '-100%' : '100%'})`;
@@ -66,14 +69,26 @@ function initHeroSlider() {
     incoming.style.transform = 'translateX(0)';
     incoming.style.opacity = '1';
 
-    // Limpa estado do slide que saiu depois da transição
-    const cleanup = () => {
+    // Cleanup the outgoing slide after its transition ends.
+    // Guard with a flag + disable CSS transition before reverting classes,
+    // otherwise removing .is-leaving triggers a ghost slide-right animation.
+    let cleanupDone = false;
+    const doCleanup = () => {
+      if (cleanupDone) return;
+      cleanupDone = true;
+      outgoing.style.transition = 'none';
+      void outgoing.offsetWidth; // reflow to apply transition:none immediately
       outgoing.classList.remove('is-leaving');
       outgoing.style.transform = '';
       outgoing.style.opacity = '';
-      outgoing.removeEventListener('transitionend', cleanup);
+      requestAnimationFrame(() => { outgoing.style.transition = ''; });
+      outgoing.removeEventListener('transitionend', onTransitionEnd);
     };
-    outgoing.addEventListener('transitionend', cleanup);
+    // Only trigger on 'transform' — transitionend fires once per animated property
+    const onTransitionEnd = (e) => { if (e.propertyName === 'transform') doCleanup(); };
+    outgoing.addEventListener('transitionend', onTransitionEnd);
+    // Fallback: if transitionend doesn't fire (e.g. transition interrupted), clean up anyway
+    setTimeout(doCleanup, 950);
 
     // Atualiza bullets
     bullets.forEach((b, i) => {

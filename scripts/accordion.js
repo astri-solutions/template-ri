@@ -131,3 +131,5 @@ function prefersReducedMotion() {
 }
 
 document.addEventListener('DOMContentLoaded', initAccordions);
+
+export { initAccordion };

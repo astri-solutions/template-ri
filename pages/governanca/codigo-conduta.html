@@ -223,7 +223,35 @@
 
       <section class="page-section">
         <div class="page-section__container">
-          <!-- Conteúdo editorial de texto com os princípios do código de conduta -->
+
+          <div class="page-filter">
+            <div class="page-filter__group">
+              <span class="page-filter__label">ANO</span>
+              <span class="select">
+                <select class="select__field" data-cc-year>
+                  <option value="2026">2026</option>
+                  <option value="2025">2025</option>
+                  <option value="2024">2024</option>
+                  <option value="2023">2023</option>
+                </select>
+              </span>
+            </div>
+            <div class="page-filter__group">
+              <span class="page-filter__label">TIPO</span>
+              <span class="select">
+                <select class="select__field" data-cc-type>
+                  <option value="todos">Todos</option>
+                  <option value="codigo">Código de Conduta</option>
+                  <option value="politica">Política</option>
+                  <option value="manual">Manual</option>
+                  <option value="relatorio">Relatório</option>
+                </select>
+              </span>
+            </div>
+          </div>
+
+          <div data-cc-list></div>
+
         </div>
       </section>
     </main>
@@ -361,6 +389,6 @@
       </div>
     </div>
 
-    <script type="module" src="/scripts/page.js"></script>
+    <script type="module" src="/scripts/codigo-conduta.js"></script>
   </body>
 </html>

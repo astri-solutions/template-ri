@@ -7,6 +7,7 @@ import './nav.js';
 import './reveal.js';
 import './counter.js';
 import './accordion.js';
+import './splash.js';
 
 /* -----------------------------------------------------------------------------
  * SLIDER do banner

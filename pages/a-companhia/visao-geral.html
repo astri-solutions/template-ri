@@ -227,7 +227,7 @@
            ====================================================== -->
       <section class="page-section" aria-label="Sobre a empresa">
         <div class="page-section__container">
-          <div class="show-grid">
+          <div class="show-grid show-grid--full">
 
             <div class="show-grid__text">
               <span class="show-grid__eyebrow">Quem somos</span>
@@ -247,44 +247,49 @@
               </div>
             </div>
 
-            <div class="show-grid__image">
-              <img
-                src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80"
-                alt="Escritório da Astri Solutions"
-                loading="lazy"
-              />
-            </div>
-
           </div>
         </div>
       </section>
 
       <!-- ======================================================
-           SEÇÃO 2: Números
+           SEÇÃO 2: Números — imagem de fundo + counter animado
            ====================================================== -->
-      <section class="overview-kpis" aria-label="Principais indicadores">
-        <div class="overview-kpis__grid">
+      <section class="overview-stats" data-stats-section aria-label="Principais indicadores">
+        <div class="overview-stats__bg" aria-hidden="true"></div>
+        <div class="overview-stats__overlay" aria-hidden="true"></div>
+        <div class="overview-stats__inner">
+          <span class="overview-stats__eyebrow">A Astri em números</span>
+          <div class="overview-stats__grid">
 
-          <div class="overview-kpi">
-            <div class="overview-kpi__value">R$ 2,1<span class="overview-kpi__suffix"> bi</span></div>
-            <div class="overview-kpi__label">Receita líquida (2025)</div>
+            <div class="overview-stat">
+              <div class="overview-stat__value">
+                <span class="overview-stat__prefix">R$&nbsp;</span><span class="overview-stat__number" data-counter data-target="2.1" data-float="true">2,1</span><span class="overview-stat__suffix">&nbsp;bi</span>
+              </div>
+              <div class="overview-stat__label">Receita líquida (2025)</div>
+            </div>
+
+            <div class="overview-stat">
+              <div class="overview-stat__value">
+                <span class="overview-stat__number" data-counter data-target="280">280</span><span class="overview-stat__suffix">+</span>
+              </div>
+              <div class="overview-stat__label">Colaboradores diretos</div>
+            </div>
+
+            <div class="overview-stat">
+              <div class="overview-stat__value">
+                <span class="overview-stat__number" data-counter data-target="25">25</span>
+              </div>
+              <div class="overview-stat__label">Anos de mercado</div>
+            </div>
+
+            <div class="overview-stat">
+              <div class="overview-stat__value">
+                <span class="overview-stat__number" data-counter data-target="26">26</span>
+              </div>
+              <div class="overview-stat__label">Estados com presença</div>
+            </div>
+
           </div>
-
-          <div class="overview-kpi">
-            <div class="overview-kpi__value">280<span class="overview-kpi__suffix">+</span></div>
-            <div class="overview-kpi__label">Colaboradores diretos</div>
-          </div>
-
-          <div class="overview-kpi">
-            <div class="overview-kpi__value">25</div>
-            <div class="overview-kpi__label">Anos de mercado</div>
-          </div>
-
-          <div class="overview-kpi">
-            <div class="overview-kpi__value">26</div>
-            <div class="overview-kpi__label">Estados com presença</div>
-          </div>
-
         </div>
       </section>
 
@@ -524,6 +529,6 @@
       </div>
     </div>
 
-    <script type="module" src="/scripts/page.js"></script>
+    <script type="module" src="/scripts/visao-geral.js"></script>
   </body>
 </html>

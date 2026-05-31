@@ -1,0 +1,175 @@
+@use '../abstracts' as *;
+
+// =============================================================================
+// SPLASH — modal de aviso exibido ao carregar a página
+// =============================================================================
+
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: $z-modal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-4;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 350ms ease, visibility 350ms ease;
+
+  &.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    .splash__dialog {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  // ---- Backdrop
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  // ---- Dialog
+  &__dialog {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 920px;
+    background: var(--color-bg);
+    border-radius: $radius-xl;
+    overflow: hidden;
+    box-shadow: $shadow-xl;
+    transform: translateY(56px);
+    opacity: 0;
+    transition:
+      transform 480ms cubic-bezier(0.34, 1.4, 0.64, 1),
+      opacity 350ms ease;
+    transition-delay: 80ms;
+
+    @include respond-up(tablet) {
+      min-width: 500px;
+    }
+  }
+
+  // ---- Header image
+  &__header {
+    height: 90px;
+    overflow: hidden;
+    flex-shrink: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    &--placeholder {
+      background: linear-gradient(135deg, var(--color-primary-700) 0%, var(--color-secondary-600) 100%);
+    }
+  }
+
+  // ---- Close button (absolute, overlaid on header)
+  &__close {
+    position: absolute;
+    top: $spacing-3;
+    right: $spacing-3;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: $radius-full;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    cursor: pointer;
+    color: var(--color-title);
+    transition: background-color $transition-fast, transform $transition-fast;
+    flex-shrink: 0;
+
+    svg { width: 16px; height: 16px; }
+
+    &:hover {
+      background: #fff;
+      transform: scale(1.08);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-focus-ring);
+      outline-offset: 2px;
+    }
+  }
+
+  // ---- Body
+  &__body {
+    padding: $spacing-8;
+
+    @include respond-down(tablet) {
+      padding: $spacing-6 $spacing-5;
+    }
+  }
+
+  // ---- Optional eyebrow
+  &__eyebrow {
+    display: inline-block;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-wider;
+    color: var(--color-secondary-600);
+    margin-bottom: $spacing-3;
+  }
+
+  // ---- Title
+  &__title {
+    font-family: var(--font-family-display);
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: var(--color-title);
+    line-height: $line-height-tight;
+    margin: 0 0 $spacing-3;
+
+    @include respond-down(tablet) {
+      font-size: $font-size-xl;
+    }
+  }
+
+  // ---- Description
+  &__desc {
+    font-size: $font-size-sm;
+    color: var(--color-text-muted);
+    line-height: $line-height-relaxed;
+    margin: 0 0 $spacing-6;
+  }
+
+  // ---- Actions row
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3;
+    flex-wrap: wrap;
+  }
+
+  // ---- Dismiss link
+  &__dismiss {
+    font-size: $font-size-sm;
+    color: var(--color-text-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    padding: 0;
+    transition: color $transition-fast;
+
+    &:hover { color: var(--color-text); }
+  }
+}

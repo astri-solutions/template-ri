@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Endividamento — Astri RI</title>
-    <meta name="description" content="Perfil de endividamento da companhia: dívida bruta, líquida e cronograma de amortização." />
+    <title>Nosso Time — Astri RI</title>
+    <meta name="description" content="Conheça os profissionais que lideram a Astri Solutions." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -101,7 +101,7 @@
                 <li><a class="nav-dropdown__link" href="/pages/a-companhia/nossa-historia.html">Nossa História</a></li>
                 <li><a class="nav-dropdown__link" href="/pages/a-companhia/estrategias-vantagens.html">Estratégias</a></li>
                 <li><a class="nav-dropdown__link" href="/pages/a-companhia/portfolio.html">Portfólio</a></li>
-                <li><a class="nav-dropdown__link" href="/pages/a-companhia/nosso-time.html">Nosso Time</a></li>
+                <li><a class="nav-dropdown__link" aria-current="page" href="/pages/a-companhia/nosso-time.html">Nosso Time</a></li>
               </ul>
             </li>
 
@@ -209,22 +209,42 @@
 
     <main>
       <section class="page-header" aria-labelledby="page-title">
-        <img class="page-header__bg" src="https://images.unsplash.com/photo-1554260570-e9689a3418b8?auto=format&fit=crop&w=1920&q=80" alt="" aria-hidden="true" />
+        <img class="page-header__bg" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1920&q=80" alt="" aria-hidden="true" />
         <div class="page-header__overlay" aria-hidden="true"></div>
         <div class="page-header__inner">
           <ol class="page-header__breadcrumb" aria-label="Você está em">
             <li><a href="/">Home</a></li>
-            <li><a href="/pages/informacoes-financeiras/central-resultados.html">Financeiro</a></li>
-            <li aria-current="page">Endividamento</li>
+            <li><a href="/pages/a-companhia/visao-geral.html">A Companhia</a></li>
+            <li aria-current="page">Nosso Time</li>
           </ol>
-          <h1 id="page-title" class="page-header__title">Endividamento</h1>
-          <p class="page-header__lede">Perfil de dívida bruta, dívida líquida e cronograma de amortização.</p>
+          <h1 id="page-title" class="page-header__title">Nosso Time</h1>
+          <p class="page-header__lede">Conheça os profissionais que lideram e transformam a Astri.</p>
         </div>
       </section>
 
       <section class="page-section">
         <div class="page-section__container">
-          <!-- Gráfico de evolução da dívida + tabela detalhada por instrumento -->
+
+          <div class="page-filter">
+            <div class="page-filter__group">
+              <span class="page-filter__label">ÁREA</span>
+              <span class="select">
+                <select class="select__field" data-team-dept>
+                  <option value="todos">Todos</option>
+                  <option value="diretoria">Diretoria Executiva</option>
+                  <option value="conselho">Conselho de Administração</option>
+                  <option value="financeiro">Financeiro</option>
+                  <option value="operacoes">Operações</option>
+                  <option value="tecnologia">Tecnologia</option>
+                </select>
+              </span>
+            </div>
+          </div>
+
+          <div class="team-grid" data-team-grid></div>
+
+          <div class="pagination" data-team-pagination></div>
+
         </div>
       </section>
     </main>
@@ -262,7 +282,7 @@
               <li><a href="/pages/a-companhia/visao-geral.html">Visão Geral</a></li>
               <li><a href="/pages/a-companhia/nossa-historia.html">Histórico e Perfil Corporativo</a></li>
               <li><a href="/pages/a-companhia/estrategias-vantagens.html">Estratégias e Vantagens Competitivas</a></li>
-              <li><a href="/pages/a-companhia/investor-day.html">Investor Day</a></li>
+              <li><a href="/pages/a-companhia/nosso-time.html">Nosso Time</a></li>
             </ul>
           </div>
 
@@ -362,6 +382,6 @@
       </div>
     </div>
 
-    <script type="module" src="/scripts/page.js"></script>
+    <script type="module" src="/scripts/nosso-time.js"></script>
   </body>
 </html>

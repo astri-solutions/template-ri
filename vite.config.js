@@ -18,6 +18,7 @@ export default defineConfig({
         nossaHistoria:        resolve(__dirname, 'pages/a-companhia/nossa-historia.html'),
         estrategiasVantagens: resolve(__dirname, 'pages/a-companhia/estrategias-vantagens.html'),
         portfolio:            resolve(__dirname, 'pages/a-companhia/portfolio.html'),
+        nossoTime:            resolve(__dirname, 'pages/a-companhia/nosso-time.html'),
 
         // Governança
         composicaoAcionaria: resolve(__dirname, 'pages/governanca/composicao-acionaria.html'),

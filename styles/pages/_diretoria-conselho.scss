@@ -1,0 +1,256 @@
+@use '../abstracts' as *;
+
+// =============================================================================
+// ORGANOGRAMA — Diretoria e Conselho
+// =============================================================================
+
+.org-header {
+  text-align: center;
+  margin-bottom: $spacing-16;
+
+  &__eyebrow {
+    display: block;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    letter-spacing: $letter-spacing-wider;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: $spacing-3;
+  }
+
+  &__title {
+    font-family: $font-family-display;
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    color: var(--color-heading);
+    line-height: $line-height-snug;
+
+    @include respond-down(tablet) { font-size: $font-size-2xl; }
+  }
+
+  &__desc {
+    margin-top: $spacing-3;
+    font-size: $font-size-md;
+    color: var(--color-text-muted);
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: $line-height-loose;
+  }
+}
+
+// Wrapper que contém as linhas SVG + os cards
+.org-chart {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-12;
+
+  @include respond-down(desktop) {
+    gap: $spacing-6;
+  }
+}
+
+// SVG sobreposicionado para as linhas conectoras
+.org-connectors {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+
+  @include respond-down(desktop) {
+    display: none;
+  }
+}
+
+// Linha divisória visual no mobile
+.org-divider {
+  display: none;
+  width: 2px;
+  height: $spacing-6;
+  background: var(--color-border);
+  border-radius: $radius-full;
+  flex-shrink: 0;
+
+  @include respond-down(desktop) { display: block; }
+}
+
+// =============================================================================
+// NÍVEIS
+// =============================================================================
+
+.org-level {
+  display: flex;
+  justify-content: center;
+  gap: $spacing-6;
+  width: 100%;
+
+  @include respond-down(desktop) {
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-4;
+  }
+
+  &--employees {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-5;
+    max-width: 640px;
+
+    @include respond-down(desktop) {
+      grid-template-columns: repeat(2, 1fr);
+      width: 100%;
+      max-width: 420px;
+    }
+
+    @include respond-down(tablet) {
+      grid-template-columns: 1fr;
+      max-width: 280px;
+    }
+  }
+}
+
+// =============================================================================
+// CARDS
+// =============================================================================
+
+.org-card {
+  display: flex;
+  align-items: center;
+  gap: $spacing-4;
+  background: var(--color-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: $radius-xl;
+  padding: $spacing-5 $spacing-6;
+  transition: box-shadow $transition-base, transform $transition-base;
+  min-width: 220px;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateY(-2px);
+  }
+
+  // CEO — destaque principal
+  &--ceo {
+    min-width: 280px;
+    border-color: var(--color-primary);
+    border-width: 2px;
+    background: color-mix(in srgb, var(--color-primary) 6%, var(--color-bg));
+
+    .org-card__avatar {
+      width: 56px;
+      height: 56px;
+      font-size: $font-size-lg;
+      background: var(--color-primary);
+      color: #fff;
+    }
+
+    .org-card__role {
+      color: var(--color-primary);
+      font-size: $font-size-sm;
+    }
+
+    .org-card__name {
+      font-size: $font-size-lg;
+    }
+
+    @include respond-down(desktop) { min-width: unset; width: 100%; max-width: 340px; }
+  }
+
+  // Executivos (CFO, PMO)
+  &--exec {
+    @include respond-down(desktop) { min-width: unset; width: 100%; max-width: 340px; }
+  }
+
+  // Colaboradores — card compacto e vertical
+  &--employee {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: $spacing-3;
+    padding: $spacing-6 $spacing-4;
+    min-width: unset;
+
+    .org-card__avatar {
+      width: 44px;
+      height: 44px;
+      font-size: $font-size-xs;
+      background: var(--color-surface);
+      color: var(--color-text-muted);
+      border: 1px solid var(--color-border);
+    }
+
+    .org-card__name {
+      font-size: $font-size-sm;
+    }
+
+    &:hover {
+      transform: translateY(-3px);
+    }
+  }
+}
+
+.org-card__avatar {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: $radius-full;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-family-display;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-md;
+  background: color-mix(in srgb, var(--color-secondary) 12%, var(--color-bg));
+  color: var(--color-secondary);
+}
+
+.org-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.org-card__name {
+  font-family: $font-family-display;
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  color: var(--color-heading);
+  line-height: $line-height-tight;
+}
+
+.org-card__role {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  letter-spacing: $letter-spacing-wide;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+}
+
+// =============================================================================
+// MOBILE: indentação visual por nível
+// =============================================================================
+
+@include respond-down(desktop) {
+  .org-level--exec .org-card {
+    border-left: 3px solid var(--color-secondary);
+  }
+
+  .org-level--employees {
+    border-left: 3px solid var(--color-border);
+    padding-left: $spacing-4;
+    max-width: unset;
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+
+    @include respond-down(tablet) { grid-template-columns: 1fr; }
+
+    .org-card--employee {
+      flex-direction: row;
+      text-align: left;
+      align-items: center;
+      padding: $spacing-4 $spacing-5;
+    }
+  }
+}

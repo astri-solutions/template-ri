@@ -27,7 +27,7 @@
 .accordion {
   display: flex;
   flex-direction: column;
-  gap: $spacing-4;
+  gap: 0;
 
   // ---- Item
   &__item {
@@ -36,6 +36,9 @@
     border-radius: $radius-md;
     overflow: hidden;
     transition: box-shadow $transition-fast;
+    margin-bottom: $spacing-4;
+
+    &:last-child { margin-bottom: 0; }
 
     &.is-open { box-shadow: $shadow-sm; }
   }

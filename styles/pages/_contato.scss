@@ -1,0 +1,336 @@
+// =============================================================================
+// PÁGINA: CONTATO — Fale com RI + Mailing
+// Layout de dois colunas: info (5fr) + formulário (7fr)
+// =============================================================================
+
+@use '../abstracts' as *;
+
+// =============================================================================
+// GRID PRINCIPAL
+// =============================================================================
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: $spacing-16;
+  align-items: start;
+
+  @include respond-down(desktop) {
+    grid-template-columns: 1fr;
+    gap: $spacing-10;
+  }
+}
+
+// =============================================================================
+// COLUNA ESQUERDA — Informações de Contato
+// =============================================================================
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-6;
+
+  &__eyebrow {
+    display: block;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    letter-spacing: $letter-spacing-wider;
+    text-transform: uppercase;
+    color: var(--color-secondary-500);
+  }
+
+  &__title {
+    font-family: $font-family-display;
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-snug;
+    color: var(--color-title);
+    margin: 0;
+
+    @include respond-down(tablet) {
+      font-size: $font-size-2xl;
+    }
+  }
+
+  &__body {
+    font-size: $font-size-md;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-5;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: $spacing-3;
+  }
+
+  &__item-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: $radius-md;
+    background-color: var(--color-secondary-100);
+    color: var(--color-secondary-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      fill: none;
+    }
+  }
+
+  &__item-content {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-1;
+  }
+
+  &__item-label {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    letter-spacing: $letter-spacing-wide;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  &__item-value {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: var(--color-text);
+  }
+
+  // Bullet list variant (used on mailing page)
+  &__bullets {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-3;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__bullet {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3;
+    font-size: $font-size-md;
+    color: var(--color-text-muted);
+
+    &::before {
+      content: '';
+      flex-shrink: 0;
+      width: 8px;
+      height: 8px;
+      border-radius: $radius-full;
+      background-color: var(--color-primary-500);
+    }
+  }
+
+  &__note {
+    font-size: $font-size-sm;
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin: 0;
+  }
+}
+
+// =============================================================================
+// COLUNA DIREITA — Cartão de formulário
+// =============================================================================
+
+.contact-form-card {
+  background-color: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: $radius-lg;
+  padding: $spacing-8;
+
+  @include respond-down(tablet) {
+    padding: $spacing-6;
+  }
+
+  &__title {
+    font-family: $font-family-display;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-snug;
+    color: var(--color-title);
+    margin: 0 0 $spacing-6;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-4;
+
+    @include respond-down(tablet) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: $spacing-4;
+    margin-top: $spacing-6;
+    flex-wrap: wrap;
+
+    @include respond-down(tablet) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  &__privacy {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+    font-size: $font-size-xs;
+    color: var(--color-text-muted);
+    margin: 0;
+
+    svg {
+      flex-shrink: 0;
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+    }
+  }
+}
+
+// =============================================================================
+// GRUPO DE CHECKBOXES
+// =============================================================================
+
+.check-group {
+  display: flex;
+  flex-direction: column;
+
+  &__label {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: var(--color-text);
+    margin-bottom: $spacing-2;
+  }
+
+  &__options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-3;
+    margin-top: $spacing-2;
+  }
+
+  &__option {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: $spacing-2;
+    cursor: pointer;
+
+    input[type='checkbox'] {
+      appearance: none;
+      -webkit-appearance: none;
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      border: 1.5px solid var(--color-border);
+      border-radius: $radius-sm;
+      background-color: var(--color-bg);
+      cursor: pointer;
+      transition: background-color $transition-fast, border-color $transition-fast;
+      position: relative;
+
+      &:hover {
+        border-color: var(--color-secondary-400);
+      }
+
+      &:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(11, 91, 104, 0.15);
+        border-color: var(--color-secondary-500);
+      }
+
+      &:checked {
+        background-color: var(--color-secondary-500);
+        border-color: var(--color-secondary-500);
+        // checkmark via clip-path (white checkmark shape)
+        clip-path: none;
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 1px;
+          left: 4px;
+          width: 5px;
+          height: 9px;
+          border: 2px solid #fff;
+          border-top: none;
+          border-left: none;
+          transform: rotate(45deg);
+        }
+      }
+    }
+  }
+
+  &__text {
+    font-size: $font-size-sm;
+    color: var(--color-text);
+    user-select: none;
+  }
+}
+
+// =============================================================================
+// ESTADO DE SUCESSO
+// =============================================================================
+
+.contact-success {
+  display: none;
+  align-items: flex-start;
+  gap: $spacing-3;
+  background-color: rgba(0, 199, 90, 0.08); // primary-500 alpha
+  border-radius: $radius-lg;
+  padding: $spacing-5;
+  margin-bottom: $spacing-6;
+
+  &.is-visible {
+    display: flex;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    color: var(--color-primary-600);
+
+    svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      fill: none;
+    }
+  }
+
+  &__text {
+    font-size: $font-size-sm;
+    color: var(--color-primary-700);
+    font-weight: $font-weight-medium;
+    margin: 0;
+  }
+}

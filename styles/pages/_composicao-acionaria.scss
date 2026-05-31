@@ -1,0 +1,69 @@
+@use '../abstracts' as *;
+
+// =============================================================================
+// COMPOSIÇÃO ACIONÁRIA — Badges de perfil
+// =============================================================================
+
+.acionista-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: $spacing-1 $spacing-3;
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  letter-spacing: $letter-spacing-wide;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  &--controlador {
+    background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+    color: var(--color-primary);
+  }
+
+  &--institucional {
+    background: color-mix(in srgb, var(--color-secondary) 12%, transparent);
+    color: var(--color-secondary);
+  }
+
+  &--freeFloat {
+    background: color-mix(in srgb, #7c5cde 12%, transparent);
+    color: #7c5cde;
+  }
+
+  &--tesouraria {
+    background: color-mix(in srgb, var(--color-text-muted) 15%, transparent);
+    color: var(--color-text-muted);
+  }
+}
+
+// =============================================================================
+// NOTAS DE EMISSÃO
+// =============================================================================
+
+.ca-notes {
+  display: flex;
+  gap: $spacing-8;
+  margin-bottom: $spacing-6;
+  padding: $spacing-4 $spacing-5;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: $radius-lg;
+
+  @include respond-down(tablet) {
+    flex-direction: column;
+    gap: $spacing-3;
+  }
+}
+
+.ca-note {
+  display: flex;
+  align-items: baseline;
+  gap: $spacing-2;
+  font-size: $font-size-sm;
+  color: var(--color-text-muted);
+
+  strong {
+    color: var(--color-heading);
+    font-weight: $font-weight-semibold;
+  }
+}

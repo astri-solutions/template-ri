@@ -224,7 +224,65 @@
 
       <section class="page-section">
         <div class="page-section__container">
-          <!-- Tabela: acionista, tipo de ação, quantidade, percentual -->
+
+          <!-- Filtros -->
+          <div class="page-filter">
+            <div class="page-filter__group">
+              <label class="page-filter__label" for="ca-period">Período</label>
+              <div class="select">
+                <select class="select__input" id="ca-period" data-ca-period>
+                  <option value="1T26">1T26</option>
+                  <option value="4T25">4T25</option>
+                  <option value="4T24">4T24</option>
+                </select>
+                <svg class="select__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 6 8 10 12 6"/></svg>
+              </div>
+            </div>
+            <div class="page-filter__group">
+              <label class="page-filter__label" for="ca-perfil">Perfil</label>
+              <div class="select">
+                <select class="select__input" id="ca-perfil" data-ca-perfil>
+                  <option value="todos">Todos</option>
+                  <option value="controlador">Controlador</option>
+                  <option value="institucional">Institucional</option>
+                  <option value="freeFloat">Free Float</option>
+                </select>
+                <svg class="select__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 6 8 10 12 6"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notas de emissão -->
+          <div class="ca-notes">
+            <div class="ca-note"><strong>ASTR3</strong> (ON) — Total emitido: <strong>120.000.000</strong> ações ordinárias</div>
+            <div class="ca-note"><strong>ASTR4</strong> (PN) — Total emitido: <strong>80.000.000</strong> ações preferenciais</div>
+          </div>
+
+          <!-- Tabela -->
+          <div class="data-table">
+            <div class="data-table__scroller">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Acionista</th>
+                    <th>Perfil</th>
+                    <th class="mono">ASTR3 (ON)</th>
+                    <th class="mono">% ON</th>
+                    <th class="mono">ASTR4 (PN)</th>
+                    <th class="mono">% PN</th>
+                    <th class="mono">Total</th>
+                    <th class="mono">% Capital</th>
+                  </tr>
+                </thead>
+                <tbody data-ca-tbody>
+                </tbody>
+                <tfoot>
+                  <tr data-ca-total></tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+
         </div>
       </section>
     </main>
@@ -362,6 +420,6 @@
       </div>
     </div>
 
-    <script type="module" src="/scripts/page.js"></script>
+    <script type="module" src="/scripts/composicao-acionaria.js"></script>
   </body>
 </html>

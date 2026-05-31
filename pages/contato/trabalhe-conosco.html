@@ -222,9 +222,154 @@
         </div>
       </section>
 
-      <section class="page-section">
+      <section class="page-section" data-reveal>
         <div class="page-section__container">
-          <!-- Formulário de cadastro: nome, e-mail, telefone, área de interesse, upload de currículo -->
+          <div class="contact-grid">
+
+            <!-- LEFT: info sobre a empresa como empregadora -->
+            <div class="contact-info">
+              <span class="contact-info__eyebrow">FAÇA PARTE DO TIME</span>
+              <h2 class="contact-info__title">Venha crescer conosco</h2>
+              <p class="contact-info__body">
+                Na Astri Solutions, acreditamos que pessoas excepcionais constroem negócios excepcionais. Buscamos profissionais que queiram contribuir com ideias, crescer junto com a empresa e fazer parte de uma cultura que valoriza a inovação, a diversidade e o desenvolvimento contínuo.
+              </p>
+              <ul class="contact-info__items">
+                <li class="contact-info__item">
+                  <div class="contact-info__item-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                  </div>
+                  <div class="contact-info__item-content">
+                    <span class="contact-info__item-label">Crescimento Profissional</span>
+                    <span class="contact-info__item-value">Plano de carreira estruturado, trilhas de aprendizado e bolsas de estudo</span>
+                  </div>
+                </li>
+                <li class="contact-info__item">
+                  <div class="contact-info__item-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  </div>
+                  <div class="contact-info__item-content">
+                    <span class="contact-info__item-label">Ambiente Colaborativo</span>
+                    <span class="contact-info__item-value">Mais de 280 colaboradores em um ambiente inclusivo e diverso</span>
+                  </div>
+                </li>
+                <li class="contact-info__item">
+                  <div class="contact-info__item-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  </div>
+                  <div class="contact-info__item-content">
+                    <span class="contact-info__item-label">Benefícios Competitivos</span>
+                    <span class="contact-info__item-value">Saúde, vale-refeição, PLR, home office e flexibilidade de horário</span>
+                  </div>
+                </li>
+                <li class="contact-info__item">
+                  <div class="contact-info__item-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                  </div>
+                  <div class="contact-info__item-content">
+                    <span class="contact-info__item-label">Cultura de Inovação</span>
+                    <span class="contact-info__item-value">Hackathons, squads ágeis e espaço para novas ideias e iniciativas</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- RIGHT: formulário de candidatura -->
+            <div class="contact-form-card">
+              <h3 class="contact-form-card__title">Envie sua candidatura</h3>
+              <form data-contact-form novalidate>
+
+                <!-- feedback de sucesso -->
+                <div class="contact-success" data-form-success>
+                  <span class="contact-success__icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  </span>
+                  <p class="contact-success__text">Candidatura enviada com sucesso! Entraremos em contato caso seu perfil seja selecionado.</p>
+                </div>
+
+                <div class="contact-form-card__grid">
+                  <div class="field">
+                    <label class="field__label" for="tc-nome">Nome completo <span aria-hidden="true">*</span></label>
+                    <input class="field__input" id="tc-nome" name="nome" type="text" placeholder="Seu nome completo" required />
+                  </div>
+                  <div class="field">
+                    <label class="field__label" for="tc-email">E-mail <span aria-hidden="true">*</span></label>
+                    <input class="field__input" id="tc-email" name="email" type="email" placeholder="seu@email.com" required />
+                  </div>
+                  <div class="field">
+                    <label class="field__label" for="tc-telefone">Telefone</label>
+                    <input class="field__input" id="tc-telefone" name="telefone" type="tel" placeholder="+55 (11) 00000-0000" />
+                  </div>
+                  <div class="field">
+                    <label class="field__label" for="tc-area">Área de interesse <span aria-hidden="true">*</span></label>
+                    <span class="select" style="width:100%">
+                      <select class="select__field" id="tc-area" name="area" style="width:100%" required>
+                        <option value="">Selecione...</option>
+                        <option value="tecnologia">Tecnologia e Produto</option>
+                        <option value="financeiro">Financeiro e Controladoria</option>
+                        <option value="operacoes">Operações e Projetos</option>
+                        <option value="comercial">Comercial e Marketing</option>
+                        <option value="juridico">Jurídico e Compliance</option>
+                        <option value="rh">Recursos Humanos</option>
+                        <option value="outros">Outros</option>
+                      </select>
+                    </span>
+                  </div>
+                  <div class="field">
+                    <label class="field__label" for="tc-cargo">Cargo pretendido</label>
+                    <input class="field__input" id="tc-cargo" name="cargo" type="text" placeholder="Ex.: Analista de Dados Sênior" />
+                  </div>
+                  <div class="field">
+                    <label class="field__label" for="tc-nivel">Nível de experiência <span aria-hidden="true">*</span></label>
+                    <span class="select" style="width:100%">
+                      <select class="select__field" id="tc-nivel" name="nivel" style="width:100%" required>
+                        <option value="">Selecione...</option>
+                        <option value="estagio">Estágio</option>
+                        <option value="junior">Júnior</option>
+                        <option value="pleno">Pleno</option>
+                        <option value="senior">Sênior</option>
+                        <option value="especialista">Especialista</option>
+                        <option value="lideranca">Liderança / Gestão</option>
+                      </select>
+                    </span>
+                  </div>
+                </div>
+
+                <div class="field" style="margin-top:1rem">
+                  <label class="field__label" for="tc-linkedin">LinkedIn</label>
+                  <input class="field__input" id="tc-linkedin" name="linkedin" type="url" placeholder="https://linkedin.com/in/seu-perfil" />
+                </div>
+
+                <div class="field" style="margin-top:1rem">
+                  <label class="field__label" for="tc-mensagem">Carta de apresentação</label>
+                  <textarea class="field__textarea" id="tc-mensagem" name="mensagem" placeholder="Conte um pouco sobre você, suas experiências e por que quer trabalhar na Astri..."></textarea>
+                </div>
+
+                <div class="field" style="margin-top:1rem">
+                  <label class="field__label" for="tc-curriculo">Currículo (PDF ou DOC, máx. 5 MB)</label>
+                  <input class="field__file" id="tc-curriculo" name="curriculo" type="file" accept=".pdf,.doc,.docx" />
+                </div>
+
+                <div class="check-group" style="margin-top:1rem">
+                  <div class="check-group__options">
+                    <label class="check-group__option">
+                      <input type="checkbox" name="privacidade" required />
+                      <span class="check-group__text">Concordo com a <a href="#" style="color:var(--color-primary)">Política de Privacidade</a> e autorizo o uso dos meus dados para fins de recrutamento.</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="contact-form-card__footer">
+                  <p class="contact-form-card__privacy">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    Seus dados são usados exclusivamente para processo seletivo.
+                  </p>
+                  <button class="btn btn--secondary btn--lg" type="submit">Enviar candidatura</button>
+                </div>
+
+              </form>
+            </div>
+
+          </div>
         </div>
       </section>
     </main>

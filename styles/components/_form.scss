@@ -49,6 +49,26 @@
     resize: vertical;
   }
 
+  &__file {
+    width: 100%;
+    background-color: var(--color-bg);
+    border: 1.5px dashed var(--color-border);
+    border-radius: $radius-md;
+    padding: $spacing-3 $spacing-4;
+    font-size: $font-size-sm;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: border-color $transition-fast;
+
+    &:hover { border-color: var(--color-secondary-400); }
+
+    &:focus-visible {
+      outline: none;
+      border-color: var(--color-secondary-500);
+      box-shadow: 0 0 0 3px rgba(11, 91, 104, 0.15);
+    }
+  }
+
   // Variantes de skin sobre fundos contrastados
   &--on-light &__input,
   &--on-light &__textarea {

@@ -224,7 +224,109 @@
 
       <section class="page-section">
         <div class="page-section__container">
-          <!-- Grid de cards: foto, nome, cargo e link para LinkedIn de cada membro -->
+
+          <div class="org-header">
+            <span class="org-header__eyebrow">Estrutura Organizacional</span>
+            <h2 class="org-header__title">Diretoria Executiva</h2>
+            <p class="org-header__desc">Conheça os líderes e colaboradores que conduzem a Astri Solutions rumo a um crescimento sustentável.</p>
+          </div>
+
+          <div class="org-chart" data-org-chart>
+
+            <!-- SVG overlay para as linhas conectoras (desenhado via JS) -->
+            <svg class="org-connectors" data-org-svg aria-hidden="true"></svg>
+
+            <!-- ── Nível 1: CEO ── -->
+            <div class="org-level org-level--ceo">
+              <div class="org-card org-card--ceo" data-org-id="ceo">
+                <div class="org-card__avatar">MK</div>
+                <div class="org-card__body">
+                  <span class="org-card__name">Marcelo Korber</span>
+                  <span class="org-card__role">CEO</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- ── Nível 2: CFO + PMO ── -->
+            <div class="org-level org-level--exec">
+              <div class="org-card org-card--exec" data-org-id="cfo" data-org-parent="ceo">
+                <div class="org-card__avatar">LB</div>
+                <div class="org-card__body">
+                  <span class="org-card__name">Lucas Barra</span>
+                  <span class="org-card__role">CFO</span>
+                </div>
+              </div>
+              <div class="org-card org-card--exec" data-org-id="pmo" data-org-parent="ceo">
+                <div class="org-card__avatar">DS</div>
+                <div class="org-card__body">
+                  <span class="org-card__name">Denis Donald Souza</span>
+                  <span class="org-card__role">PMO</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Divisor visual (mobile only) -->
+            <div class="org-divider" aria-hidden="true"></div>
+
+            <!-- ── Nível 3: Colaboradores ── -->
+            <div class="org-level org-level--employees">
+              <div class="org-card org-card--employee">
+                <div class="org-card__avatar">GS</div>
+                <div class="org-card__body">
+                  <span class="org-card__name">Gean Santos</span>
+                </div>
+              </div>
+              <div class="org-card org-card--employee">
+                <div class="org-card__avatar">IP</div>
+                <div class="org-card__body">
+                  <span class="org-card__name">Ingred Pereira</span>
+                </div>
+              </div>
+              <div class="org-card org-card--employee">
+                <div class="org-card__avatar">JF</div>
+                <div class="org-card__body">
+                  <span class="org-card__name">João Ferrari</span>
+                </div>
+              </div>
+              <div class="org-card org-card--employee">
+                <div class="org-card__avatar">PF</div>
+                <div class="org-card__body">
+                  <span class="org-card__name">Paulo Ferrari</span>
+                </div>
+              </div>
+              <div class="org-card org-card--employee">
+                <div class="org-card__avatar">MS</div>
+                <div class="org-card__body">
+                  <span class="org-card__name">Manuela Souza</span>
+                </div>
+              </div>
+              <div class="org-card org-card--employee">
+                <div class="org-card__avatar">GM</div>
+                <div class="org-card__body">
+                  <span class="org-card__name">Giovanni Monteiro</span>
+                </div>
+              </div>
+              <div class="org-card org-card--employee">
+                <div class="org-card__avatar">TO</div>
+                <div class="org-card__body">
+                  <span class="org-card__name">Thabata Oliveira</span>
+                </div>
+              </div>
+              <div class="org-card org-card--employee">
+                <div class="org-card__avatar">JS</div>
+                <div class="org-card__body">
+                  <span class="org-card__name">João Souza</span>
+                </div>
+              </div>
+              <div class="org-card org-card--employee">
+                <div class="org-card__avatar">WF</div>
+                <div class="org-card__body">
+                  <span class="org-card__name">Witalo Ferreira</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
       </section>
     </main>
@@ -362,6 +464,6 @@
       </div>
     </div>
 
-    <script type="module" src="/scripts/page.js"></script>
+    <script type="module" src="/scripts/diretoria-conselho.js"></script>
   </body>
 </html>

@@ -2,10 +2,11 @@
 
 ## Após cada pedido
 Sempre ao finalizar qualquer alteração:
-1. Fazer commit com mensagem descritiva
-2. Push para a branch `claude/vigilant-carson-DcJFZ` (força deploy no Vercel)
+1. Fazer commit com mensagem descritiva na branch `claude/vigilant-carson-DcJFZ`
+2. Mesclar na `main` e fazer push (`git merge` + `git push origin main`) para forçar o deploy no Vercel
+3. Retornar para a branch `claude/vigilant-carson-DcJFZ`
 
-Nunca concluir uma tarefa sem commitar e fazer push.
+Nunca concluir uma tarefa sem commitar, mesclar no main e fazer push.
 
 ## Responsividade
 Todo elemento deve ser responsivo. Usar sempre os breakpoints do projeto:

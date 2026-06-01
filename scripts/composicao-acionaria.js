@@ -93,13 +93,13 @@ function render() {
     const totPN    = rows.reduce((s, r) => s + r.pn,    0);
     const totTotal = rows.reduce((s, r) => s + r.total, 0);
     totalTr.innerHTML = `
-      <td><strong>Total</strong></td>
+      <td>Total</td>
       <td>—</td>
-      <td class="mono"><strong>${fmtN(totON)}</strong></td>
+      <td class="mono">${fmtN(totON)}</td>
       <td class="mono">—</td>
-      <td class="mono"><strong>${fmtN(totPN)}</strong></td>
+      <td class="mono">${fmtN(totPN)}</td>
       <td class="mono">—</td>
-      <td class="mono"><strong>${fmtN(totTotal)}</strong></td>
+      <td class="mono">${fmtN(totTotal)}</td>
       <td class="mono">—</td>
     `;
   }

@@ -164,8 +164,8 @@ function render() {
   const container = document.querySelector('[data-fr-list]');
   if (!container) return;
 
-  container.innerHTML = `<div data-accordion>
-    ${CATEGORIES.map((cat, i) => {
+  container.innerHTML = `<div class="accordion" data-accordion data-accordion-open="0">
+    ${CATEGORIES.map(cat => {
       const contentId = uid();
       return `<div class="accordion__item" data-accordion-item>
         <button class="accordion__trigger" data-accordion-trigger aria-expanded="false" aria-controls="${contentId}">
@@ -182,10 +182,7 @@ function render() {
   </div>`;
 
   const accEl = container.querySelector('[data-accordion]');
-  if (accEl) {
-    accEl.dataset.accordionOpen = '0';
-    initAccordion(accEl);
-  }
+  if (accEl) initAccordion(accEl);
 }
 
-render();
+document.addEventListener('DOMContentLoaded', render);

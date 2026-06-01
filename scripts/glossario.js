@@ -200,8 +200,30 @@ function initScrollSpy() {
   groups.forEach(g => io.observe(g));
 }
 
+// ─── Sync top com header sticky ───────────────────────────────────────────────
+
+function syncNavTop() {
+  const header = document.querySelector('.site-header');
+  const nav    = document.querySelector('[data-gloss-nav]');
+  if (!header || !nav) return;
+
+  const topbarH = parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue('--topbar-h') || '0'
+  );
+  const headerH = 72;
+
+  function update() {
+    const hidden = header.classList.contains('is-hidden');
+    nav.style.top = `${topbarH + (hidden ? 0 : headerH)}px`;
+  }
+
+  update();
+  new MutationObserver(update).observe(header, { attributeFilter: ['class'] });
+}
+
 // ─── Init ─────────────────────────────────────────────────────────────────────
 
 renderNav();
 renderContent();
 initScrollSpy();
+syncNavTop();

@@ -47,6 +47,11 @@ export default defineConfig({
         fatoresRisco:     resolve(__dirname, 'pages/contato/fatores-risco.html'),
         trabalheConosco:  resolve(__dirname, 'pages/contato/trabalhe-conosco.html'),
 
+        // Legal
+        politicaPrivacidade: resolve(__dirname, 'pages/legal/politica-de-privacidade.html'),
+        termosCondicoes:     resolve(__dirname, 'pages/legal/termos-e-condicoes.html'),
+        definicaoCookies:    resolve(__dirname, 'pages/legal/definicao-de-cookies.html'),
+
       },
     },
   },

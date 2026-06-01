@@ -1,0 +1,32 @@
+@use '../abstracts' as *;
+
+// =============================================================================
+// FATORES DE RISCO — itens editoriais dentro do accordion
+// =============================================================================
+
+.risk-item {
+  padding: $spacing-5 0;
+  border-bottom: 1px solid var(--color-divider);
+
+  &:first-child { padding-top: 0; }
+  &:last-child  { border-bottom: none; padding-bottom: 0; }
+
+  &__title {
+    font-family: $font-family-display;
+    font-size: $font-size-md;
+    font-weight: $font-weight-semibold;
+    color: var(--color-heading);
+    margin-bottom: $spacing-2;
+    line-height: $line-height-snug;
+    padding-left: $spacing-4;
+    border-left: 3px solid var(--color-primary);
+  }
+
+  &__body {
+    font-size: $font-size-sm;
+    color: var(--color-text);
+    line-height: $line-height-loose;
+    padding-left: $spacing-4;
+    margin: 0;
+  }
+}

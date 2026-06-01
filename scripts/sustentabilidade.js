@@ -2,6 +2,43 @@ import './topbar.js';
 import './nav.js';
 import './reveal.js';
 
+// Carrosel de projetos ESG (mobile only — scroll-snap + dots)
+function initProjectsCarousel() {
+  const grid = document.querySelector('.esg-projects-grid');
+  if (!grid) return;
+
+  const cards = [...grid.querySelectorAll('.esg-project-card')];
+  if (cards.length < 2) return;
+
+  const dotsEl = document.createElement('div');
+  dotsEl.className = 'esg-carousel-dots';
+  dotsEl.setAttribute('aria-hidden', 'true');
+
+  const dots = cards.map((card, i) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'esg-carousel-dot' + (i === 0 ? ' is-active' : '');
+    btn.setAttribute('aria-label', `Item ${i + 1}`);
+    btn.addEventListener('click', () => {
+      card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    });
+    dotsEl.appendChild(btn);
+    return btn;
+  });
+
+  grid.after(dotsEl);
+
+  grid.addEventListener('scroll', () => {
+    const maxScroll = grid.scrollWidth - grid.clientWidth;
+    const idx = maxScroll > 0
+      ? Math.round((grid.scrollLeft / maxScroll) * (cards.length - 1))
+      : 0;
+    dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+  }, { passive: true });
+}
+
+initProjectsCarousel();
+
 // Counter animation — ESG stats section
 function runCounter(el) {
   const target = parseFloat(el.dataset.target);

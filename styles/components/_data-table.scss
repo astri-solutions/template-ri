@@ -93,4 +93,22 @@
       background-color: var(--color-primary-500);
     }
   }
+
+  // ---------------------------------------------------------------------------
+  // Rodapé (linha de totais)
+  // ---------------------------------------------------------------------------
+  tfoot {
+    td {
+      padding: $spacing-4 $spacing-6;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-semibold;
+      color: var(--color-heading);
+      text-align: center;
+      vertical-align: middle;
+      background-color: var(--color-surface);
+      border-top: 2px solid var(--color-secondary-600);
+
+      &:first-child { text-align: left; }
+    }
+  }
 }

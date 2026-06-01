@@ -92,21 +92,45 @@
     gap: $spacing-4;
   }
 
-  &--employees {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: $spacing-5;
-    max-width: 640px;
-
+  // Exec level: always side-by-side, never stacks
+  &--exec {
     @include respond-down(desktop) {
-      grid-template-columns: repeat(2, 1fr);
-      width: 100%;
-      max-width: 420px;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: stretch;
+      gap: $spacing-5;
     }
 
     @include respond-down(tablet) {
-      grid-template-columns: 1fr;
-      max-width: 280px;
+      gap: $spacing-3;
+    }
+  }
+
+  // Employees: single horizontal scrollable row at all sizes
+  &--employees {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    gap: $spacing-3;
+    width: 100%;
+    max-width: none;
+    padding-bottom: $spacing-3;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+
+    &::-webkit-scrollbar { height: 4px; }
+    &::-webkit-scrollbar-track { background: transparent; }
+    &::-webkit-scrollbar-thumb {
+      background: var(--color-border);
+      border-radius: $radius-full;
+    }
+
+    // Override the column stacking from .org-level on mobile
+    @include respond-down(desktop) {
+      flex-direction: row;
+      align-items: stretch;
     }
   }
 }
@@ -158,19 +182,25 @@
     @include respond-down(desktop) { min-width: unset; width: 100%; max-width: 340px; }
   }
 
-  // Executivos (CFO, PMO)
+  // Executivos (CFO, PMO) — flex: 1 so they share width equally when side-by-side
   &--exec {
-    @include respond-down(desktop) { min-width: unset; width: 100%; max-width: 340px; }
+    @include respond-down(desktop) {
+      flex: 1;
+      min-width: 0;
+      width: auto;
+      max-width: none;
+    }
   }
 
-  // Colaboradores — card compacto e vertical
+  // Colaboradores — card compacto e vertical, largura fixa para scroll horizontal
   &--employee {
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: $spacing-3;
-    padding: $spacing-6 $spacing-4;
-    min-width: unset;
+    padding: $spacing-5 $spacing-3;
+    min-width: 0;
+    flex: 0 0 112px;
 
     .org-card__avatar {
       width: 44px;
@@ -235,22 +265,5 @@
 @include respond-down(desktop) {
   .org-level--exec .org-card {
     border-left: 3px solid var(--color-secondary);
-  }
-
-  .org-level--employees {
-    border-left: 3px solid var(--color-border);
-    padding-left: $spacing-4;
-    max-width: unset;
-    width: 100%;
-    grid-template-columns: repeat(2, 1fr);
-
-    @include respond-down(tablet) { grid-template-columns: 1fr; }
-
-    .org-card--employee {
-      flex-direction: row;
-      text-align: left;
-      align-items: center;
-      padding: $spacing-4 $spacing-5;
-    }
   }
 }

@@ -1,0 +1,163 @@
+@use '../abstracts' as *;
+
+// =============================================================================
+// LEGAL — Política de Privacidade, Termos e Condições, Definição de Cookies
+// =============================================================================
+
+.legal-body {
+  max-width: 760px;
+}
+
+.legal-content {
+
+  // ---------------------------------------------------------------------------
+  // Headings
+  // ---------------------------------------------------------------------------
+
+  h2 {
+    font-family: $font-family-display;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    color: var(--color-heading);
+    line-height: $line-height-snug;
+    margin-top: $spacing-12;
+    margin-bottom: $spacing-4;
+    padding-bottom: $spacing-3;
+    border-bottom: 2px solid var(--color-primary);
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Body text
+  // ---------------------------------------------------------------------------
+
+  p {
+    font-size: $font-size-sm;
+    color: var(--color-text-muted);
+    line-height: $line-height-loose;
+    margin-top: 0;
+    margin-bottom: $spacing-4;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Lists
+  // ---------------------------------------------------------------------------
+
+  ul,
+  ol {
+    font-size: $font-size-sm;
+    color: var(--color-text-muted);
+    line-height: $line-height-loose;
+    padding-left: $spacing-6;
+    margin-bottom: $spacing-4;
+
+    li {
+      margin-bottom: $spacing-2;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  ul {
+    list-style: disc;
+  }
+
+  ol {
+    list-style: decimal;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Links
+  // ---------------------------------------------------------------------------
+
+  a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color $transition-fast;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--color-primary-hover);
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Strong
+  // ---------------------------------------------------------------------------
+
+  strong {
+    font-weight: $font-weight-semibold;
+    color: var(--color-text);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Tables
+  // ---------------------------------------------------------------------------
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: $font-size-sm;
+    color: var(--color-text-muted);
+    margin-bottom: $spacing-6;
+    line-height: $line-height-normal;
+
+    thead {
+      background-color: var(--color-surface);
+
+      th {
+        font-weight: $font-weight-semibold;
+        color: var(--color-text);
+        text-align: left;
+        padding: $spacing-3 $spacing-4;
+        border: 1px solid var(--color-border);
+        font-size: $font-size-sm;
+      }
+    }
+
+    tbody {
+      tr {
+        &:nth-child(even) {
+          background-color: var(--color-surface);
+        }
+
+        &:hover {
+          background-color: var(--color-tertiary-subtle, #{$color-tertiary-subtle});
+        }
+      }
+
+      td {
+        padding: $spacing-3 $spacing-4;
+        border: 1px solid var(--color-border);
+        vertical-align: top;
+      }
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Responsive adjustments
+  // ---------------------------------------------------------------------------
+
+  @include respond-down(tablet) {
+    h2 {
+      font-size: $font-size-lg;
+      margin-top: $spacing-8;
+    }
+
+    table {
+      display: block;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+}

@@ -1,0 +1,294 @@
+@use '../abstracts' as *;
+
+// =============================================================================
+// PÁGINA: COMO INVESTIR
+// =============================================================================
+
+// ── Seção de passos ──────────────────────────────────────────────────────────
+
+.ci-steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: $spacing-6;
+  margin-top: $spacing-10;
+
+  @include respond-down(desktop) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-5;
+  }
+
+  @include respond-down(tablet) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ci-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
+  padding: $spacing-6;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: $radius-xl;
+  transition: box-shadow $transition-base, transform $transition-base;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateY(-2px);
+  }
+
+  &__number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: $radius-full;
+    background-color: var(--color-primary);
+    color: var(--color-gray-950);
+    font-family: $font-family-display;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    flex-shrink: 0;
+  }
+
+  &__icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $radius-lg;
+    background-color: var(--color-secondary-100);
+    color: var(--color-secondary-600);
+
+    svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+    }
+  }
+
+  &__title {
+    font-family: $font-family-display;
+    font-size: $font-size-md;
+    font-weight: $font-weight-semibold;
+    color: var(--color-heading);
+    line-height: $line-height-snug;
+    margin: 0;
+  }
+
+  &__body {
+    font-size: $font-size-sm;
+    color: var(--color-text-muted);
+    line-height: $line-height-loose;
+    margin: 0;
+    flex: 1;
+  }
+
+  // Conector visual entre passos no desktop
+  &:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 30px;
+    right: calc(-#{$spacing-6} / 2 - 1px);
+    width: $spacing-6;
+    height: 2px;
+    background: linear-gradient(to right, var(--color-primary), var(--color-secondary-300));
+    z-index: 1;
+
+    @include respond-down(desktop) {
+      display: none;
+    }
+  }
+}
+
+// ── Seção de papéis ──────────────────────────────────────────────────────────
+
+.ci-section-title {
+  font-family: $font-family-display;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: var(--color-heading);
+  margin: 0 0 $spacing-2;
+
+  @include respond-down(tablet) {
+    font-size: $font-size-xl;
+  }
+}
+
+.ci-section-lead {
+  font-size: $font-size-md;
+  color: var(--color-text-muted);
+  line-height: $line-height-relaxed;
+  margin: 0 0 $spacing-8;
+  max-width: 640px;
+}
+
+.ci-papers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-6;
+
+  @include respond-down(tablet) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ci-paper {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-5;
+  padding: $spacing-8;
+  border-radius: $radius-xl;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+
+  &--on { border-top: 4px solid var(--color-primary); }
+  &--pn { border-top: 4px solid var(--color-secondary-500); }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-2;
+    padding: $spacing-1 $spacing-3;
+    border-radius: $radius-full;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    letter-spacing: $letter-spacing-wide;
+    width: fit-content;
+
+    .ci-paper--on & {
+      background-color: var(--color-primary-subtle, #{$color-primary-subtle});
+      color: var(--color-primary-700, #{$color-primary-light-700});
+    }
+
+    .ci-paper--pn & {
+      background-color: var(--color-secondary-100);
+      color: var(--color-secondary-700);
+    }
+  }
+
+  &__ticker {
+    font-family: $font-family-display;
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-black;
+    color: var(--color-heading);
+    margin: 0;
+    letter-spacing: $letter-spacing-tight;
+  }
+
+  &__type {
+    font-size: $font-size-sm;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  &__price-row {
+    display: flex;
+    align-items: baseline;
+    gap: $spacing-3;
+  }
+
+  &__price {
+    font-family: $font-family-display;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: var(--color-heading);
+  }
+
+  &__change {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    padding: $spacing-1 $spacing-2;
+    border-radius: $radius-sm;
+
+    &--up   { background: rgba(0, 199, 90, 0.1); color: #009f3b; }
+    &--down { background: rgba(220, 53, 69, 0.1); color: #b02a37; }
+  }
+
+  &__divider {
+    height: 1px;
+    background-color: var(--color-divider);
+    margin: 0;
+  }
+
+  &__attrs {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-3;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__attr {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: $font-size-sm;
+
+    dt { color: var(--color-text-muted); }
+    dd { font-weight: $font-weight-medium; color: var(--color-text); margin: 0; }
+  }
+}
+
+// ── FAQ ───────────────────────────────────────────────────────────────────────
+
+.ci-faq {
+  margin-top: $spacing-10;
+}
+
+// ── CTA ───────────────────────────────────────────────────────────────────────
+
+.ci-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: $spacing-5;
+  padding: $spacing-16 $spacing-8;
+  background-color: var(--color-surface);
+  border-radius: $radius-2xl;
+  border: 1px solid var(--color-border);
+
+  &__eyebrow {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    letter-spacing: $letter-spacing-wider;
+    text-transform: uppercase;
+    color: var(--color-secondary-500);
+  }
+
+  &__title {
+    font-family: $font-family-display;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: var(--color-heading);
+    margin: 0;
+    max-width: 480px;
+
+    @include respond-down(tablet) {
+      font-size: $font-size-xl;
+    }
+  }
+
+  &__body {
+    font-size: $font-size-md;
+    color: var(--color-text-muted);
+    line-height: $line-height-relaxed;
+    margin: 0;
+    max-width: 480px;
+  }
+
+  &__actions {
+    display: flex;
+    gap: $spacing-4;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: $spacing-2;
+  }
+}

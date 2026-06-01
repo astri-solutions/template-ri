@@ -1,0 +1,366 @@
+@use '../abstracts' as *;
+
+// =============================================================================
+// PÁGINA: SUSTENTABILIDADE CORPORATIVA
+// =============================================================================
+
+// ── Badge ESG (E / S / G) ────────────────────────────────────────────────────
+
+.esg-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-2;
+  padding: $spacing-1 $spacing-3;
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  letter-spacing: $letter-spacing-wider;
+  text-transform: uppercase;
+
+  &--e {
+    background-color: color-mix(in srgb, var(--color-primary) 12%, transparent);
+    color: var(--color-primary-700, #{$color-primary-light-700});
+  }
+
+  &--s {
+    background-color: var(--color-secondary-100);
+    color: var(--color-secondary-700);
+  }
+
+  &--g {
+    background-color: rgba(124, 92, 222, 0.12);
+    color: #5b3fc4;
+  }
+}
+
+// ── Seção de stats com fundo customizado ─────────────────────────────────────
+
+.esg-stats {
+  position: relative;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  @include respond-down(desktop) { min-height: 420px; }
+  @include respond-down(tablet)  { min-height: 0; }
+}
+
+.esg-stats__bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.28) saturate(0.7);
+  transform: scale(1.06);
+  transition: transform 10s ease;
+  will-change: transform;
+
+  .esg-stats:hover & { transform: scale(1); }
+}
+
+.esg-stats__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 60, 30, 0.55) 0%,
+    rgba(0, 20, 50, 0.35) 100%
+  );
+}
+
+.esg-stats__inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: $spacing-20 8%;
+  text-align: center;
+
+  @include respond-down(tablet) { padding: $spacing-14 5%; }
+}
+
+.esg-stats__eyebrow {
+  display: block;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  letter-spacing: $letter-spacing-wider;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: $spacing-2;
+}
+
+.esg-stats__title {
+  font-family: $font-family-display;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: #fff;
+  margin: 0 0 $spacing-10;
+  line-height: $line-height-snug;
+
+  @include respond-down(tablet) { font-size: $font-size-xl; }
+}
+
+.esg-stats__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $spacing-6;
+
+  @include respond-down(desktop) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-8;
+  }
+
+  @include respond-down(tablet) {
+    grid-template-columns: 1fr;
+    gap: $spacing-4;
+  }
+}
+
+// ── Banner de pilar com gradiente ─────────────────────────────────────────────
+
+.esg-pillar-band {
+  position: relative;
+  overflow: hidden;
+  border-radius: $radius-2xl;
+  min-height: 260px;
+  display: flex;
+  align-items: flex-end;
+  padding: $spacing-10;
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 600ms ease;
+    will-change: transform;
+  }
+
+  &:hover .esg-pillar-band__bg { transform: scale(1.04); }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.1) 60%);
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-2;
+  }
+
+  &__label {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    letter-spacing: $letter-spacing-wider;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  &__title {
+    font-family: $font-family-display;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: #fff;
+    line-height: $line-height-snug;
+    margin: 0;
+  }
+}
+
+// ── Grid de projetos 3 colunas ────────────────────────────────────────────────
+
+.esg-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-6;
+
+  @include respond-down(desktop) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-down(tablet) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.esg-project-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: $radius-xl;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+  overflow: hidden;
+  transition: box-shadow $transition-base, transform $transition-base;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateY(-3px);
+  }
+
+  &__img-wrap {
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    flex-shrink: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 600ms ease;
+    }
+  }
+
+  &:hover &__img-wrap img { transform: scale(1.05); }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-3;
+    padding: $spacing-5 $spacing-5 $spacing-6;
+    flex: 1;
+  }
+
+  &__title {
+    font-family: $font-family-display;
+    font-size: $font-size-md;
+    font-weight: $font-weight-semibold;
+    color: var(--color-heading);
+    line-height: $line-height-snug;
+    margin: 0;
+  }
+
+  &__desc {
+    font-size: $font-size-sm;
+    color: var(--color-text-muted);
+    line-height: $line-height-loose;
+    margin: 0;
+    flex: 1;
+  }
+}
+
+// ── Faixa de relatórios ───────────────────────────────────────────────────────
+
+.esg-reports-band {
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.esg-reports-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $spacing-5;
+  margin-top: $spacing-8;
+
+  @include respond-down(desktop) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-down(tablet) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.esg-report-card {
+  display: flex;
+  align-items: center;
+  gap: $spacing-4;
+  padding: $spacing-5;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: $radius-xl;
+  text-decoration: none;
+  transition: box-shadow $transition-base, border-color $transition-base;
+
+  &:hover {
+    box-shadow: $shadow-sm;
+    border-color: var(--color-secondary-300);
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: $radius-lg;
+    background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+
+    svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+    }
+  }
+
+  &__info {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-1;
+  }
+
+  &__name {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: var(--color-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__meta {
+    font-size: $font-size-xs;
+    color: var(--color-text-muted);
+  }
+
+  &__dl {
+    flex-shrink: 0;
+    margin-left: auto;
+    color: var(--color-secondary-500);
+    width: 18px;
+    height: 18px;
+
+    svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+  }
+}
+
+// ── Bloco de seção com intro centrado ─────────────────────────────────────────
+
+.esg-section-intro {
+  max-width: 680px;
+  margin: 0 auto $spacing-12;
+  text-align: center;
+
+  h2 {
+    font-family: $font-family-display;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: var(--color-heading);
+    margin-bottom: $spacing-4;
+    line-height: $line-height-snug;
+
+    @include respond-down(tablet) { font-size: $font-size-xl; }
+  }
+
+  p {
+    color: var(--color-text-muted);
+    line-height: $line-height-loose;
+    font-size: $font-size-md;
+  }
+}

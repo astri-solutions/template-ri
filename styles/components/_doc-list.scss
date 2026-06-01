@@ -159,6 +159,14 @@
   }
 }
 
+// ---- Estado vazio
+.doc-list__empty {
+  padding: $spacing-10 0;
+  text-align: center;
+  font-size: $font-size-sm;
+  color: var(--color-text-muted);
+}
+
 // ---- Cabeçalho de grupo de documentos (ex.: "2024", "Documentos Legais")
 .doc-list-group {
   & + & { margin-top: $spacing-8; }

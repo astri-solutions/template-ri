@@ -2,10 +2,13 @@
 // TOPBAR — Tickers · Acessibilidade · Idioma
 // =============================================================================
 
+import { initCookieBanner } from './cookie-banner.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   initTickers();
   initA11y();
   initLang();
+  initCookieBanner();
 });
 
 // ---------------------------------------------------------------------------

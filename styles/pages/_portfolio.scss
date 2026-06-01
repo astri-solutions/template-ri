@@ -1,0 +1,348 @@
+@use '../abstracts' as *;
+
+// =============================================================================
+// PÁGINA: PORTFÓLIO — Sites de RI para companhias listadas
+// =============================================================================
+
+// ── Stats com fundo escuro (reaproveita padrão de overview-stats) ─────────────
+
+.pf-stats {
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  @include respond-down(desktop) { min-height: 360px; }
+  @include respond-down(tablet)  { min-height: 0; }
+}
+
+.pf-stats__bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.28) saturate(0.6);
+  transform: scale(1.06);
+  transition: transform 10s ease;
+  will-change: transform;
+
+  .pf-stats:hover & { transform: scale(1); }
+}
+
+.pf-stats__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(11, 91, 104, 0.55) 0%, rgba(0, 15, 40, 0.35) 100%);
+}
+
+.pf-stats__inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: $spacing-16 8%;
+  text-align: center;
+
+  @include respond-down(tablet) { padding: $spacing-12 5%; }
+}
+
+.pf-stats__eyebrow {
+  display: block;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  letter-spacing: $letter-spacing-wider;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: $spacing-8;
+}
+
+.pf-stats__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $spacing-6;
+
+  @include respond-down(desktop) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-8;
+  }
+
+  @include respond-down(tablet) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-4;
+  }
+}
+
+.pf-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-2;
+  padding: $spacing-8 $spacing-5;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: $radius-xl;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background $transition-base, border-color $transition-base, transform $transition-base;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.28);
+    transform: translateY(-3px);
+  }
+
+  @include respond-down(tablet) { &:hover { transform: none; } }
+
+  &__value {
+    font-family: $font-family-display;
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-bold;
+    color: #fff;
+    line-height: 1;
+
+    @include respond-down(desktop) { font-size: $font-size-3xl; }
+    @include respond-down(tablet)  { font-size: $font-size-2xl; }
+  }
+
+  &__label {
+    font-size: $font-size-sm;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    line-height: $line-height-snug;
+    max-width: 120px;
+  }
+}
+
+// ── Filtro de setor ───────────────────────────────────────────────────────────
+
+.pf-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-2;
+  margin-bottom: $spacing-8;
+}
+
+.pf-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: $spacing-2 $spacing-4;
+  border-radius: $radius-full;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: background $transition-fast, border-color $transition-fast, color $transition-fast;
+
+  &:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  &.is-active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-gray-950);
+    font-weight: $font-weight-semibold;
+  }
+}
+
+// ── Grid de projetos ──────────────────────────────────────────────────────────
+
+.pf-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-6;
+
+  @include respond-down(desktop) { grid-template-columns: repeat(2, 1fr); }
+  @include respond-down(tablet)  { grid-template-columns: 1fr; }
+}
+
+.pf-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: $radius-xl;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  overflow: hidden;
+  transition: box-shadow $transition-base, transform $transition-base;
+  text-decoration: none;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateY(-3px);
+  }
+
+  &[hidden] { display: none; }
+
+  &__img-wrap {
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 600ms ease;
+    }
+  }
+
+  &:hover &__img-wrap img { transform: scale(1.04); }
+
+  &__body {
+    padding: $spacing-5 $spacing-6 $spacing-6;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-3;
+    flex: 1;
+  }
+
+  &__name {
+    font-family: $font-family-display;
+    font-size: $font-size-md;
+    font-weight: $font-weight-semibold;
+    color: var(--color-heading);
+    margin: 0;
+  }
+
+  &__desc {
+    font-size: $font-size-sm;
+    color: var(--color-text-muted);
+    line-height: $line-height-loose;
+    flex: 1;
+    margin: 0;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-2;
+    margin-top: $spacing-1;
+  }
+}
+
+.pf-tag {
+  display: inline-flex;
+  padding: $spacing-1 $spacing-2;
+  border-radius: $radius-sm;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+// ── Badge de setor ────────────────────────────────────────────────────────────
+
+.sector-badge {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  padding: $spacing-1 $spacing-3;
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  letter-spacing: $letter-spacing-wider;
+  text-transform: uppercase;
+
+  &--energia     { background: rgba(255, 160, 0, 0.12); color: #b45309; }
+  &--agro        { background: rgba(76, 175, 80, 0.12); color: #2e7d32; }
+  &--financeiro  { background: color-mix(in srgb, var(--color-primary) 12%, transparent); color: var(--color-primary); }
+  &--varejo      { background: rgba(220, 53, 69, 0.1); color: #b02a37; }
+  &--saude       { background: rgba(0, 188, 212, 0.1); color: #006064; }
+  &--tecnologia  { background: rgba(124, 92, 222, 0.12); color: #5b3fc4; }
+  &--infra       { background: color-mix(in srgb, var(--color-secondary) 12%, transparent); color: var(--color-secondary-700); }
+  &--mineracao   { background: rgba(158, 158, 158, 0.15); color: #455a64; }
+  &--logistica   { background: rgba(255, 87, 34, 0.1); color: #bf360c; }
+}
+
+// ── Diferenciais ──────────────────────────────────────────────────────────────
+
+.pf-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-6;
+
+  @include respond-down(desktop) { grid-template-columns: repeat(2, 1fr); }
+  @include respond-down(tablet)  { grid-template-columns: 1fr; }
+}
+
+.pf-feature {
+  padding: $spacing-8;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: $radius-xl;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
+  transition: box-shadow $transition-base, transform $transition-base;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateY(-2px);
+  }
+
+  &__icon {
+    width: 48px;
+    height: 48px;
+    border-radius: $radius-lg;
+    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--color-primary);
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+  }
+
+  &__title {
+    font-family: $font-family-display;
+    font-size: $font-size-md;
+    font-weight: $font-weight-semibold;
+    color: var(--color-heading);
+  }
+
+  &__desc {
+    font-size: $font-size-sm;
+    color: var(--color-text-muted);
+    line-height: $line-height-loose;
+    flex: 1;
+  }
+}
+
+// ── Intro de seção centrado ───────────────────────────────────────────────────
+
+.pf-section-intro {
+  max-width: 640px;
+  margin: 0 auto $spacing-12;
+  text-align: center;
+
+  h2 {
+    font-family: $font-family-display;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: var(--color-heading);
+    margin-bottom: $spacing-4;
+    line-height: $line-height-snug;
+
+    @include respond-down(tablet) { font-size: $font-size-xl; }
+  }
+
+  p {
+    color: var(--color-text-muted);
+    line-height: $line-height-loose;
+    font-size: $font-size-md;
+  }
+}

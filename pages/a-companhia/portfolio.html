@@ -218,13 +218,305 @@
             <li aria-current="page">Portfólio</li>
           </ol>
           <h1 id="page-title" class="page-header__title">Portfólio</h1>
-          <p class="page-header__lede">Produtos e serviços que compõem nossa oferta de valor.</p>
+          <p class="page-header__lede">Sites de Relações com Investidores para companhias abertas listadas na B3.</p>
         </div>
       </section>
 
+      <!-- ── Intro show-grid ── -->
       <section class="page-section">
         <div class="page-section__container">
-          <!-- Grid de cards: cada card com imagem, título, descrição e link para página interna -->
+          <div class="show-grid" data-reveal>
+            <div class="show-grid__text">
+              <span class="show-grid__eyebrow">Plataforma RI</span>
+              <h2 class="show-grid__title">Soluções digitais para companhias abertas</h2>
+              <div class="show-grid__body">
+                <p>A Astri Solutions desenvolve plataformas de Relações com Investidores (RI) para companhias listadas na B3, desde small caps até large caps. Cada projeto entrega uma presença digital moderna, acessível e 100% aderente às exigências regulatórias da CVM.</p>
+                <p>Nossas plataformas integram cotações em tempo real, publicação automatizada de documentos CVM, calendário de eventos interativo e portal ESG — tudo em um único ambiente gerenciável pelo próprio time de RI.</p>
+              </div>
+              <ul class="show-grid__highlights">
+                <li>Compliance integral com a Resolução CVM nº 80/2022</li>
+                <li>Integração nativa com a API de dados da B3</li>
+                <li>Painel administrativo sem necessidade de desenvolvedor</li>
+                <li>Design acessível (WCAG AA) e responsivo em todos os dispositivos</li>
+                <li>Suporte dedicado e SLA de 99,9% de disponibilidade</li>
+              </ul>
+              <div class="show-grid__cta">
+                <a href="/pages/contato/fale-com-ri.html" class="btn btn--primary">Solicitar proposta</a>
+              </div>
+            </div>
+            <div class="show-grid__image">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Interface de plataforma de RI em dashboard" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Stats ── -->
+      <section class="pf-stats" aria-label="Números da Astri Solutions">
+        <div class="pf-stats__bg" aria-hidden="true"></div>
+        <div class="pf-stats__overlay" aria-hidden="true"></div>
+        <div class="pf-stats__inner">
+          <span class="pf-stats__eyebrow">Resultados que falam por si</span>
+          <div class="pf-stats__grid">
+            <div class="pf-stat">
+              <span class="pf-stat__value">40+</span>
+              <span class="pf-stat__label">Companhias abertas atendidas</span>
+            </div>
+            <div class="pf-stat">
+              <span class="pf-stat__value">12</span>
+              <span class="pf-stat__label">Setores da economia brasileira</span>
+            </div>
+            <div class="pf-stat">
+              <span class="pf-stat__value">R$ 1 tri</span>
+              <span class="pf-stat__label">Em valor de mercado representado</span>
+            </div>
+            <div class="pf-stat">
+              <span class="pf-stat__value">8 anos</span>
+              <span class="pf-stat__label">De experiência em plataformas RI</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Projetos ── -->
+      <section class="page-section">
+        <div class="page-section__container">
+
+          <div class="pf-section-intro" data-reveal>
+            <h2>Projetos em destaque</h2>
+            <p>Conheça algumas das companhias abertas que confiam na Astri Solutions para sua presença digital junto a investidores e ao mercado de capitais.</p>
+          </div>
+
+          <div class="pf-filter" role="group" aria-label="Filtrar por setor" data-pf-filter>
+            <button class="pf-filter-btn is-active" type="button" data-sector="todos">Todos</button>
+            <button class="pf-filter-btn" type="button" data-sector="energia">Energia</button>
+            <button class="pf-filter-btn" type="button" data-sector="agro">Agro</button>
+            <button class="pf-filter-btn" type="button" data-sector="financeiro">Financeiro</button>
+            <button class="pf-filter-btn" type="button" data-sector="varejo">Varejo</button>
+            <button class="pf-filter-btn" type="button" data-sector="saude">Saúde</button>
+            <button class="pf-filter-btn" type="button" data-sector="tecnologia">Tecnologia</button>
+            <button class="pf-filter-btn" type="button" data-sector="infra">Infraestrutura</button>
+          </div>
+
+          <div class="pf-grid" data-pf-grid>
+
+            <article class="pf-card" data-reveal data-sector="energia">
+              <div class="pf-card__img-wrap">
+                <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=800&q=80" alt="Energon S.A." loading="lazy" />
+              </div>
+              <div class="pf-card__body">
+                <span class="sector-badge sector-badge--energia">Energia</span>
+                <h3 class="pf-card__name">Energon S.A.</h3>
+                <p class="pf-card__desc">Plataforma RI completa para geradora e distribuidora de energia elétrica com R$ 18 bi em valor de mercado. Integração em tempo real com B3, portal ESG e área de documentos CVM.</p>
+                <div class="pf-card__tags">
+                  <span class="pf-tag">Site RI</span>
+                  <span class="pf-tag">Portal ESG</span>
+                  <span class="pf-tag">Docs CVM</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="pf-card" data-reveal data-sector="agro">
+              <div class="pf-card__img-wrap">
+                <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=800&q=80" alt="AgroVerde Alimentos S.A." loading="lazy" />
+              </div>
+              <div class="pf-card__body">
+                <span class="sector-badge sector-badge--agro">Agro</span>
+                <h3 class="pf-card__name">AgroVerde Alimentos S.A.</h3>
+                <p class="pf-card__desc">Site de RI bilíngue (PT/EN) para processadora de proteínas com ADRs negociados em Nova York. Calendário de earnings, fato relevante e transmissão ao vivo de conference calls.</p>
+                <div class="pf-card__tags">
+                  <span class="pf-tag">Site RI</span>
+                  <span class="pf-tag">Bilíngue</span>
+                  <span class="pf-tag">Earnings</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="pf-card" data-reveal data-sector="financeiro">
+              <div class="pf-card__img-wrap">
+                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80" alt="BrasFin S.A." loading="lazy" />
+              </div>
+              <div class="pf-card__body">
+                <span class="sector-badge sector-badge--financeiro">Financeiro</span>
+                <h3 class="pf-card__name">BrasFin S.A.</h3>
+                <p class="pf-card__desc">Plataforma RI para holding financeira com três subsidiárias listadas. CMS unificado para gestão de conteúdo, composição acionária dinâmica e calculadora de performance de ações.</p>
+                <div class="pf-card__tags">
+                  <span class="pf-tag">Plataforma Completa</span>
+                  <span class="pf-tag">CMS</span>
+                  <span class="pf-tag">API B3</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="pf-card" data-reveal data-sector="varejo">
+              <div class="pf-card__img-wrap">
+                <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=800&q=80" alt="RioVarejo Retail S.A." loading="lazy" />
+              </div>
+              <div class="pf-card__body">
+                <span class="sector-badge sector-badge--varejo">Varejo</span>
+                <h3 class="pf-card__name">RioVarejo Retail S.A.</h3>
+                <p class="pf-card__desc">Redesign completo de plataforma RI para varejista com 900 lojas no Brasil. Novo portal de documentos, mailing automatizado de fatos relevantes e mapa de cobertura de analistas.</p>
+                <div class="pf-card__tags">
+                  <span class="pf-tag">Redesign</span>
+                  <span class="pf-tag">Mailing</span>
+                  <span class="pf-tag">Analistas</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="pf-card" data-reveal data-sector="saude">
+              <div class="pf-card__img-wrap">
+                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80" alt="HealthBrasil S.A." loading="lazy" />
+              </div>
+              <div class="pf-card__body">
+                <span class="sector-badge sector-badge--saude">Saúde</span>
+                <h3 class="pf-card__name">HealthBrasil S.A.</h3>
+                <p class="pf-card__desc">Plataforma RI com foco em ESG para operadora de saúde. Relatório de sustentabilidade integrado, dashboard de indicadores socioambientais e seção de governança corporativa.</p>
+                <div class="pf-card__tags">
+                  <span class="pf-tag">Site RI</span>
+                  <span class="pf-tag">ESG Dashboard</span>
+                  <span class="pf-tag">Governança</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="pf-card" data-reveal data-sector="tecnologia">
+              <div class="pf-card__img-wrap">
+                <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=800&q=80" alt="TechBR Software S.A." loading="lazy" />
+              </div>
+              <div class="pf-card__body">
+                <span class="sector-badge sector-badge--tecnologia">Tecnologia</span>
+                <h3 class="pf-card__name">TechBR Software S.A.</h3>
+                <p class="pf-card__desc">Plataforma headless RI com API pública para integração com sistemas internos. Destaque para o modelo de dados abertos, permitindo que analistas e fundos consumam informações estruturadas via JSON.</p>
+                <div class="pf-card__tags">
+                  <span class="pf-tag">Headless</span>
+                  <span class="pf-tag">API Pública</span>
+                  <span class="pf-tag">Dados Abertos</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="pf-card" data-reveal data-sector="infra">
+              <div class="pf-card__img-wrap">
+                <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=800&q=80" alt="Infravia Concessões S.A." loading="lazy" />
+              </div>
+              <div class="pf-card__body">
+                <span class="sector-badge sector-badge--infra">Infraestrutura</span>
+                <h3 class="pf-card__name">Infravia Concessões S.A.</h3>
+                <p class="pf-card__desc">Site RI para concessionária de rodovias e aeroportos. Seção de debenturistas, agenda de pagamentos, índice de desempenho operacional e central de apresentações institucionais.</p>
+                <div class="pf-card__tags">
+                  <span class="pf-tag">Site RI</span>
+                  <span class="pf-tag">Debenturistas</span>
+                  <span class="pf-tag">Apresentações</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="pf-card" data-reveal data-sector="energia">
+              <div class="pf-card__img-wrap">
+                <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=800&q=80" alt="MineralBrasil S.A." loading="lazy" />
+              </div>
+              <div class="pf-card__body">
+                <span class="sector-badge sector-badge--mineracao">Mineração</span>
+                <h3 class="pf-card__name">MineralBrasil S.A.</h3>
+                <p class="pf-card__desc">Plataforma RI trilingue (PT/EN/ES) para mineradora com operações na América Latina. Destaque para a seção de relatórios de recursos e reservas e o painel de emissões de carbono por mina.</p>
+                <div class="pf-card__tags">
+                  <span class="pf-tag">Trilingue</span>
+                  <span class="pf-tag">Carbon Tracker</span>
+                  <span class="pf-tag">Docs CVM</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="pf-card" data-reveal data-sector="infra">
+              <div class="pf-card__img-wrap">
+                <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80" alt="LogisBrasil S.A." loading="lazy" />
+              </div>
+              <div class="pf-card__body">
+                <span class="sector-badge sector-badge--logistica">Logística</span>
+                <h3 class="pf-card__name">LogisBrasil S.A.</h3>
+                <p class="pf-card__desc">Plataforma RI com mapa interativo de cobertura logística, rastreamento de KPIs operacionais e área exclusiva para debenturistas. Migração completa de sistema legado para nova arquitetura.</p>
+                <div class="pf-card__tags">
+                  <span class="pf-tag">Migração</span>
+                  <span class="pf-tag">KPI Dashboard</span>
+                  <span class="pf-tag">Mapa Interativo</span>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Diferenciais ── -->
+      <section class="page-section" style="background: var(--color-surface);">
+        <div class="page-section__container">
+
+          <div class="pf-section-intro" data-reveal>
+            <h2>Por que escolher a Astri?</h2>
+            <p>Combinamos profundo conhecimento do mercado de capitais brasileiro com tecnologia de ponta para entregar plataformas RI que atendem as mais altas exigências regulatórias e de experiência do usuário.</p>
+          </div>
+
+          <div class="pf-features">
+            <div class="pf-feature" data-reveal>
+              <div class="pf-feature__icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12l2 2 4-4"/><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+              </div>
+              <h3 class="pf-feature__title">Compliance CVM Nativo</h3>
+              <p class="pf-feature__desc">Estrutura de conteúdo 100% aderente à Resolução CVM nº 80/2022 e às melhores práticas do IBRACON e do IBGC. Atualizações regulatórias aplicadas automaticamente em todas as plataformas.</p>
+            </div>
+            <div class="pf-feature" data-reveal>
+              <div class="pf-feature__icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <h3 class="pf-feature__title">Integração B3 em Tempo Real</h3>
+              <p class="pf-feature__desc">Cotações, variações, volume e histórico de preços consumidos diretamente da API oficial da B3. Fatos relevantes e comunicados ao mercado publicados automaticamente assim que protocolados.</p>
+            </div>
+            <div class="pf-feature" data-reveal>
+              <div class="pf-feature__icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+              </div>
+              <h3 class="pf-feature__title">Design Acessível e Premiado</h3>
+              <p class="pf-feature__desc">Interface projetada seguindo WCAG 2.1 AA, com score de acessibilidade acima de 95 no Lighthouse. Três projetos vencedores do prêmio IBRI de Melhor Site de RI nas categorias Small, Mid e Large Caps.</p>
+            </div>
+            <div class="pf-feature" data-reveal>
+              <div class="pf-feature__icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              </div>
+              <h3 class="pf-feature__title">CMS sem Código</h3>
+              <p class="pf-feature__desc">Painel administrativo intuitivo que permite ao time de RI publicar documentos, atualizar conteúdo e gerenciar o mailing de investidores sem depender de TI ou desenvolvedor externo.</p>
+            </div>
+            <div class="pf-feature" data-reveal>
+              <div class="pf-feature__icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <h3 class="pf-feature__title">Segurança e Disponibilidade</h3>
+              <p class="pf-feature__desc">Hospedagem em infraestrutura multi-região com SLA de 99,9% de uptime. Certificado SSL, proteção DDoS, backups automáticos e monitoramento 24/7 por nossa equipe de operações.</p>
+            </div>
+            <div class="pf-feature" data-reveal>
+              <div class="pf-feature__icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <h3 class="pf-feature__title">Suporte Dedicado</h3>
+              <p class="pf-feature__desc">Gerente de conta exclusivo, canal de suporte com SLA de 4 horas para prioridade alta e treinamento contínuo para o time de RI. Presença nos principais eventos do setor para atualizações e benchmarking.</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── CTA ── -->
+      <section class="page-section">
+        <div class="page-section__container">
+          <div class="ci-cta" data-reveal>
+            <span class="ci-cta__eyebrow">Pronto para começar?</span>
+            <h2 class="ci-cta__title">Modernize sua plataforma de Relações com Investidores</h2>
+            <p class="ci-cta__body">Agende uma demonstração gratuita e veja como a Astri Solutions pode transformar a presença digital da sua companhia aberta junto ao mercado de capitais.</p>
+            <div class="ci-cta__actions">
+              <a href="/pages/contato/fale-com-ri.html" class="btn btn--secondary btn--lg">Solicitar demonstração</a>
+              <a href="/pages/contato/fale-com-ri.html" class="btn btn--outline btn--lg">Fale com nosso time</a>
+            </div>
+          </div>
         </div>
       </section>
     </main>
@@ -362,6 +654,6 @@
       </div>
     </div>
 
-    <script type="module" src="/scripts/page.js"></script>
+    <script type="module" src="/scripts/portfolio.js"></script>
   </body>
 </html>

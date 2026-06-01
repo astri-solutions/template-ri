@@ -18,14 +18,23 @@
   border-bottom: 1px solid var(--color-divider);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 
-  @include respond-up(large)   { padding-inline: 15%; }
-  @include respond-down(tablet) { padding: $spacing-2 5%; }
+  @include respond-up(large) { padding-inline: 15%; }
+
+  @include respond-down(tablet) {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: $spacing-2 5%;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+  }
 }
 
 .gloss-nav__btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   width: 34px;
   height: 34px;
   border-radius: $radius-md;

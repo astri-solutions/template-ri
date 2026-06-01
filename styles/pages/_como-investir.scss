@@ -4,6 +4,18 @@
 // PÁGINA: COMO INVESTIR
 // =============================================================================
 
+// ── Espaçamento reduzido para seção de papéis ────────────────────────────────
+
+.ci-section--compact {
+  margin-top: $spacing-10;
+  margin-bottom: $spacing-10;
+
+  @include respond-up(desktop) {
+    margin-top: $spacing-16;
+    margin-bottom: $spacing-16;
+  }
+}
+
 // ── Seção de passos ──────────────────────────────────────────────────────────
 
 .ci-steps {

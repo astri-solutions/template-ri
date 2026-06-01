@@ -93,8 +93,16 @@
 }
 
 // ---- Section principal de conteúdo
+// Usa padding (não margin) para que o background-color da seção cubra o espaço
+// vertical corretamente sem deixar o conteúdo colado nas bordas.
 .page-section {
-  @include section;
+  padding-top: $spacing-16;
+  padding-bottom: $spacing-16;
+
+  @include respond-up(desktop) {
+    padding-top: $spacing-20;
+    padding-bottom: $spacing-20;
+  }
 
   &__container { @include container; }
 }

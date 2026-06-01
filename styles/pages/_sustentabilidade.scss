@@ -183,8 +183,52 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  // Mobile: carrosel com scroll-snap
   @include respond-down(tablet) {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    gap: $spacing-4;
+    padding-bottom: $spacing-3;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar { display: none; }
+
+    .esg-project-card {
+      flex: 0 0 85%;
+      scroll-snap-align: start;
+    }
+  }
+}
+
+// Indicadores de paginação do carrosel (visíveis apenas no mobile)
+.esg-carousel-dots {
+  display: none;
+
+  @include respond-down(tablet) {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-2;
+    margin-top: $spacing-5;
+  }
+}
+
+.esg-carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: $radius-full;
+  background: var(--color-border);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background $transition-fast, transform $transition-fast;
+
+  &.is-active {
+    background: var(--color-primary);
+    transform: scale(1.3);
   }
 }
 

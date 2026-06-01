@@ -224,8 +224,66 @@
 
       <section class="page-section">
         <div class="page-section__container">
-          <!-- Tabela de ratings: agência, nota, perspectiva, data de revisão -->
-          <!-- Tabela de cobertura: corretora, analista, recomendação, preço-alvo -->
+
+          <!-- ── Ratings de Crédito ── -->
+          <h2 class="rc-section-title">Ratings de Crédito</h2>
+          <p class="rc-section-desc">Classificações de risco de crédito atribuídas à companhia pelas principais agências internacionais.</p>
+
+          <div class="data-table">
+            <div class="data-table__scroller">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Agência</th>
+                    <th>Tipo</th>
+                    <th>Escala</th>
+                    <th class="mono">Rating</th>
+                    <th>Perspectiva</th>
+                    <th class="mono">Revisão</th>
+                  </tr>
+                </thead>
+                <tbody data-rc-ratings></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- ── Cobertura de Analistas ── -->
+          <h2 class="rc-section-title">Cobertura de Analistas</h2>
+          <p class="rc-section-desc">Instituições que acompanham e publicam relatórios sobre os papéis da companhia.</p>
+
+          <div class="page-filter">
+            <div class="page-filter__group">
+              <span class="page-filter__label">RECOMENDAÇÃO</span>
+              <span class="select">
+                <select class="select__field" data-rc-rec>
+                  <option value="todos">Todas</option>
+                  <option value="compra">Compra</option>
+                  <option value="neutro">Neutro</option>
+                  <option value="venda">Venda</option>
+                </select>
+              </span>
+            </div>
+            <span class="page-filter__label" data-rc-count></span>
+          </div>
+
+          <div class="data-table">
+            <div class="data-table__scroller">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Instituição</th>
+                    <th>Analista</th>
+                    <th>Recomendação</th>
+                    <th class="mono">P.A. ASTR3</th>
+                    <th class="mono">P.A. ASTR4</th>
+                    <th class="mono">Atualização</th>
+                  </tr>
+                </thead>
+                <tbody data-rc-analistas></tbody>
+              </table>
+            </div>
+          </div>
+
         </div>
       </section>
     </main>
@@ -363,6 +421,6 @@
       </div>
     </div>
 
-    <script type="module" src="/scripts/page.js"></script>
+    <script type="module" src="/scripts/ratings-cobertura.js"></script>
   </body>
 </html>

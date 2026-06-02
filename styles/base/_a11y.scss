@@ -117,9 +117,28 @@ body { font-size: calc(1rem * var(--a11y-font-scale)); }
     border-bottom: 2px solid #000;
   }
 
-  // ── 5. Nav drawer (mobile) ────────────────────────────────────────────────
-  .site-header__nav {
-    background-color: #000;
+  // ── 5. Nav desktop — texto escuro sobre header branco ───────────────────
+  // A variável --color-secondary-700: #000 já cuida do drawer mobile.
+  // No desktop o nav é inline; garantimos contraste explícito aqui.
+  @include respond-up(desktop) {
+    .nav-list__link,
+    .nav-list__trigger {
+      color: #000000;
+      &:hover { color: #000000; background-color: #f0f0f0; }
+      &[aria-current='page'],
+      &[aria-expanded='true'] { color: #000000; }
+    }
+
+    .nav-dropdown {
+      background: #ffffff;
+      border: 1px solid #000;
+    }
+
+    .nav-dropdown__link {
+      color: #333333;
+      &:hover { color: #000000; background-color: #f0f0f0; }
+      &[aria-current='page'] { color: #000000; }
+    }
   }
 
   // ── 6. Ticker: manter cor neutra (topbar já é preto) ─────────────────────

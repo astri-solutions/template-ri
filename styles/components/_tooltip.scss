@@ -1,0 +1,49 @@
+@use '../abstracts' as *;
+
+// =============================================================================
+// TOOLTIP — via [data-tooltip] attribute
+// Default: aparece acima. Dentro de .topbar: aparece abaixo.
+// =============================================================================
+
+[data-tooltip] {
+  position: relative;
+
+  &::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    padding: 4px $spacing-2;
+    background: rgba(20, 20, 20, 0.9);
+    color: #fff;
+    font-size: $font-size-2xs;
+    font-weight: $font-weight-regular;
+    font-family: $font-family-base;
+    line-height: 1.4;
+    white-space: nowrap;
+    border-radius: $radius-sm;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 150ms ease, transform 150ms ease;
+    z-index: $z-tooltip;
+  }
+
+  &:hover::after,
+  &:focus-visible::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+// Dentro do topbar: tooltip aparece abaixo (barra está no topo do viewport)
+.topbar [data-tooltip]::after {
+  bottom: auto;
+  top: calc(100% + 6px);
+  transform: translateX(-50%) translateY(-4px);
+}
+
+.topbar [data-tooltip]:hover::after,
+.topbar [data-tooltip]:focus-visible::after {
+  transform: translateX(-50%) translateY(0);
+}

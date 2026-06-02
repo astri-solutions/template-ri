@@ -169,7 +169,7 @@ function renderMonthGrid() {
     ].filter(Boolean).join(' ');
 
     const dots = evs.map(e =>
-      `<span class="cal-month__dot cal-month__dot--${e.category}" title="${e.title}"></span>`
+      `<span class="cal-month__dot cal-month__dot--${e.category}" data-tooltip="${e.title}"></span>`
     ).join('');
 
     return `<div class="${cls}" data-date="${dateStr}">
@@ -262,8 +262,7 @@ function renderPast(year) {
   }
 
   list.innerHTML = pastEvents.map(event => {
-    const d        = parseDate(event.date);
-    const gmailUrl = buildGmailUrl(event);
+    const d = parseDate(event.date);
 
     return `<li class="events-past__item">
       <span class="events-past__date">${formatDatePt(d)}</span>
@@ -273,7 +272,6 @@ function renderPast(year) {
           <span class="events-past__date-mobile">${formatDatePt(d)}</span>
         </div>
       </div>
-      <a class="events-past__add" href="${gmailUrl}" target="_blank" rel="noopener noreferrer" aria-label="Adicionar ao calendário: ${event.title}" title="Adicionar ao calendário">${ICON_ADD_CAL}</a>
     </li>`;
   }).join('');
 }

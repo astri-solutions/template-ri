@@ -21,7 +21,7 @@ export function initCookieBanner() {
     <div class="cookie-banner__content">
       <p class="cookie-banner__text">
         Utilizamos cookies para melhorar sua experiência de navegação. Ao continuar, você concorda com nossa
-        <a class="cookie-banner__link" href="/pages/legal/definicao-de-cookies.html">Política de Cookies</a>.
+        <a class="cookie-banner__link" href="/definicao-de-cookies.html">Política de Cookies</a>.
       </p>
       <button class="cookie-banner__btn btn btn--primary btn--sm" type="button" data-cookie-accept>
         Ciente

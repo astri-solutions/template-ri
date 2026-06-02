@@ -109,35 +109,56 @@ body { font-size: calc(1rem * var(--a11y-font-scale)); }
   // ── 3. Imagens → escala de cinza ─────────────────────────────────────────
   img { filter: grayscale(1); }
 
-  // ── 4. Site header — remover blur, adicionar borda visível ───────────────
+  // ── 4. Site header — fundo preto para máximo contraste ──────────────────
   .site-header {
-    background-color: #ffffff;
+    background-color: #000000;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-    border-bottom: 2px solid #000;
+    border-bottom: 2px solid #333333;
   }
 
-  // ── 5. Nav desktop — texto escuro sobre header branco ───────────────────
-  // A variável --color-secondary-700: #000 já cuida do drawer mobile.
-  // No desktop o nav é inline; garantimos contraste explícito aqui.
+  // ── 4a. Logo no header → versão negativa (branca sobre preto) ────────────
+  .site-header__logo {
+    content: url('/assets/logotipo/logotipo-negative.svg');
+  }
+
+  // ── 4b. Search e hamburger → branco sobre header preto ───────────────────
+  .site-header__search {
+    color: rgba(255, 255, 255, 0.7);
+    &:hover { color: #fff; background-color: rgba(255, 255, 255, 0.1); }
+  }
+
+  .site-header__hamburger {
+    color: #ffffff;
+    &:hover { background-color: rgba(255, 255, 255, 0.1); }
+  }
+
+  // ── 5. Nav desktop — texto branco sobre header preto ────────────────────
   @include respond-up(desktop) {
     .nav-list__link,
     .nav-list__trigger {
-      color: #000000;
-      &:hover { color: #000000; background-color: #f0f0f0; }
+      color: #ffffff;
+      &:hover {
+        color: #ffffff;
+        background-color: rgba(255, 255, 255, 0.1);
+      }
       &[aria-current='page'],
-      &[aria-expanded='true'] { color: #000000; }
+      &[aria-expanded='true'] { color: #ffffff; }
     }
 
     .nav-dropdown {
-      background: #ffffff;
-      border: 1px solid #000;
+      background: #111111;
+      border: 1px solid #444444;
+      box-shadow: none;
     }
 
     .nav-dropdown__link {
-      color: #333333;
-      &:hover { color: #000000; background-color: #f0f0f0; }
-      &[aria-current='page'] { color: #000000; }
+      color: #dddddd;
+      &:hover {
+        color: #ffffff;
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+      &[aria-current='page'] { color: #ffffff; }
     }
   }
 

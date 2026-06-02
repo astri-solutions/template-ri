@@ -1,0 +1,300 @@
+@use '../abstracts' as *;
+
+// =============================================================================
+// ACESSIBILIDADE — [data-contrast='on'] + [data-font-size]
+// =============================================================================
+
+// ─── Tamanho de fonte ────────────────────────────────────────────────────────
+
+:root { --a11y-font-scale: 1; }
+
+[data-font-size='1']  { --a11y-font-scale: 1.1; }
+[data-font-size='2']  { --a11y-font-scale: 1.2; }
+[data-font-size='-1'] { --a11y-font-scale: 0.9; }
+
+body { font-size: calc(1rem * var(--a11y-font-scale)); }
+
+// ─── Alto contraste — preto e branco ─────────────────────────────────────────
+
+[data-contrast='on'] {
+
+  // ── 1. Paleta de cores → escala de cinza ────────────────────────────────
+  --color-primary-100: #e0e0e0;
+  --color-primary-200: #cccccc;
+  --color-primary-300: #aaaaaa;
+  --color-primary-400: #888888;
+  --color-primary-500: #000000;
+  --color-primary-600: #111111;
+  --color-primary-700: #222222;
+  --color-primary-800: #333333;
+  --color-primary-900: #444444;
+
+  --color-secondary-100: #e0e0e0;
+  --color-secondary-200: #cccccc;
+  --color-secondary-300: #aaaaaa;
+  --color-secondary-400: #888888;
+  --color-secondary-500: #000000;
+  --color-secondary-600: #111111;
+  --color-secondary-700: #000000;
+  --color-secondary-800: #111111;
+  --color-secondary-900: #222222;
+
+  --color-tertiary-100: #f5f5f5;
+  --color-tertiary-200: #eeeeee;
+  --color-tertiary-300: #e0e0e0;
+  --color-tertiary-400: #cccccc;
+  --color-tertiary-500: #aaaaaa;
+  --color-tertiary-600: #888888;
+  --color-tertiary-700: #666666;
+  --color-tertiary-800: #444444;
+  --color-tertiary-900: #222222;
+
+  // ── 2. Tokens semânticos ─────────────────────────────────────────────────
+  --color-bg:      #ffffff;
+  --color-surface: #f5f5f5;
+  --color-border:  #000000;
+  --color-divider: #555555;
+
+  --color-text:       #000000;
+  --color-text-muted: #333333;
+  --color-text-light: #555555;
+
+  --color-primary:         #000000;
+  --color-primary-hover:   #333333;
+  --color-primary-pressed: #000000;
+  --color-primary-subtle:  #e0e0e0;
+  --color-on-primary:      #ffffff;
+
+  --color-secondary:         #000000;
+  --color-secondary-hover:   #333333;
+  --color-secondary-pressed: #000000;
+  --color-secondary-subtle:  #e0e0e0;
+  --color-on-secondary:      #ffffff;
+
+  --color-tertiary:        #e0e0e0;
+  --color-tertiary-hover:  #cccccc;
+  --color-tertiary-subtle: #f5f5f5;
+  --color-on-tertiary:     #000000;
+
+  --color-section-bg:       #ffffff;
+  --color-section-bg-alt:   #f5f5f5;
+  --color-section-bg-brand: #000000;
+  --color-section-bg-dark:  #000000;
+
+  --color-title:          #000000;
+  --color-heading:        #000000;
+  --color-title-accent:   #000000;
+  --color-title-on-dark:  #ffffff;
+  --color-title-on-brand: #ffffff;
+
+  --color-link:       #000000;
+  --color-link-hover: #333333;
+  --color-focus-ring: #000000;
+
+  --color-success: #000000;
+  --color-danger:  #000000;
+  --color-warning: #000000;
+  --color-info:    #000000;
+
+  // Calendar
+  --cal-resultados:    #000000;
+  --cal-conferencia:   #000000;
+  --cal-assembleia:    #000000;
+  --cal-outros:        #333333;
+  --cal-resultados-bg: #e0e0e0;
+  --cal-conferencia-bg:#e0e0e0;
+  --cal-assembleia-bg: #e0e0e0;
+  --cal-outros-bg:     #f0f0f0;
+
+  // ── 3. Imagens → escala de cinza ─────────────────────────────────────────
+  img { filter: grayscale(1); }
+
+  // ── 4. Site header — remover blur, adicionar borda visível ───────────────
+  .site-header {
+    background-color: #ffffff;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: 2px solid #000;
+  }
+
+  // ── 5. Nav drawer (mobile) ────────────────────────────────────────────────
+  .site-header__nav {
+    background-color: #000;
+  }
+
+  // ── 6. Ticker: manter cor neutra (topbar já é preto) ─────────────────────
+  .topbar__ticker-change--up,
+  .topbar__ticker-change--down {
+    color: rgba(255, 255, 255, 0.75);
+    svg { display: none; }
+  }
+
+  // ── 7. Botões ─────────────────────────────────────────────────────────────
+  .btn--primary {
+    background-color: #000 !important;
+    border-color:     #000 !important;
+    color:            #fff !important;
+    &:hover { background-color: #333 !important; border-color: #333 !important; }
+  }
+
+  .btn--secondary,
+  .btn--outline {
+    background-color: #fff !important;
+    border-color:     #000 !important;
+    color:            #000 !important;
+    &:hover { background-color: #f0f0f0 !important; }
+  }
+
+  .btn--on-dark {
+    background-color: #fff !important;
+    border-color:     #fff !important;
+    color:            #000 !important;
+  }
+
+  // ── 8. Cards ─────────────────────────────────────────────────────────────
+  .card { border-color: #000; }
+
+  // ── 9. Gradientes → sólido preto ─────────────────────────────────────────
+  .debt-amort__fill {
+    background: #000;
+  }
+
+  .debt-mix-item__fill--1,
+  .debt-mix-item__fill--2,
+  .debt-mix-item__fill--3,
+  .debt-mix-item__fill--4 {
+    background: #000 !important;
+  }
+
+  .como-investir-step__bar-inner,
+  [class*='step__line']::after {
+    background: #000;
+  }
+
+  .home-atalho__icon-wrap,
+  .atalho__icon-bg {
+    background: #e0e0e0;
+    color: #000;
+  }
+
+  // ── 10. Badges de documento → B&W ────────────────────────────────────────
+  .doc-list__badge,
+  .doc-list__badge--pdf,
+  .doc-list__badge--xls,
+  .doc-list__badge--doc,
+  .doc-list__badge--ppt,
+  .doc-list__badge--zip,
+  .doc-list__badge--xml {
+    background: #e0e0e0 !important;
+    color:      #000    !important;
+    border: 1px solid #888;
+  }
+
+  // ── 11. Badges de calendário / categoria ────────────────────────────────
+  .cal-month__dot {
+    background: #000 !important;
+  }
+
+  [class*='cal-upcoming__cat--'],
+  [class*='events-past__cat--'] {
+    background: #e0e0e0 !important;
+    color:      #000    !important;
+    border: 1px solid #888;
+  }
+
+  // ── 12. Badges de ratings/cobertura ─────────────────────────────────────
+  .rc-badge,
+  [class*='rc-badge--'] {
+    background: #e0e0e0 !important;
+    color:      #000    !important;
+    border: 1px solid #888;
+  }
+
+  // ── 13. Badges de setor (Portfólio) ──────────────────────────────────────
+  [class*='sector-badge'] {
+    background: #e0e0e0 !important;
+    color:      #000    !important;
+    border: 1px solid #888 !important;
+  }
+
+  // ── 14. Composição acionária — arco e legenda ─────────────────────────────
+  .share-legend__dot:nth-child(1),
+  .share-legend__dot:nth-child(2),
+  .share-legend__dot:nth-child(3) {
+    background: #000 !important;
+  }
+
+  [class*='share-legend__dot'] {
+    background: #000 !important;
+    border: 1px solid #fff;
+  }
+
+  // ── 15. Sustentabilidade — ESG tag ────────────────────────────────────────
+  .esg-tag,
+  [class*='esg-tag'] {
+    background: #e0e0e0 !important;
+    color:      #000    !important;
+  }
+
+  // ── 16. LinkedIn / redes sociais ─────────────────────────────────────────
+  .team-card__linkedin,
+  .org-card__linkedin,
+  [class*='__linkedin'] {
+    background: #000 !important;
+  }
+
+  // ── 17. Status badges (tabelas) ──────────────────────────────────────────
+  [class*='--active'],
+  [class*='--inactive'],
+  [class*='div-status--'] {
+    background: #e0e0e0 !important;
+    color:      #000    !important;
+    border: 1px solid #888 !important;
+  }
+
+  // ── 18. Página Portfólio — stat dark strip ───────────────────────────────
+  .pf-stats {
+    background: #000;
+    color: #fff;
+    .pf-stat__value,
+    .pf-stat__label { color: #fff; }
+  }
+
+  // ── 19. Glossário — initial letter ───────────────────────────────────────
+  .gloss-group__letter { color: #000; }
+
+  // ── 20. Homepage hero overlay ────────────────────────────────────────────
+  .hero__overlay,
+  .card__overlay {
+    background: rgba(0, 0, 0, 0.6) !important;
+  }
+
+  // ── 21. Page header dark background ──────────────────────────────────────
+  .page-header {
+    background: #000;
+    &__eyebrow,
+    &__title,
+    &__lead { color: #fff !important; }
+  }
+
+  // ── 22. Sumário — progress ring ───────────────────────────────────────────
+  .summary__ring-circle { stroke: #000 !important; }
+  .summary__ring-track  { stroke: #e0e0e0 !important; }
+
+  // ── 23. Accordion ─────────────────────────────────────────────────────────
+  .accordion__trigger:hover,
+  .accordion__item.is-open .accordion__trigger {
+    background-color: #f0f0f0;
+  }
+  .accordion__bar { background: #000; }
+
+  // ── 24. Data table ─────────────────────────────────────────────────────────
+  .data-table th {
+    background: #000;
+    color: #fff;
+  }
+
+  .data-table tr:hover td {
+    background: #f0f0f0;
+  }
+}

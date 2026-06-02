@@ -152,13 +152,17 @@
 }
 
 .overview-stats__inner {
+  @include container;
   position: relative;
   z-index: 1;
-  width: 100%;
-  padding: $spacing-20 8%;
+  padding-top: $spacing-20;
+  padding-bottom: $spacing-20;
   text-align: center;
 
-  @include respond-down(tablet) { padding: $spacing-14 5%; }
+  @include respond-down(tablet) {
+    padding-top: $spacing-14;
+    padding-bottom: $spacing-14;
+  }
 }
 
 .overview-stats__eyebrow {

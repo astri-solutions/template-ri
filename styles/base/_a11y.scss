@@ -322,9 +322,11 @@ body { font-size: calc(1rem * var(--a11y-font-scale)); }
   .summary__ring-track  { stroke: #e0e0e0 !important; }
 
   // ── 23. Accordion ─────────────────────────────────────────────────────────
-  .accordion__trigger:hover,
-  .accordion__item.is-open .accordion__trigger {
-    background-color: #f0f0f0;
+  .accordion__trigger:hover { background-color: #f0f0f0; color: #000; }
+  .accordion__item.is-open .accordion__trigger,
+  .accordion__item.is-open > .accordion__trigger {
+    background-color: #000 !important;
+    color: #fff !important;
   }
   .accordion__bar { background: #000; }
 
@@ -336,5 +338,23 @@ body { font-size: calc(1rem * var(--a11y-font-scale)); }
 
   .data-table tr:hover td {
     background: #f0f0f0;
+  }
+
+  // ── 25. Portfólio — filtro ativo ──────────────────────────────────────────
+  .pf-filter-btn.is-active {
+    background: #000 !important;
+    color: #fff !important;
+  }
+
+  // ── 26. Como investir — número do passo ──────────────────────────────────
+  .como-investir__number {
+    background-color: #000 !important;
+    color: #fff !important;
+  }
+
+  // ── 27. Eyebrows e textos coloridos ──────────────────────────────────────
+  [class*='__eyebrow'],
+  [class*='eyebrow'] {
+    color: #000 !important;
   }
 }

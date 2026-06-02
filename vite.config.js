@@ -11,46 +11,46 @@ export default defineConfig({
         // Raiz
         main:         resolve(__dirname, 'index.html'),
         homeAtalhos:  resolve(__dirname, 'home-atalhos.html'),
-        sumario:      resolve(__dirname, 'pages/sumario.html'),
+        sumario:      resolve(__dirname, 'sumario.html'),
 
         // A Companhia
-        visaoGeral:           resolve(__dirname, 'pages/a-companhia/visao-geral.html'),
-        nossaHistoria:        resolve(__dirname, 'pages/a-companhia/nossa-historia.html'),
-        estrategiasVantagens: resolve(__dirname, 'pages/a-companhia/estrategias-vantagens.html'),
-        portfolio:            resolve(__dirname, 'pages/a-companhia/portfolio.html'),
-        nossoTime:            resolve(__dirname, 'pages/a-companhia/nosso-time.html'),
+        visaoGeral:           resolve(__dirname, 'visao-geral.html'),
+        nossaHistoria:        resolve(__dirname, 'nossa-historia.html'),
+        estrategiasVantagens: resolve(__dirname, 'estrategias-vantagens.html'),
+        portfolio:            resolve(__dirname, 'portfolio.html'),
+        nossoTime:            resolve(__dirname, 'nosso-time.html'),
 
         // Governança
-        composicaoAcionaria: resolve(__dirname, 'pages/governanca/composicao-acionaria.html'),
-        diretoriaConselho:   resolve(__dirname, 'pages/governanca/diretoria-conselho.html'),
-        estatutoPoliticas:   resolve(__dirname, 'pages/governanca/estatuto-politicas.html'),
-        codigoConduta:       resolve(__dirname, 'pages/governanca/codigo-conduta.html'),
-        atasAssembleias:     resolve(__dirname, 'pages/governanca/atas-assembleias.html'),
-        sustentabilidade:    resolve(__dirname, 'pages/governanca/sustentabilidade.html'),
+        composicaoAcionaria: resolve(__dirname, 'composicao-acionaria.html'),
+        diretoriaConselho:   resolve(__dirname, 'diretoria-conselho.html'),
+        estatutoPoliticas:   resolve(__dirname, 'estatuto-politicas.html'),
+        codigoConduta:       resolve(__dirname, 'codigo-conduta.html'),
+        atasAssembleias:     resolve(__dirname, 'atas-assembleias.html'),
+        sustentabilidade:    resolve(__dirname, 'sustentabilidade.html'),
 
         // Financeiro
-        centralResultados:   resolve(__dirname, 'pages/informacoes-financeiras/central-resultados.html'),
-        apresentacoes:       resolve(__dirname, 'pages/informacoes-financeiras/apresentacoes.html'),
-        endividamento:       resolve(__dirname, 'pages/informacoes-financeiras/endividamento.html'),
-        dividendosRecompra:  resolve(__dirname, 'pages/informacoes-financeiras/dividendos-recompra.html'),
+        centralResultados:   resolve(__dirname, 'central-resultados.html'),
+        apresentacoes:       resolve(__dirname, 'apresentacoes.html'),
+        endividamento:       resolve(__dirname, 'endividamento.html'),
+        dividendosRecompra:  resolve(__dirname, 'dividendos-recompra.html'),
 
         // Investidores
-        documentosCvm:     resolve(__dirname, 'pages/investidores/documentos-cvm.html'),
-        calendarioEventos: resolve(__dirname, 'pages/investidores/calendario-eventos.html'),
-        ratingsCobertura:  resolve(__dirname, 'pages/investidores/ratings-cobertura.html'),
-        comoInvestir:      resolve(__dirname, 'pages/investidores/como-investir.html'),
+        documentosCvm:     resolve(__dirname, 'documentos-cvm.html'),
+        calendarioEventos: resolve(__dirname, 'calendario-eventos.html'),
+        ratingsCobertura:  resolve(__dirname, 'ratings-cobertura.html'),
+        comoInvestir:      resolve(__dirname, 'como-investir.html'),
 
         // Contato
-        glossario:        resolve(__dirname, 'pages/contato/glossario.html'),
-        faleComRi:        resolve(__dirname, 'pages/contato/fale-com-ri.html'),
-        mailing:          resolve(__dirname, 'pages/contato/mailing.html'),
-        fatoresRisco:     resolve(__dirname, 'pages/contato/fatores-risco.html'),
-        trabalheConosco:  resolve(__dirname, 'pages/contato/trabalhe-conosco.html'),
+        glossario:        resolve(__dirname, 'glossario.html'),
+        faleComRi:        resolve(__dirname, 'fale-com-ri.html'),
+        mailing:          resolve(__dirname, 'mailing.html'),
+        fatoresRisco:     resolve(__dirname, 'fatores-risco.html'),
+        trabalheConosco:  resolve(__dirname, 'trabalhe-conosco.html'),
 
         // Legal
-        politicaPrivacidade: resolve(__dirname, 'pages/legal/politica-de-privacidade.html'),
-        termosCondicoes:     resolve(__dirname, 'pages/legal/termos-e-condicoes.html'),
-        definicaoCookies:    resolve(__dirname, 'pages/legal/definicao-de-cookies.html'),
+        politicaPrivacidade: resolve(__dirname, 'politica-de-privacidade.html'),
+        termosCondicoes:     resolve(__dirname, 'termos-e-condicoes.html'),
+        definicaoCookies:    resolve(__dirname, 'definicao-de-cookies.html'),
 
       },
     },

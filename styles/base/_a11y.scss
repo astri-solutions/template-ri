@@ -352,9 +352,11 @@ body { font-size: calc(1rem * var(--a11y-font-scale)); }
     color: #fff !important;
   }
 
-  // ── 27. Eyebrows e textos coloridos ──────────────────────────────────────
-  [class*='__eyebrow'],
-  [class*='eyebrow'] {
-    color: #000 !important;
+  // ── 27. Hero eyebrow — fundo escuro, texto branco ────────────────────────
+  .hero__eyebrow {
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
   }
+
+  .hero__title em { color: #ffffff !important; }
 }

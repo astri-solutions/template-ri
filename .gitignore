@@ -1,3 +1,5 @@
 node_modules/
 dist/
 .claude/
+# But allow commands/ folder
+!commands/

@@ -122,6 +122,7 @@
 
   // — Títulos / headings
   --color-title:          var(--color-secondary-700);  // #004E5B — padrão (teal)
+  --color-heading:        var(--color-secondary-700);  // alias de --color-title
   --color-title-accent:   var(--color-primary-700);    // #00B54F — destaque (verde)
   --color-title-on-dark:  #ffffff;                     // sobre bg escuro
   --color-title-on-brand: #ffffff;                     // sobre bg teal/brand
@@ -224,5 +225,6 @@
 
   // Títulos dark — usar cinza claro ao invés do teal escuro
   --color-title:        var(--color-gray-900);        // #FAFAFA
+  --color-heading:      var(--color-gray-900);        // alias de --color-title
   --color-title-accent: var(--color-primary-300);     // #40F68A — verde mais claro
 }

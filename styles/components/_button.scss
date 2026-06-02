@@ -18,50 +18,107 @@
               border-color $transition-fast, transform $transition-fast;
   user-select: none;
   white-space: nowrap;
+  text-decoration: none;
 
   &:focus-visible { @include focus-ring(var(--color-secondary-500)); }
-  &:active        { transform: translateY(1px); }
-  &:disabled      { opacity: 0.5; cursor: not-allowed; }
+  &:disabled      { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
 
+  // ── Primary (verde) ─────────────────────────────────────────────────────
+  // 500 → texto escuro | 700 → texto escuro | 900 → texto escuro
+  // O verde é claro o suficiente em todos os estados para manter texto preto
   &--primary {
     background-color: var(--color-primary-500);
     color: var(--color-gray-950);
-    &:hover:not(:disabled) { background-color: var(--color-primary-600); }
+
+    &:hover:not(:disabled) {
+      background-color: var(--color-primary-700);
+      color: var(--color-gray-950);
+    }
+
+    &:active:not(:disabled) {
+      background-color: var(--color-primary-900);
+      color: var(--color-gray-950);
+      transform: translateY(1px);
+    }
   }
 
+  // ── Secondary (teal) ────────────────────────────────────────────────────
+  // 500/700/900 são todos escuros → texto sempre branco
   &--secondary {
     background-color: var(--color-secondary-500);
-    color: #fff;
-    &:hover:not(:disabled) { background-color: var(--color-secondary-600); }
+    color: #ffffff;
+
+    &:hover:not(:disabled) {
+      background-color: var(--color-secondary-700);
+      color: #ffffff;
+    }
+
+    &:active:not(:disabled) {
+      background-color: var(--color-secondary-900);
+      color: #ffffff;
+      transform: translateY(1px);
+    }
   }
 
+  // ── Ghost (contorno + texto secondary) ─────────────────────────────────
   &--ghost {
     background-color: transparent;
     color: var(--color-secondary-500);
     border-color: var(--color-border);
+
     &:hover:not(:disabled) {
+      background-color: var(--color-tertiary-200);
+      color: var(--color-secondary-700);
+      border-color: var(--color-secondary-700);
+    }
+
+    &:active:not(:disabled) {
       background-color: var(--color-tertiary-300);
-      border-color: var(--color-secondary-500);
+      color: var(--color-secondary-900);
+      border-color: var(--color-secondary-900);
+      transform: translateY(1px);
     }
   }
 
-  // Variante "on-dark" — para usar sobre fundos escuros (banner, footer)
+  // ── On-dark (verde sobre fundos escuros) ────────────────────────────────
+  // Mesmo mapeamento do primary; hover vai para 700 (ainda legível com texto escuro)
   &--on-dark {
     background-color: var(--color-primary-500);
     color: var(--color-gray-950);
-    &:hover:not(:disabled) { background-color: var(--color-primary-400); }
-  }
 
-  &--outline-on-dark {
-    background-color: transparent;
-    color: #fff;
-    border-color: rgba(255, 255, 255, 0.4);
     &:hover:not(:disabled) {
-      background-color: rgba(255, 255, 255, 0.1);
-      border-color: #fff;
+      background-color: var(--color-primary-700);
+      color: var(--color-gray-950);
+    }
+
+    &:active:not(:disabled) {
+      background-color: var(--color-primary-900);
+      color: var(--color-gray-950);
+      transform: translateY(1px);
     }
   }
 
+  // ── Outline on-dark (sobre fundos escuros, variante outline) ────────────
+  &--outline-on-dark {
+    background-color: transparent;
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.4);
+
+    &:hover:not(:disabled) {
+      background-color: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border-color: #ffffff;
+    }
+
+    &:active:not(:disabled) {
+      background-color: rgba(255, 255, 255, 0.22);
+      color: #ffffff;
+      border-color: #ffffff;
+      transform: translateY(1px);
+    }
+  }
+
+  // ── Tamanhos ─────────────────────────────────────────────────────────────
   &--sm { padding: $spacing-2 $spacing-3; font-size: $font-size-xs; }
   &--lg { padding: $spacing-4 $spacing-6; font-size: $font-size-md; }
 }

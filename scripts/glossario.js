@@ -164,11 +164,13 @@ window.scrollToLetter = function (l) {
   const target = document.getElementById(`gloss-${l}`);
   if (!target) return;
 
-  const navEl   = document.querySelector('[data-gloss-nav]');
-  const navH    = navEl ? navEl.offsetHeight : 0;
-  const topbarH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--topbar-h') || '0');
-  const headerH = 72;
-  const offset  = topbarH + headerH + navH + 16;
+  const navEl    = document.querySelector('[data-gloss-nav]');
+  const navH     = navEl ? navEl.offsetHeight : 0;
+  const topbarEl = document.querySelector('.topbar');
+  const topbarH  = topbarEl ? topbarEl.offsetHeight : 0;
+  const header   = document.querySelector('.site-header');
+  const headerH  = header && !header.classList.contains('is-hidden') ? 72 : 0;
+  const offset   = topbarH + headerH + navH + 16;
 
   const top = target.getBoundingClientRect().top + window.scrollY - offset;
   window.scrollTo({ top, behavior: 'smooth' });
@@ -207,10 +209,9 @@ function syncNavTop() {
   const nav    = document.querySelector('[data-gloss-nav]');
   if (!header || !nav) return;
 
-  const topbarH = parseFloat(
-    getComputedStyle(document.documentElement).getPropertyValue('--topbar-h') || '0'
-  );
-  const headerH = 72;
+  const topbarEl = document.querySelector('.topbar');
+  const topbarH  = topbarEl ? topbarEl.offsetHeight : 0;
+  const headerH  = 72;
 
   function update() {
     const hidden = header.classList.contains('is-hidden');

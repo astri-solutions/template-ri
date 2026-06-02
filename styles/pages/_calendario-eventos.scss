@@ -397,7 +397,7 @@
 
   &__item {
     display: grid;
-    grid-template-columns: 130px 1fr auto;
+    grid-template-columns: 130px 1fr;
     gap: $spacing-4;
     align-items: center;
     padding: $spacing-4 0;
@@ -408,7 +408,7 @@
     &:hover { background-color: var(--color-section-bg-alt); padding-inline: $spacing-2; }
 
     @include respond-down(tablet) {
-      grid-template-columns: 1fr auto;
+      grid-template-columns: 1fr;
     }
   }
 

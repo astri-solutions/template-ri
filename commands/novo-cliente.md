@@ -108,7 +108,57 @@ Substituir "Empresa Template" / "Nome da Empresa" pelo nome do cliente em:
 - Todos os HTMLs: `<title>`, `<meta name="description">`, `<meta property="og:*">`, header/footer
 - `scripts/nav.js`: nome no topbar
 
-### 8. Build e verificação
+### 8. Substituir logos
+
+Pedir ao cliente os arquivos SVG de logo nas três variantes abaixo e colocá-los em `assets/logotipo/`:
+
+| Arquivo | Uso | Descrição |
+|---------|-----|-----------|
+| `logotipo-original.svg` | Header (fundo claro) | Versão colorida normal |
+| `logotipo-negative.svg` | Header dark, drawer, rodapé, "Powered by" | Versão branca para fundos escuros |
+| `logotipo-black.svg` | Opcional — fundos neutros | Versão preta |
+
+Se o cliente ainda não tiver os SVGs, usar placeholders temporários e deixar um comentário `<!-- TODO: substituir logo -->` em cada ocorrência.
+
+As referências nos HTMLs já apontam para esses caminhos — não é necessário alterar o HTML, apenas substituir os arquivos.
+
+### 9. Substituir tickers
+
+Os tickers ASTR3 e ASTR4 estão hardcoded em todos os HTMLs e no rodapé de cada página. Usar `sed` para substituir em lote:
+
+```bash
+# Exemplo: cliente com tickers XPTO3 e XPTO4
+find . -name "*.html" -exec sed -i \
+  -e 's/ASTR3/XPTO3/g' \
+  -e 's/ASTR4/XPTO4/g' \
+  {} +
+```
+
+Verificar também os valores de cotação iniciais (`R$ 26,27`, `R$ 22,15`) e os percentuais de variação — substituir por valores reais ou zerar com `--` até o feed ao vivo ser configurado.
+
+### 10. Atualizar dados do rodapé
+
+Em todos os HTMLs, localizar o bloco `.site-footer__info` e substituir:
+
+| Campo | Template | Substituir por |
+|-------|----------|----------------|
+| Endereço | Avenida Brigadeiro Faria Lima, nº 2.277… | Endereço real do cliente |
+| E-mail | `comercial@astri.solutions` | E-mail RI do cliente |
+| Telefone | `+55 (11) 98444-7855` | Telefone do cliente |
+| Copyright | `©Copyright Astri 2026` | Nome real + ano atual |
+| Links sociais | `href="#"` | URLs reais do cliente |
+
+```bash
+# Substituição em lote do e-mail (exemplo)
+find . -name "*.html" -exec sed -i \
+  's/comercial@astri\.solutions/<email-cliente>/g' {} +
+```
+
+### 11. Substituir favicon
+
+Substituir `public/favicon.svg` pela versão do cliente. Se não houver SVG, converter o logo para SVG simples ou usar um PNG via `<link rel="icon" href="/favicon.png">`.
+
+### 12. Build e verificação
 
 ```bash
 npm install
@@ -117,7 +167,7 @@ npm run build
 
 Verificar que o build passa sem erros.
 
-### 9. Commit e push
+### 13. Commit e push
 
 ```bash
 git add -A
@@ -125,7 +175,7 @@ git commit -m "Inicializa projeto <nome-cliente> baseado no Template RI"
 git push -u origin main
 ```
 
-### 10. Deploy no Vercel (instrução manual)
+### 14. Deploy no Vercel (instrução manual)
 
 Como o Vercel requer autenticação pelo browser:
 1. Acesse vercel.com → "Add New Project"
